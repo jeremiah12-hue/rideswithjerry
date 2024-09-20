@@ -1,0 +1,56 @@
+[
+    {
+        "id": 1,
+        "username": "kingjerrytg@gmail.com",
+        "email": "kingjerrytg@gmail.com",
+        "country": "argentina",
+        "city": "kingjerrytg@gmail.com",
+        "contact": "0999",
+        "psw": "kingjerrytg@gmail.com"
+    },
+    {
+        "id": 2,
+        "username": "gkk",
+        "email": "gkk85274@gmail.com",
+        "country": "argentina",
+        "city": "kingjerry",
+        "contact": "0999",
+        "psw": "kingjerrytg@gmail.com"
+    },
+    {
+        "id": "d7b932d6-559f-41b3-8c96-3faca5cec31f",
+        "username": "rrr@gmail.com",
+        "email": "rrr@gmail.com",
+        "country": "congo",
+        "city": "rrr@gmail.com",
+        "contact": "09999999999",
+        "psw": "rrr@gmail.com"
+    },
+    {
+        "id": "255dc91d-9eaa-4bff-8dce-f83b8f98b1a2",
+        "username": "bbb@gmail.com",
+        "email": "bbb@gmail.com",
+        "country": "egypt",
+        "city": "bale",
+        "contact": "099999",
+        "psw": "bbb@gmail.com"
+    },
+    {
+        "id": "70147c78-d811-4d41-bac3-27b0caeaf12f",
+        "username": "vv@gmail.com",
+        "email": "vv@gmail.com",
+        "country": "egypt",
+        "city": "vv@gmail.com",
+        "contact": "09999",
+        "psw": "vv@gmail.com"
+    },
+    {
+        "id": "67b817a4-4c07-4a3d-9f34-d7f8fe17b3c5",
+        "username": "www@gmail.com",
+        "email": "www@gmail.com",
+        "country": "croatia",
+        "city": "www@gmail.com",
+        "contact": "00",
+        "psw": "www@gmail.com"
+    }
+]

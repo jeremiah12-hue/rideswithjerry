@@ -1,0 +1,2958 @@
+*  {
+    box-sizing: border-box;
+    padding: 0px;
+    margin: 0px;
+    outline: 0px;
+    list-style: none;
+    text-decoration: none;
+    overflow-wrap: normal;
+    color: #000000;
+}
+main, body  {
+    position: relative;
+    width: 100svw;
+    max-width: 100vw;
+    min-height: 100vh;
+    min-height: 100svh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    font-family: "Indie Flower", cursive;
+    font-weight: 400;
+    font-style: normal;
+}
+nav#top_nav  {
+    width: 100vw;
+    top: 0px;
+    margin-inline: 0px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    border-block: 2px solid black;
+    margin-block: 5px;
+    text-align: center;
+    cursor: wait;
+    height: 6vh;
+    align-items: center;
+    justify-content: center;
+}
+
+nav#top_nav p.top_nav_txt  {
+    min-width: 85vw;
+    height: auto;
+    font-size: 1.2em;
+    padding: 5px;
+    text-align: center;
+    white-space: nowrap;
+    overflow-x: visible;
+    text-overflow: clip;
+    display: block;
+    animation: scroll 30s linear infinite;
+    z-index: -1;
+    font-family: "Dosis", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    margin-left: 40px;
+}
+@keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-1000%);
+    }
+}
+nav#top_nav div.top_nav_bar  {
+    width: 15vw;
+    height: auto;
+    border: none;
+    cursor: pointer;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(100px);
+    padding: 10px;
+}
+nav#top_nav div.top_nav_bar p.bar  {
+    width: 20px;
+    height: 3px;
+    padding: 2px;
+    background-color: black;
+}
+nav#top_nav div.top_nav_bar p.bar1  {
+    width: 20px;
+    height: 3px;
+    padding: 2px;
+    background-color: black;
+    transform: rotate(-40deg);
+    translate: 0px 4px;
+}
+nav#top_nav div.top_nav_bar p.bar2  {
+    width: 20px;
+    height: 3px;
+    padding: 2px;
+    background-color: black;
+    transform: rotate(40deg);
+}
+
+div#brands_toggle section.wide_screen_main, 
+div.wide_brand_rated, div.wide_car_rated,
+nav.wide_screen, div.car_buying,
+div.car_care, div.faq,
+div#brands_toggle section.wide_screen_shop,
+div#brands_toggle section.wide_shop_description,
+div#brands_toggle section.save_wide_screen_shop,
+div#brands_toggle section.wide_buy,
+div#brands_toggle section.wide_login,
+div#brands_toggle section.wide_signup,
+div#brands_toggle section.wide_sell_car,
+div#brands_toggle section.wide_my_account,
+div#brands_toggle section.wide_policy,
+div#brands_toggle section.wide_message,
+div#brands_toggle section.wide_search  {display: none}
+
+nav.mobile  {
+    display: block;
+    max-width: 100vw;
+    width: 100vw;
+    position: absolute;
+    max-height: 350px;
+    padding-top: 5vh;
+}
+nav.mobile ul.head_nav  {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: auto;
+}
+nav.mobile ul.head_nav li.logo  {
+    width: 55vw;
+    height: auto;
+    padding: 15px;
+    font-size: 3em;
+    font-weight: 600;
+    text-align: left;
+    overflow-wrap: normal;
+    cursor: pointer;
+    font-family: "Ga Maamli", sans-serif;
+    font-style: normal;
+    text-shadow: 2px 2px 2px grey;
+}
+nav.mobile ul.head_nav li.news  {
+    width: 25vw;
+    height: auto;
+    padding: 5px;
+    font-size: 1.6em;
+    font-weight: 600;
+    text-align: center;
+    border: none;
+    box-shadow: 2px 2px 2px;
+    border-top-left-radius: 10%;
+    border-bottom-left-radius: 20%;
+    border-top-right-radius: 20%;
+    border-bottom-right-radius: 10%;
+    cursor: pointer;
+    font-family: "Handlee", cursive;
+    font-weight: 600;
+    font-style: normal;
+    animation: colorToggle 10s infinite;
+    text-shadow: 2px 2px 2px;
+}
+@keyframes colorToggle {
+    0%  {background-color: rgb(255, 255, 255);}
+    10%  {background-color: rgba(120, 120, 120, 0.922);}
+    20%  {background-color: rgb(124, 125, 123);}
+    30%  {background-color: rgba(152, 140, 140, 0.537);}
+    40%  {background-color: rgb(92, 92, 93);}
+    50%  {background-color: rgb(98, 97, 97);}
+    60%  {background-color: grey}
+    70%  {background-color: rgb(124, 121, 121)}
+    80%  {background-color: rgb(133, 131, 131)}
+    90%  {background-color: rgba(120, 107, 107, 0.479)}
+    100%  {background-color: rgb(253, 250, 250)}
+}
+nav.mobile ul.head_nav li.nav_icon  {
+    width: 10vw;
+    height: auto;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-family: "Playwrite RO", cursive;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-size: auto;
+    font-style: normal;
+}
+nav.mobile ul.head_nav li.nav_bar  {
+    width: 10vw;
+    height: 20vh;
+    padding: 15px;
+    font-size: 1.5em;
+    font-weight: 300;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+nav.mobile ul.head_nav li.nav_bar p.bar  {
+    width: 20px;
+    height: 3px;
+    padding: 2px;
+    margin: 2px;
+    background-color: black;
+}
+
+div.sign_toggle  {
+    display: block;
+    width: 100vw;
+    min-height: 70vh;
+    z-index: 1;
+}
+div#brands_toggle  {
+    display: block;
+    width: 100vw;
+    height: auto;
+    margin-top: 300px;
+    z-index: 1;
+}
+div#brands_toggle ol#brands, div.sign_toggle ul.sign  {
+    width: 80vw;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin-inline: 10vw;
+}
+div#brands_toggle ol#brands  {
+    width: 80vw;
+    height: auto;
+    display: none;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin-inline: 10vw;
+}
+div#brands_toggle ol.brands, div.sign_toggle ul.sign  {
+    width: 80vw;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin-inline: 10vw;
+}
+div#brands_toggle ol#brands li, div.sign_toggle ul.sign li {
+    width: 100%;
+    height: auto;
+    padding: 15px;
+    border-bottom: 2px dotted black;
+    text-align: center;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+}
+div#brands_toggle ol#brands li:hover, div.sign_toggle ul.sign li:hover {
+    text-shadow: 1px 1px 2px;
+    font-size: 1.2em;
+}
+div#brands_toggle ol.brands li, div.sign_toggle ul.sign li {
+    width: 100%;
+    height: auto;
+    padding: 15px;
+    border-bottom: 2px dotted black;
+    text-align: center;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+}
+div#brands_toggle ol.brands li:hover, div.sign_toggle ul.sign li:hover {
+    text-shadow: 1px 1px 2px;
+    font-size: 1.2em;
+}
+
+nav.footer_nav  {
+    width: 100vw;
+    height: auto;
+    bottom: 0px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    position: fixed;
+    padding: 15px;
+    backdrop-filter: blur(100px);
+    z-index: 1;
+}
+nav.footer_nav p.footer_icon  {
+    width: 20vw;
+    height: auto;
+    text-align: center;
+    cursor: pointer;
+}
+
+nav.footer_nav p.footer_icon i  {
+    padding: 10px;
+}
+nav.footer_nav p.footer_icon i:hover  {
+    box-shadow: 1px 1px 2px;
+    border: 2px solid black;
+    border-radius: 100%;
+}
+
+footer.footer  {
+    width: 100vw;
+    height: auto;
+    bottom: 0px;
+    display: block;
+    text-align: center;
+}
+
+footer.footer section.head_footer  {
+    width: 100vw;
+    min-height: 158px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+footer.footer section.head_footer div.head_footer_txt  {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 1.5em;
+    font-family: "Pacifico", cursive;
+    font-weight: 600;
+    font-style: normal;
+    text-shadow: 2px 2px 2px;
+}
+
+footer.footer section.top_footer  {
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-family: "Playwrite NG Modern", cursive;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    text-align: center;
+    min-height: 380px;
+}
+
+footer.footer section.top_footer div.footer_quick_links  {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50vw;
+    height: auto;
+    left: 0px;
+}
+
+footer.footer section.top_footer div.footer_resources  {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 50vw;
+    height: auto;
+    left: 0px;
+}
+
+footer.footer section.top_footer div.footer_resources p a  {
+    color: black;
+}
+
+footer.footer section.bottom_footer  {
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: "Playwrite PT", cursive;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    min-height: 380px;
+}
+
+footer.footer section.bottom_footer div.footer_legal  {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 50vw;
+    height: auto;
+    left: 0px;
+}
+
+footer.footer section.bottom_footer div.footer_contact  {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 50vw;
+    height: auto;
+    left: 0px;
+}
+
+footer.footer section.bottom_footer_main  {
+    width: 100vw;
+    font-family: "Charm", cursive;
+    font-weight: 700;
+    font-style: normal;
+    bottom: 20vh;
+    top: 920px;
+    height: 600px;
+}
+
+footer.footer section.bottom_footer div.bottom_footer_main_txt  {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100vw;
+    height: auto;
+}
+
+section.mobile_main {
+    width: 100vw;
+    min-height: 70vh;
+    text-align: justify;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+section.mobile_main div.home_slider, section.mobile_main div.efficiency,
+section.mobile_main div.safety, section.mobile_main div.price,
+section.mobile_main div.design, section.mobile_main div.quality,
+section.mobile_main div.comfort, section.mobile_shop div.shop_slider,
+section.save_mobile_shop div.save_shop_slider  {
+    width: 95vw;
+    margin-inline: 2.5vw;
+    height: auto;
+    object-fit: contain;
+    border: none;
+}
+section.mobile_main div.home_slider div.img_wrapper,
+section.mobile_shop div.shop_slider div.shop_img_wrapper,
+section.save_mobile_shop div.save_shop_slider div.save_shop_img_wrapper   {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+section.mobile_main div.home_slider div.img_wrapper img,
+section.mobile_shop div.shop_slider div.shop_img_wrapper img,
+section.save_mobile_shop div.save_shop_slider div.save_shop_img_wrapper img  {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    transition: opacity 0.5s;
+}
+section.mobile_main div.home_slider div.img_wrapper p#slider_txt,
+section.mobile_shop div.shop_slider div.shop_img_wrapper p,
+section.save_mobile_shop div.save_shop_slider div.save_shop_img_wrapper p  {
+    color: #000000;
+    font-size: 24px;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+section.mobile_main div.track_car  {
+    width: 95vw;
+    margin-inline: 2.5vw;
+    height: auto;
+    object-fit: contain;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+section.mobile_main div.track_car p  {
+    color: #000000;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+section.mobile_main div.track_car form input  {
+    border-bottom: 2px dotted black;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    padding: 10px;
+    width: 80vw;
+    height: auto;
+    margin-bottom: 10px;
+    text-align: center;
+}
+section.mobile_main div.track_car p.check  {
+    width: 60vw;
+    height: auto;
+    margin-block: 30px;
+    padding: 10px;
+    border: none;
+    font-family: "Oswald", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+section.mobile_main div.efficiency div.efficiency_wrapper,
+section.mobile_main div.safety div.safety_wrapper,
+section.mobile_main div.price div.price_wrapper,
+section.mobile_main div.design div.design_wrapper,
+section.mobile_main div.quality div.quality_wrapper,
+section.mobile_main div.comfort div.comfort_wrapper  {
+    width: 95vw;
+    height: 470px;
+    object-fit: contain;
+    margin-block: 20px;
+    padding: 10px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 2px 2px 2px;
+}
+section.mobile_main div.efficiency div.efficiency_wrapper img,
+section.mobile_main div.safety div.safety_wrapper img,
+section.mobile_main div.price div.price_wrapper img,
+section.mobile_main div.design div.design_wrapper img,
+section.mobile_main div.quality div.quality_wrapper img,
+section.mobile_main div.comfort div.comfort_wrapper img  {
+    width: 90vw;
+    margin-inline: 2.5vw;
+    height: 400px;
+    object-fit: contain;
+}
+section.mobile_main div.efficiency div.efficiency_wrapper p,
+section.mobile_main div.safety div.safety_wrapper p,
+section.mobile_main div.price div.price_wrapper p,
+section.mobile_main div.design div.design_wrapper p,
+section.mobile_main div.quality div.quality_wrapper p,
+section.mobile_main div.comfort div.comfort_wrapper p  {
+    width: 90vw;
+    margin-inline: 2.5vw;
+    height: 70px;
+    font-family: "Barlow Condensed", sans-serif;
+    font-weight: 800;
+    font-style: normal;
+    padding: 10px;
+    background-image: linear-gradient(to bottom, #5f5e5c, #635d5a, #71726b, #333926);
+    background-size: 100% 300px;
+    background-position: 0% 100%;
+    color: white;
+    text-shadow: 2px 2px 2px rgb(250, 0, 0);
+}
+
+
+section.mobile_main div.top_rated, section.mobile_main div.car_rated  {
+    min-width: 95vw;
+    margin-inline: 2.5vw;
+    height: 510px;
+    object-fit: contain;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-block: 20px;
+    text-align: center;
+}
+section.mobile_main div.top_rated h1, section.mobile_main div.car_rated h1  {
+    font-family: "Pacifico", cursive;
+    font-weight: 400;
+    font-style: normal;
+    margin-inline: 10px;
+    padding: 10px;
+}
+section.mobile_main div.top_rated div.top_rated_wrapper,
+section.mobile_main div.car_rated div.car_rated_wrapper  {
+    width: 95vw;
+    height: auto;
+    object-fit: contain;
+    text-align: center;
+    display: block;
+}
+section.mobile_main div.top_rated div.top_rated_wrapper img,
+section.mobile_main div.car_rated div.car_rated_wrapper img  {
+    width: 95vw;
+    height: 400px;
+    object-fit: contain;
+}
+section.mobile_main div.top_rated div.top_rated_wrapper p,
+section.mobile_main div.car_rated div.car_rated_wrapper p  {
+    width: 100%;
+    height: 70px;
+    font-family: "Barlow Condensed", sans-serif;
+    font-weight: 800;
+    font-style: normal;
+    padding: 10px;
+    background-image: linear-gradient(to bottom, #790707, #c03939, #f50909, #660202);
+    background-size: 100% 300px;
+    background-position: 0% 100%;
+    color: white;
+    text-shadow: 2px 2px 2px rgb(0, 0, 0);
+}
+
+
+
+section.mobile_main div.car_buying, section.mobile_main div.car_care,
+section.mobile_main div.faq  {
+    min-width: 95vw;
+    margin-inline: 2.5vw;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-block: 20px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    text-align: center;
+    font-size: 1.5em;
+}
+section.mobile_main div.car_buying h1, section.mobile_main div.car_care h1,
+section.mobile_main div.faq h1  {
+    margin-block: 40px;
+}
+section.mobile_main div.car_buying ol li.buy_head  {
+    margin-block: 30px;
+    box-shadow: 1px 1px 2px;
+    padding: 10px;
+}
+section.mobile_main div.car_buying ol ul li  {
+    padding: 20px;
+    border-bottom: 1px solid black;
+}
+section.mobile_main div.car_care p.car_care_tip,
+section.mobile_main div.faq p  {
+    padding: 10px;
+    border-bottom: 1px solid black;
+}
+
+/* shop */
+section.mobile_shop,
+section.mobile_shop_description,
+section.save_mobile_shop  {
+    width: 100vw;
+    display: flex;
+    text-align: justify;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    height: auto;
+    margin-inline: 0vw;
+}
+section.mobile_shop div.shop_items_wrapper,
+section.mobile_shop_description div.shop_description_item_wrapper,
+section.save_mobile_shop div.save_shop_items_wrapper  {
+    width: 100vw;
+    margin-inline: 0vw;
+    height: auto;
+    object-fit: contain;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+section.mobile_shop div.shop_items_wrapper div.shop_item,
+section.save_mobile_shop div.save_shop_items_wrapper div.save_shop_item  {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100vw;
+    margin-inline: 0vw;
+    height: auto;
+}
+section.mobile_shop div.shop_items_wrapper div.shop_item div.item_name,
+section.save_mobile_shop div.save_shop_items_wrapper div.save_shop_item div.save_item_name  {
+    width: 100vw;
+    height: auto;
+    padding: 10px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+section.mobile_shop div.shop_items_wrapper div.shop_item div.item_name p,
+section.save_mobile_shop div.save_shop_items_wrapper div.save_shop_item div.save_item_name p  {
+    font-size: 1.5em;
+}
+section.mobile_shop div.shop_items_wrapper div.shop_item div.item_img_wrapper,
+section.save_mobile_shop div.save_shop_items_wrapper div.save_shop_item div.save_item_img_wrapper  {
+    width: 100vw;
+    height: 330px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+}
+section.mobile_shop div.shop_items_wrapper div.shop_item div.item_img_wrapper img,
+section.save_mobile_shop div.save_shop_items_wrapper div.save_shop_item div.save_item_img_wrapper img  {
+    width: 60vw;
+    height: 300px;
+    left: 0px;
+    object-fit: contain;
+}
+section.mobile_shop div.shop_items_wrapper div.shop_item div.item_img_wrapper div.item_price ,
+section.save_mobile_shop div.save_shop_items_wrapper div.save_shop_item div.save_item_img_wrapper div.save_item_price  {
+    width: 30vw;
+    height: 330px;
+    right: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+section.mobile_shop div.shop_items_wrapper div.shop_item div.item_img_wrapper div.item_price p,
+section.save_mobile_shop div.save_shop_items_wrapper div.save_shop_item div.save_item_img_wrapper div.save_item_price p  {
+    width: 30vw;
+    height: 50px;
+    padding: 5px;
+    cursor: pointer;
+}
+section.mobile_shop div.shop_items_wrapper div.shop_item div.item_img_wrapper div.item_price a p,
+section.save_mobile_shop div.save_shop_items_wrapper div.save_shop_item div.save_item_img_wrapper div.save_item_price a p  {
+    width: 30vw;
+    height: 50px;
+    color: black;
+    cursor: pointer;
+}
+section.mobile_shop div.shop_items_wrapper div.shop_item div.rate p,
+section.save_mobile_shop div.save_shop_items_wrapper div.save_shop_item div.rate p  {
+    width: 80vw;
+    height: auto;
+    padding: 10px;
+    text-align: center;
+    background-image: linear-gradient(to bottom, #5f5e5c, #635d5a, #71726b, #333926);
+    background-size: 100% 300px;
+    background-position: 0% 100%;
+    color: white;
+    text-shadow: 2px 2px 2px rgb(251, 0, 0);
+    margin-top: 5px;
+    font-family: "Barlow Condensed", sans-serif;
+    font-weight: 800;
+    font-style: normal;     
+}
+
+
+/* shop description */
+section.mobile_shop_description div.shop_description_item_wrapper div.shop_description_img_wrapper  {
+    width: 100vw;
+    height: 500px;
+    object-fit: contain;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+section.mobile_shop_description div.shop_description_item_wrapper div.shop_description_img_wrapper img  {
+    width: 80vw;
+    height: 500px;
+    object-fit: contain;
+    padding: 10px;
+}
+section.mobile_shop_description div.shop_description_item_wrapper div.shop_description_wrapper  {
+    width: 100vw;
+    height: auto;
+    padding: 20px;
+    text-align: center;
+    margin-block: 30px;
+}
+section.mobile_shop_description div.shop_description_item_wrapper div.shop_description_wrapper p  {
+    font-size: 1.6em;
+}
+section.mobile_shop_description div.shop_description_item_wrapper div.shop_description_price_wrapper  {
+    width: 100vw;
+    height: auto;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    text-align: center;
+    margin-bottom: 50px;
+}
+section.mobile_shop_description div.shop_description_item_wrapper div.shop_description_price_wrapper p  {
+    width: auto;
+    height: 40px;
+    padding: 10px;
+    text-align: center;
+    font-size: 1.6em;
+    cursor: pointer;
+}
+section.mobile_shop_description div.shop_description_item_wrapper div.shop_description_price_wrapper p.save-btn i  {
+    font-size: 2em;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 10px;
+}
+section.mobile_shop_description div.shop_description_item_wrapper div.shop_description_price_wrapper p.save-btn.active i  {
+    font-size: 2em;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 10px;
+    color: gold;
+}
+section.mobile_shop_description div.shop_description_item_wrapper div.rate p  {
+    font-family: "Barlow Condensed", sans-serif;
+    font-weight: 800;
+    font-style: normal;
+    font-size: 1.5em;
+}
+section.mobile_shop_description div.shop_description_item_wrapper div.pricing_info  {
+    width: 100vw;
+    height: auto;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    text-align: justify;
+    margin-bottom: 50px;
+    margin-top: 20px;
+}
+section.mobile_shop_description div.shop_description_item_wrapper div.pricing_info p  {
+    font-size: 1.5em;
+    font-weight: 400;
+    text-align: justify;
+}
+
+/* description other */
+section.mobile_shop_description div.shop_description_item_wrapper div.shop_description_other_wrapper  {
+    width: 100vw;
+    height: auto;
+    object-fit: contain;
+    overflow-x: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-top: 60px;
+    margin-inline: 0px;
+}
+section.mobile_shop_description div.shop_description_item_wrapper div.shop_description_other_wrapper div.shop_description_other_img_wrapper  {
+    width: 100vw;
+    height: auto;
+    object-fit: contain;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-inline: 0px;
+}
+section.mobile_shop_description div.shop_description_item_wrapper div.shop_description_other_wrapper div.shop_description_other_img_wrapper img  {
+    width: 60vw;
+    height: 400px;
+    object-fit: contain;
+    padding: 10px;
+}
+section.mobile_shop_description div.shop_description_item_wrapper div.shop_description_other_wrapper div.shop_description_other_img_wrapper p  {
+    width: 60vw;
+    height: 100px;
+    text-align: center;
+    padding: 10px;
+    font-size: 1.5em;
+    cursor: pointer;
+}
+section.mobile_shop_description div.shop_description_item_wrapper div.review h2  {
+    padding: 20px;
+}
+section.mobile_shop_description div.shop_description_item_wrapper div.review form textarea  {
+    width: 80vw;
+    min-height: 100px;
+    font-size: 1.2em;
+    font-family: "Roboto", sans-serif;
+    font-weight: 800;
+    font-style: normal;
+    padding: 20px;
+    overflow-wrap: break-word;
+    border: none;
+}
+section.mobile_shop_description div.shop_description_item_wrapper div.review form input  {
+    width: 80vw;
+    font-size: 1.2em;
+    font-family: "Roboto", sans-serif;
+    font-weight: 800;
+    font-style: normal;
+    padding: 20px;
+    overflow-wrap: break-word;
+    border: none;
+}
+section.mobile_shop_description div.shop_description_item_wrapper div.review form button  {
+    width: auto;
+    height: auto;
+    font-size: 1.2em;
+    font-family: "Roboto", sans-serif;
+    font-weight: 800;
+    font-style: normal;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
+section.mobile_shop_description div.shop_description_item_wrapper div.review form button:hover  {
+    box-shadow: 2px 2px 2px black;
+}
+section.mobile_shop_description div.shop_description_item_wrapper div.review_history  {
+    margin-top: 50px;
+}
+section.mobile_shop_description div.shop_description_item_wrapper div.review_history h3  {
+    margin: 20px 0px 5px 0px;
+    padding: 20px;
+}
+section.mobile_shop_description div.shop_description_item_wrapper div.review_history div.review_history_item p  {
+    margin: 20px 0px;
+    padding: 10px;
+    width: 80vw;
+    height: auto;
+    overflow-wrap: break-word;
+}
+section.mobile_shop_description div.shop_description_item_wrapper div.review_history div.review_history_item p span  {
+    width: 100%;
+    height: auto;
+    overflow-wrap: break-word;
+}
+section.mobile_shop_description div.shop_description_item_wrapper div.review_history div.review_icons i  {
+    padding: 20px;
+    font-size: 2em;
+}
+
+
+/* buy */
+section.buy,
+section.sell_car {
+    width: 100vw;
+    min-height: 70vh;
+    display: flex;
+    text-align: justify;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 20px;
+}
+section.buy h1,
+section.sell_car h1  {
+    width: 100vw;
+    height: auto;
+    text-align: center;
+    padding: 20px;
+    font-family: "Oswald", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 2em;
+}
+section.buy div.deals_img_slider,
+section.sell_car div.sell_img_slider  {
+    width: 95vw;
+    margin-inline: 2.5vw;
+    height: auto;
+    object-fit: contain;
+}
+section.buy div.deals_img_slider div.deals_img_wrapper img,
+section.sell_car div.sell_img_slider div.sell_img_wrapper img  {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    transition: opacity 0.5s;
+}
+section.buy h2.img_h2,
+section.sell_car h2.img_h2  {
+    width: 100vw;
+    height: auto;
+    text-align: center;
+    font-family: "Exo 2", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 1.5em;
+}
+section.buy h2,
+section.sell_car h2  {
+    width: 100vw;
+    height: auto;
+    text-align: center;
+    font-family: "Exo 2", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 2em;
+}
+section.buy h3,
+section.sell_car h3  {
+    width: 100vw;
+    height: auto;
+    text-align: center;
+    font-family: "Exo 2", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 1.8em;
+    margin-block: 10px;
+}
+section.buy p,
+section.sell_car p  {
+    width: 100vw;
+    min-height: 10vh;
+    text-align: justify;
+    padding: 20px;
+    font-size: 1.8em;
+}
+section.buy p.center,
+section.sell_car p.center  {
+    width: 100vw;
+    min-height: 10vh;
+    text-align: center;
+    padding: 20px;
+    font-size: 1.8em;
+}
+
+/* login */
+section.login,
+section.signup {
+    width: 100vw;
+    min-height: 70vh;
+    display: flex;
+    text-align: justify;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+section.login h1,
+section.signup h1 {
+    width: 100vw;
+    height: auto;
+    text-align: center;
+    padding: 20px;
+    font-family: "Oswald", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 2em;
+}
+section.login h2,
+section.signup h2 {
+    width: 100vw;
+    height: auto;
+    text-align: center;
+    font-family: "Exo 2", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 2em;
+}
+section.login p,
+section.signup p {
+    width: 100vw;
+    height: auto;
+    text-align: center;
+    font-family: "Exo 2", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 1.8em;
+}
+section.login div.login_wrapper,
+section.signup div.signup_wrapper  {
+    width: 80vw;
+    height: auto;
+    border: 2px solid black;
+    border-top-left-radius: 2%;
+    border-top-right-radius: 2%;
+    border-bottom-left-radius: 2%;
+    border-bottom-right-radius: 2%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    backdrop-filter: blur(50px);
+    padding: 50px 20px;
+    font-size: 1.5em;
+    margin-top: 20px;
+}
+section.login div.login_wrapper h3,
+section.signup div.signup_wrapper h3 {
+    width: 80vw;
+    height: auto;
+    text-align: center;
+    padding: 5px;
+    font-family: "Oswald", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 1.5em;
+}
+section.login div.login_wrapper p,
+section.signup div.signup_wrapper p  {
+    width: 80vw;
+    height: auto;
+    text-align: center;
+    font-family: "Exo 2", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1em;
+    padding: 5px;
+}
+section.login div.login_wrapper form,
+section.signup div.signup_wrapper form  {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 80vw;
+    height: auto;
+}
+section.login div.login_wrapper form label,
+section.signup div.signup_wrapper form label  {
+    font-size: 1.2em;
+    width: 60vw;
+    height: auto;
+    text-align: left;
+    margin-block: 30px;
+}
+section.login div.login_wrapper form input,
+section.signup div.signup_wrapper form input  {
+    border-bottom: 2px dotted black;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    padding: 10px;
+    width: 60vw;
+    height: auto;
+    margin-bottom: 10px;
+    text-align: center;
+}
+section.signup div.signup_wrapper form select  {
+    border-bottom: 2px dotted black;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    padding: 10px;
+    width: 60vw;
+    height: auto;
+    margin-bottom: 10px;
+    text-align: center;
+    margin-top: 30px;
+    cursor: pointer;
+    font-size: 0.8em;
+    font-weight: 600;
+}
+section.login div.login_wrapper form button,
+section.signup div.signup_wrapper form button  {
+    width: auto;
+    height: auto;
+    margin-block: 30px;
+    padding: 10px;
+    border: none;
+    box-shadow: 2px 2px 2px black;
+    font-family: "Oswald", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 1em;
+    cursor: pointer;
+}
+section.login div.login_wrapper form p a,
+section.signup div.signup_wrapper form p a  {
+    font-family: "Oswald", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    cursor: pointer;
+}
+section.login div.signin_benefits,
+section.signup div.signup_benefits {
+    width: 80vw;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 50px 20px;
+    margin-top: 20px;
+}
+section.login div.signin_benefits h2,
+section.signup div.signup_benefits h2 {
+    width: 100vw;
+    height: auto;
+    text-align: center;
+    font-family: "Exo 2", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 2em;
+    margin-block: 20px;
+}
+section.login div.signin_benefits p,
+section.signup div.signup_benefits p {
+    width: 100vw;
+    height: auto;
+    text-align: center;
+    font-family: "Amatic SC", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    padding: 10px;
+}
+
+
+/* my account */
+section.my_account  {
+    width: 100vw;
+    min-height: 70vh;
+    text-align: justify;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+section.my_account div.my_account_wrapper  {
+    width: 80vw;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    backdrop-filter: blur(50px);
+    padding: 50px 20px;
+    font-size: 1.5em;
+}
+section.my_account div.my_account_wrapper p  {
+    width: 80vw;
+    height: 60px;
+    margin-block: 10px;
+    padding: 10px;
+}
+section.my_account div.my_account_wrapper form  {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 80vw;
+    height: auto;
+}
+section.my_account div.my_account_wrapper form label  {
+    font-size: 1.2em;
+    width: 60vw;
+    height: auto;
+    text-align: left;
+    margin-block: 30px;
+}
+section.my_account div.my_account_wrapper form input  {
+    border-bottom: 2px dotted black;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    padding: 10px;
+    width: 60vw;
+    height: auto;
+    margin-bottom: 10px;
+    text-align: center;
+}
+section.my_account div.my_account_wrapper form p  {
+    font-size: 1em;
+    width: 60vw;
+    height: auto;
+    text-align: center;
+    margin-block: 10px;
+}
+
+
+/* policy */
+section.policy {
+    width: 100vw;
+    min-height: 70vh;
+    text-align: justify;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+section.policy h1 {
+    width: 100vw;
+    height: auto;
+    text-align: center;
+    padding: 20px;
+    font-family: "Oswald", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 2em;
+}
+section.policy h2 {
+    width: 100vw;
+    height: auto;
+    text-align: center;
+    font-family: "Exo 2", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 2em;
+    margin-block: 20px;
+    padding: 10px;
+}
+section.policy h3 {
+    width: 100vw;
+    height: auto;
+    text-align: center;
+    font-family: "Exo 2", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1.8em;
+    margin-block: 20px;
+    padding: 10px;
+}
+section.policy p {
+    width: 100vw;
+    height: auto;
+    text-align: center;
+    font-family: "Exo 2", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 200;
+    font-style: normal;
+    font-size: 1.5em;
+    padding: 10px;
+}
+
+
+/* message */
+section.message {
+    width: 100vw;
+    min-height: 60vh;
+    text-align: justify;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+section.message h1 {
+    width: 100vw;
+    height: auto;
+    text-align: center;
+    padding: auto;
+    font-family: "Oswald", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 2em;
+    text-shadow: 3px 3px 2px;
+}
+section.message div.message_body {
+    width: 100vw;
+    min-height: 40vh;
+    padding: 10px;
+}
+section.message div.keyboard_wrapper  {
+    width: 100vw;
+    height: auto;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+section.message div.keyboard_wrapper div.keyboard  {
+    width: 80vw;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    border-top: none;
+    border-bottom: 2px solid black;
+    border-left: none;
+    border-right: none;
+}
+section.message div.keyboard_wrapper div.keyboard span.keyboard_icon  {
+    width: auto;
+    height: auto;
+    padding: auto;
+    text-align: left;
+    display: inline;
+    font-weight: 600;
+}
+section.message div.keyboard_wrapper div.keyboard span.keyboard_txt  {
+    width: auto;
+    height: auto;
+    padding: auto;
+    text-align: right;
+    display: inline;
+    font-weight: 600;
+    margin-left: 30px;
+}
+section.message div.keyboard_wrapper div.keyboard input  {
+    width: 100%;
+    border: none;
+    text-align: center;
+    font-size: 1.8em;
+    font-weight: 600;
+    padding: 10px;
+    box-shadow: 2px 2px 2px;
+}
+
+
+/* search */
+section.search {
+    width: 100vw;
+    min-height: 60vh;
+    text-align: justify;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+section.search div.keyboard_wrapper  {
+    width: 100vw;
+    height: auto;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+section.search div.keyboard_wrapper div.keyboard  {
+    width: 80vw;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    border-top: none;
+    border-bottom: 2px solid black;
+    border-left: none;
+    border-right: none;
+}
+section.search div.keyboard_wrapper div.keyboard span.keyboard_icon  {
+    width: auto;
+    height: auto;
+    padding: auto;
+    text-align: left;
+    display: inline;
+    font-weight: 600;
+}
+section.search div.keyboard_wrapper div.keyboard span.keyboard_txt  {
+    width: auto;
+    height: auto;
+    padding: auto;
+    text-align: right;
+    display: inline;
+    font-weight: 600;
+    margin-left: 30px;
+}
+section.search div.keyboard_wrapper div.keyboard input  {
+    width: 100%;
+    border: none;
+    text-align: center;
+    font-size: 1.8em;
+    font-weight: 600;
+    padding: 10px;
+    box-shadow: 2px 2px 2px;
+}
+section.search div.keyboard_wrapper div.keyboard button  {
+    width: 100%;
+    border: none;
+    text-align: center;
+    font-size: 1.8em;
+    font-weight: 600;
+    padding: 20px;
+    cursor: pointer;
+}
+section.search div.search_body  {
+    width: 100vw;
+    min-height: 40vh;
+    padding: 10px;
+}
+section.search div.search_body div.search_item  {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100vw;
+    margin-inline: 0vw;
+    height: auto;
+}
+section.search div.search_body div.search_item div.search_item_name  {
+    width: 100vw;
+    height: auto;
+    padding: 10px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+section.search div.search_body div.search_item div.search_item_name p  {
+    font-size: 1.5em;
+}
+section.search div.search_body div.search_item div.search_item_img_wrapper  {
+    width: 100vw;
+    height: 330px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+}
+section.search div.search_body div.search_item div.search_item_img_wrapper img  {
+    width: 60vw;
+    height: 300px;
+    left: 0px;
+    object-fit: contain;
+}
+section.search div.search_body div.search_item div.search_item_img_wrapper div.search_item_price  {
+    width: 30vw;
+    height: 330px;
+    right: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+section.search div.search_body div.search_item div.search_item_img_wrapper div.search_item_price p  {
+    width: 30vw;
+    height: 50px;
+    padding: 5px;
+    cursor: pointer;
+}
+section.search div.search_body div.search_item div.rate p  {
+    width: 80vw;
+    height: auto;
+    padding: 10px;
+    text-align: center;
+    background-image: linear-gradient(to bottom, #5f5e5c, #635d5a, #71726b, #333926);
+    background-size: 100% 300px;
+    background-position: 0% 100%;
+    color: white;
+    text-shadow: 2px 2px 2px rgb(251, 0, 0);
+    margin-top: 5px;
+    font-family: "Barlow Condensed", sans-serif;
+    font-weight: 800;
+    font-style: normal;
+}
+
+.save-btn {
+    color: black;
+  }
+  
+  .save-btn.active {
+    color: gold;
+  }
+
+
+
+
+
+/* widescreen nav */
+@media only screen and (min-width: 960px) {
+    nav.mobile, div.sign_toggle, section.mobile_main,
+    section.mobile_shop, section.save_mobile_shop,
+    section.buy, section.sell_car, section.login,
+    section.signup, section.my_account, section.policy,
+    section.search, section.mobile_shop_description  {display: none}
+
+
+    nav#top_nav  {
+        width: 100vw;
+        top: 0px;
+        margin-inline: 0px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        border-block: 2px solid black;
+        margin-block: 5px;
+        text-align: center;
+        cursor: wait;
+        height: 6vh;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    nav#top_nav p.top_nav_txt  {
+        min-width: 94vw;
+        height: auto;
+        font-size: 1.2em;
+        padding: 5px;
+        text-align: center;
+        white-space: nowrap;
+        overflow-x: visible;
+        text-overflow: clip;
+        display: block;
+        animation: scroll 30s linear infinite;
+        z-index: -1;
+        font-family: "Dosis", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 400;
+        font-style: normal;
+        margin-left: 40px;
+    }
+    @keyframes scroll {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-300%);
+        }
+    }
+    nav#top_nav div.top_nav_bar  {
+        width: 6vw;
+        height: auto;
+        border: none;
+        cursor: pointer;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        backdrop-filter: blur(100px);
+        padding: 10px;
+    }
+    nav#top_nav div.top_nav_bar p.bar  {
+        width: 20px;
+        height: 3px;
+        padding: 2px;
+        background-color: black;
+    }
+    nav#top_nav div.top_nav_bar p.bar1  {
+        width: 20px;
+        height: 3px;
+        padding: 2px;
+        background-color: black;
+        transform: rotate(-40deg);
+        translate: 0px 4px;
+    }
+    nav#top_nav div.top_nav_bar p.bar2  {
+        width: 20px;
+        height: 3px;
+        padding: 2px;
+        background-color: black;
+        transform: rotate(40deg);
+    }
+    
+
+
+    nav.wide_screen  {
+        display: flex;
+        width: 100vw;
+        max-height: 20vh;
+    }
+    nav.wide_screen ul.head_nav  {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        width: 100vw;
+        height: 20vh;
+    }
+    nav.wide_screen ul.head_nav li.logo  {
+        width: 40vw;
+        max-height: 20vh;
+        padding: 15px;
+        font-size: 3em;
+        font-weight: 600;
+        text-align: center;
+        overflow-wrap: break-word;
+        cursor: pointer;
+        font-family: "Ga Maamli", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+        text-shadow: 2px 2px 2px grey;
+    }
+    nav.wide_screen ul.head_nav li.nav_item  {
+        width: 10vw;
+        max-height: auto;
+        overflow-wrap: normal;
+        text-align: center;
+        font-size: 1em;
+        padding-inline: 5px;
+        cursor: pointer;
+        font-family: "Handlee", cursive;
+        font-weight: 400;
+    }
+    nav.wide_screen ul.head_nav li.nav_item:hover  {
+        text-shadow: 1px 1px 2px;
+    }
+    nav.wide_screen ul.head_nav li.nav_icon  {
+        width: 10vw;
+        max-height: auto;
+        overflow-wrap: normal;
+        text-align: center;
+        cursor: pointer;
+        font-weight: 400;
+        font-style: 2em;
+    }
+    nav.wide_screen ul.head_nav li.nav_icon i  {
+        padding: 10px;
+    }
+    nav.wide_screen ul.head_nav li.nav_icon i:hover  {
+        box-shadow: 1px 1px 2px;
+        border: 2px solid black;
+        border-radius: 100%;
+    }
+    nav.wide_screen ul.head_nav li.nav_news  {
+        width: 10vw;
+        max-height: auto;
+        overflow-wrap: normal;
+        font-size: 1em;
+        padding-inline: 5px;
+        cursor: pointer;
+        font-family: "Handlee", cursive;
+        font-weight: 600;
+        text-align: center;
+        text-shadow: 1px 1px 2px;
+    }
+
+    div#brands_toggle  {
+        display: flex;
+        flex-direction: row;
+        width: 100vw;
+        height: auto;
+        margin-top: 0px;
+    }
+    div#brands_toggle ol#brands, div#brands_toggle ol#brands_wide  {
+        width: 30vw;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        left: 0px;
+        margin-inline: 0vw;
+    }
+    div#brands_toggle ol.brands  {
+        width: 80vw;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        margin-inline: 10vw;
+    }
+    div#brands_toggle ol#brands li, div#brands_toggle ol#brands_wide li {
+        width: 100%;
+        height: auto;
+        padding: 15px;
+        border-bottom: 2px dotted black;
+        text-align: center;
+        font-size: 1em;
+        font-weight: 600;
+        cursor: pointer;
+    }
+    div#brands_toggle ol#brands li:hover, div#brands_toggle ol#brands_wide li:hover {
+        text-shadow: 1px 1px 2px;
+        font-size: 1.2em;
+    }
+    div#brands_toggle ol.brands li {
+        width: 100%;
+        height: auto;
+        padding: 15px;
+        border-bottom: 2px dotted black;
+        text-align: center;
+        font-size: 1em;
+        font-weight: 600;
+        cursor: pointer;
+    }
+    div#brands_toggle ol.brands li:hover  {
+        text-shadow: 1px 1px 2px;
+        font-size: 1.2em;
+    }
+
+
+    div#brands_toggle section.wide_screen_main  {
+        width: 65vw;
+        margin-left: 5vw;
+        height: auto;
+        text-align: justify;
+        display: flex;
+        flex-direction: column;
+        margin-top: 0vh;
+        right: 0px;
+        flex-wrap: wrap;
+    }
+    div#brands_toggle section.wide_screen_main div.home_slider,
+    div#brands_toggle section.wide_screen_main div.efficiency,
+    div#brands_toggle section.wide_screen_main div.safety,
+    div#brands_toggle section.wide_screen_main div.price,
+    div#brands_toggle section.wide_screen_main div.design,
+    div#brands_toggle section.wide_screen_main div.quality,
+    div#brands_toggle section.wide_screen_main div.comfort,
+    div#brands_toggle section.wide_screen_shop div.shop_slider,
+    div#brands_toggle section.save_wide_screen_shop div.save_shop_slider  {
+        width: 65vw;
+        height: auto;
+        object-fit: contain;
+        border: none;
+    }
+    div#brands_toggle section.wide_screen_main div.home_slider div.img_wrapper img,
+    div#brands_toggle section.wide_screen_shop div.shop_slider div.shop_img_wrapper img,
+    div#brands_toggle section.save_wide_screen_shop div.save_shop_slider div.save_shop_img_wrapper img  {
+        width: auto;
+        height: auto;
+        transition: opacity 0.5s;
+        top: 50%;
+        left: 50%;
+    }
+    div#brands_toggle section.wide_screen_main div.home_slider div.img_wrapper p#slider_txt_wide,
+    div#brands_toggle section.wide_screen_shop div.shop_slider div.shop_img_wrapper p#wide_shop_slider_txt,
+    div#brands_toggle section.save_wide_screen_shop div.save_shop_slider div.save_shop_img_wrapper p#save_wide_shop_slider_txt  {
+        color: #000000;
+        font-size: 24px;
+        font-weight: bold;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        text-align: center;
+        padding: 10px;
+    }
+
+    footer.footer  {
+        position: relative;
+        width: 100vw;
+        height: auto;
+        bottom: 0px;
+        display: block;
+        text-align: center;
+    }
+
+
+    div#brands_toggle section.wide_screen_main div.efficiency div.efficiency_wrapper,
+    div#brands_toggle section.wide_screen_main div.safety div.safety_wrapper,
+    div#brands_toggle section.wide_screen_main div.price div.price_wrapper,
+    div#brands_toggle section.wide_screen_main div.design div.design_wrapper,
+    div#brands_toggle section.wide_screen_main div.quality div.quality_wrapper,
+    div#brands_toggle section.wide_screen_main div.comfort div.comfort_wrapper  {
+        width: 65vw;
+        height: 470px;
+        object-fit: contain;
+        margin-block: 20px;
+        padding: 10px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 2px 2px 2px;
+    }
+    div#brands_toggle section.wide_screen_main div.efficiency div.efficiency_wrapper img,
+    div#brands_toggle section.wide_screen_main div.safety div.safety_wrapper img,
+    div#brands_toggle section.wide_screen_main div.price div.price_wrapper img,
+    div#brands_toggle section.wide_screen_main div.design div.design_wrapper img,
+    div#brands_toggle section.wide_screen_main div.quality div.quality_wrapper img,
+    div#brands_toggle section.wide_screen_main div.comfort div.comfort_wrapper img  {
+        width: 60vw;
+        margin-inline: 2.5vw;
+        height: 400px;
+        object-fit: contain;
+    }
+    div#brands_toggle section.wide_screen_main div.efficiency div.efficiency_wrapper p,
+    div#brands_toggle section.wide_screen_main div.safety div.safety_wrapper p,
+    div#brands_toggle section.wide_screen_main div.price div.price_wrapper p,
+    div#brands_toggle section.wide_screen_main div.design div.design_wrapper p,
+    div#brands_toggle section.wide_screen_main div.quality div.quality_wrapper p,
+    div#brands_toggle section.wide_screen_main div.comfort div.comfort_wrapper p  {
+        width: 60vw;
+        margin-inline: 2.5vw;
+        height: 70px;
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 800;
+        font-style: normal;
+        padding: 10px;
+        background-image: linear-gradient(to bottom, #5f5e5c, #635d5a, #71726b, #333926);
+        background-size: 100% 300px;
+        background-position: 0% 100%;
+        color: white;
+        margin-top: 5px;
+        text-shadow: 2px 2px 2px rgb(250, 0, 0);
+    }
+
+    div.wide_brand_rated, div.wide_car_rated  {
+        display: flex;
+        flex-direction: column;
+        align-self: center;
+        justify-content: space-evenly;
+        height: auto;
+        text-align: center;
+        margin-top: 50px;
+        width: 70vw;
+        margin-inline: 15vw;
+    }
+    div.wide_brand_rated h1, div.wide_car_rated h1  {
+        font-family: "Pacifico", cursive;
+        font-weight: 400;
+        font-style: normal;
+        margin-inline: 10px;
+        padding: 10px;
+    }
+    div.wide_brand_rated p, div.wide_car_rated p  {
+        height: 80px;
+        padding: 20px;
+        font-size: 1.5em;
+    }
+    div.wide_brand_rated  div.wide_brand_rated_wrapper,
+    div.wide_car_rated  div.wide_car_rated_wrapper  {
+        width: 70vw;
+        height: auto;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-evenly;
+        overflow-x: auto;
+        overflow-y: hidden;
+    }
+    div.wide_brand_rated  div.wide_brand_rated_wrapper div.brand_rated_wrapper,
+    div.wide_car_rated  div.wide_car_rated_wrapper div.car_rated_wrapper  {
+        width: 70vw;
+        height: auto;
+        text-align: center;
+    }
+    div.wide_brand_rated  div.wide_brand_rated_wrapper img,
+    div.wide_car_rated  div.wide_car_rated_wrapper img  {
+        width: 70vw;
+        height: 600px;
+        object-fit: cover;
+        padding: 20px;
+    }
+    div.wide_brand_rated  div.wide_brand_rated_wrapper p,
+    div.wide_car_rated  div.wide_car_rated_wrapper p  {
+        width: 70vw;
+        height: 50px;
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 800;
+        font-style: normal;
+        padding: 10px;
+        margin-top: 5px;
+        background-image: linear-gradient(to bottom, #790707, #c03939, #f50909, #660202);
+        background-size: 100% 300px;
+        background-position: 0% 100%;
+        color: white;
+        text-shadow: 2px 2px 2px rgb(0, 0, 0);
+    }
+
+    div#brands_toggle section.wide_screen_main div.wide_track_car  {
+        width: 65vw;
+        height: auto;
+        object-fit: contain;
+        border: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    div#brands_toggle section.wide_screen_main div.wide_track_car p  {
+        color: #000000;
+        font-size: 24px;
+        font-weight: bold;
+        text-align: center;
+        padding: 10px;
+        margin-bottom: 20px;
+    }
+    div#brands_toggle section.wide_screen_main div.wide_track_car form input  {
+        border-bottom: 2px dotted black;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        padding: 10px;
+        width: 60vw;
+        height: auto;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+    div#brands_toggle section.wide_screen_main div.wide_track_car p.wide_check  {
+        width: 40vw;
+        height: auto;
+        margin-block: 30px;
+        padding: 10px;
+        border: none;
+        font-family: "Oswald", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 600;
+        font-style: normal;
+        font-size: 1em;
+        cursor: pointer;
+    }
+
+
+    div.car_buying, div.car_care, div.faq  {
+        display: flex;
+        flex-direction: column;
+        align-self: center;
+        justify-content: space-evenly;
+        width: 80vw;
+        margin-inline: 10vw;
+        height: auto;
+        margin-top: 50px;
+        font-family: "Roboto", sans-serif;
+        font-weight: 700;
+        font-style: normal;
+        text-align: center;
+        font-size: 1em;
+        padding: 20px;
+    }
+    div.car_buying h1, div.car_care h1,
+    div.faq h1  {
+        margin-block: 40px;
+    }
+    div.car_buying ol li.buy_head  {
+        margin-block: 30px;
+        box-shadow: 1px 1px 2px;
+        padding: 10px;
+    }
+    div.car_buying ol ul li  {
+        padding: 20px;
+        border-bottom: 1px solid black;
+    }
+    div.car_care p.car_care_tip,
+    div.faq p  {
+    padding: 10px;
+    border-bottom: 1px solid black;
+    }
+
+
+
+
+    /* shop */
+    div#brands_toggle section.wide_screen_shop,
+    div#brands_toggle section.wide_shop_description,
+    div#brands_toggle section.save_wide_screen_shop  {
+        width: 65vw;
+        margin-left: 5vw;
+        height: auto;
+        text-align: justify;
+        display: flex;
+        flex-direction: column;
+        margin-top: 0vh;
+        right: 0px;
+        flex-wrap: wrap;
+    }
+    div#brands_toggle section.wide_screen_shop div.shop_items_wrapper,
+    div#brands_toggle section.wide_shop_description div.wide_shop_description_item_wrapper,
+    div#brands_toggle section.save_wide_screen_shop div.save_shop_items_wrapper  {
+        width: 65vw;
+        height: auto;
+        object-fit: contain;
+        border: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+    div#brands_toggle section.wide_screen_shop div.shop_items_wrapper div.shop_item,
+    div#brands_toggle section.save_wide_screen_shop div.save_shop_items_wrapper div.save_shop_item  {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        width: 65vw;
+        height: auto;
+    }
+    div#brands_toggle section.wide_screen_shop div.shop_items_wrapper div.shop_item div.item_name,
+    div#brands_toggle section.save_wide_screen_shop div.save_shop_items_wrapper div.save_shop_item div.save_item_name  {
+        width: 65vw;
+        height: auto;
+        padding: 20px;
+        text-align: center;
+    }
+    div#brands_toggle section.wide_screen_shop div.shop_items_wrapper div.shop_item div.item_img_wrapper,
+    div#brands_toggle section.save_wide_screen_shop div.save_shop_items_wrapper div.save_shop_item div.save_item_img_wrapper  {
+        width: 65vw;
+        height: 500px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px;
+    }
+    div#brands_toggle section.wide_screen_shop div.shop_items_wrapper div.shop_item div.item_img_wrapper img,
+    div#brands_toggle section.save_wide_screen_shop div.save_shop_items_wrapper div.save_shop_item div.save_item_img_wrapper img  {
+        width: 40vw;
+        height: 500px;
+        left: 0px;
+        object-fit: contain;
+    }
+    div#brands_toggle section.wide_screen_shop div.shop_items_wrapper div.shop_item div.item_img_wrapper div.item_price,
+    div#brands_toggle section.save_wide_screen_shop div.save_shop_items_wrapper div.save_shop_item div.save_item_img_wrapper div.save_item_price  {
+        width: 10vw;
+        height: 500px;
+        right: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    div#brands_toggle section.wide_screen_shop div.shop_items_wrapper div.shop_item div.item_img_wrapper div.item_price p,
+    div#brands_toggle section.save_wide_screen_shop div.save_shop_items_wrapper div.save_shop_item div.save_item_img_wrapper div.save_item_price p  {
+        width: 10vw;
+        height: 50px;
+        cursor: pointer;
+    }
+    div#brands_toggle section.wide_screen_shop div.shop_items_wrapper div.shop_item div.item_img_wrapper div.item_price a p,
+    div#brands_toggle section.save_wide_screen_shop div.save_shop_items_wrapper div.save_shop_item div.save_item_img_wrapper div.save_item_price a p  {
+        width: 10vw;
+        height: 50px;
+        color: black;
+        cursor: pointer;
+    }
+    div#brands_toggle section.wide_screen_shop div.shop_items_wrapper div.shop_item div.rate p,
+    div#brands_toggle section.save_wide_screen_shop div.save_shop_items_wrapper div.save_shop_item div.rate p  {
+        width: 60vw;
+        height: auto;
+        padding: 10px;
+        text-align: center;
+        background-image: linear-gradient(to bottom, #5f5e5c, #635d5a, #71726b, #333926);
+        background-size: 100% 300px;
+        background-position: 0% 100%;
+        color: white;
+        text-shadow: 2px 2px 2px rgb(251, 0, 0);
+        margin-top: 5px;
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 800;
+        font-style: normal;     
+    }
+
+
+    /* shop description */
+    div#brands_toggle section.wide_shop_description div.wide_shop_description_item_wrapper div.wide_shop_description_img_wrapper  {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-evenly;
+        width: 65vw;
+        height: auto;
+        overflow-x: auto;
+        object-fit: contain;
+        right: 0px;
+    }
+    div#brands_toggle section.wide_shop_description div.wide_shop_description_item_wrapper div.wide_shop_description_img_wrapper img  {
+        width: 40vw;
+        height: 400px;
+        object-fit: contain;
+        padding: 10px;
+    }
+    div#brands_toggle section.wide_shop_description div.wide_shop_description_item_wrapper div.wide_shop_description_wrapper  {
+        width: 65vw;
+        height: auto;
+        padding: 20px;
+        text-align: center;
+        margin-top: 50px;
+    }
+    div#brands_toggle section.wide_shop_description div.wide_shop_description_item_wrapper div.wide_shop_description_price_wrapper  {
+        width: 65vw;
+        height: auto;
+        padding: 10px;
+        text-align: center;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+    div#brands_toggle section.wide_shop_description div.wide_shop_description_item_wrapper div.wide_shop_description_price_wrapper p  {
+        width: 150px;
+        height: 100px;
+        padding: 10px;
+        font-size: 1.5em;
+        cursor: pointer;
+    }
+    div#brands_toggle section.wide_shop_description div.wide_shop_description_item_wrapper div.wide_shop_description_price_wrapper p.save-btn i  {
+        font-size: 2em;
+        cursor: pointer;
+        color: black;
+        font-weight: 600;
+        padding: 10px;
+    }
+    div#brands_toggle section.wide_shop_description div.wide_shop_description_item_wrapper div.wide_shop_description_price_wrapper p.save-btn.active i  {
+        font-size: 2em;
+        cursor: pointer;
+        color: gold;
+        font-weight: 600;
+        padding: 10px;
+    }
+    div#brands_toggle section.wide_shop_description div.wide_shop_description_item_wrapper div.pricing_info  {
+        width: 65vw;
+        height: auto;
+        padding: 10px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    div#brands_toggle section.wide_shop_description div.wide_shop_description_item_wrapper div.pricing_info p  {
+        font-size: 1.2em;
+        text-align: justify;
+        font-weight: 400;
+    }
+    div#brands_toggle section.wide_shop_description div.wide_shop_description_item_wrapper div.wide_shop_description_other_wrapper  {
+        width: 65vw;
+        height: auto;
+        padding: 10px;
+        overflow-x: auto;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+    div#brands_toggle section.wide_shop_description div.wide_shop_description_item_wrapper div.wide_shop_description_other_wrapper div.wide_shop_description_other_img_wrapper  {
+        width: auto;
+        height: auto;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        object-fit: contain;
+        text-align: center;
+    }
+    div#brands_toggle section.wide_shop_description div.wide_shop_description_item_wrapper div.wide_shop_description_other_wrapper div.wide_shop_description_other_img_wrapper img  {
+        width: 200px;
+        height: 200px;
+        margin: 10px;
+        object-fit: contain;
+    }
+    div#brands_toggle section.wide_shop_description div.wide_shop_description_item_wrapper div.wide_shop_description_other_wrapper div.wide_shop_description_other_img_wrapper p  {
+        width: 200px;
+        height: 100px;
+        padding: 10px;
+        cursor: pointer;
+    }
+    div#brands_toggle section.wide_shop_description div.wide_shop_description_item_wrapper div.rate  {
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 800;
+        font-style: normal;
+        font-size: 1.5em;
+    }
+    div#brands_toggle section.wide_shop_description div.wide_shop_description_item_wrapper div.review h2  {
+        margin: 20px 0px 5px 0px;
+        padding: 20px;
+    }
+    div#brands_toggle section.wide_shop_description div.wide_shop_description_item_wrapper div.review form textarea  {
+        width: 60vw;
+        min-height: 100px;
+        font-size: 1.2em;
+        font-family: "Roboto", sans-serif;
+        font-weight: 800;
+        font-style: normal;
+        padding: 20px;
+        overflow-wrap: break-word;
+        border: none;
+    }
+    div#brands_toggle section.wide_shop_description div.wide_shop_description_item_wrapper div.review form input  {
+        width: 60vw;
+        font-size: 1.2em;
+        font-family: "Roboto", sans-serif;
+        font-weight: 800;
+        font-style: normal;
+        padding: 20px;
+        overflow-wrap: break-word;
+        border: none;
+    }
+    div#brands_toggle section.wide_shop_description div.wide_shop_description_item_wrapper div.review form button  {
+        width: auto;
+        height: auto;
+        font-size: 1.2em;
+        font-family: "Roboto", sans-serif;
+        font-weight: 800;
+        font-style: normal;
+        padding: 10px;
+        border: none;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+    div#brands_toggle section.wide_shop_description div.wide_shop_description_item_wrapper div.review form button:hover  {
+        box-shadow: 2px 2px 2px black;
+    }
+    div#brands_toggle section.wide_shop_description div.wide_shop_description_item_wrapper div.review_history  {
+        margin-top: 50px;
+    }
+    div#brands_toggle section.wide_shop_description div.wide_shop_description_item_wrapper div.review_history h3  {
+        margin: 20px 0px 5px 0px;
+        padding: 20px;
+    }
+    div#brands_toggle section.wide_shop_description div.wide_shop_description_item_wrapper div.review_history div.review_history_item p  {
+        margin: 20px 0px;
+        padding: 10px;
+        height: auto;
+        overflow-wrap: break-word;
+        width: 60vw;
+    }
+    div#brands_toggle section.wide_shop_description div.wide_shop_description_item_wrapper div.review_history div.review_history_item p span  {
+        height: auto;
+        overflow-wrap: break-word;
+        width: 100%;
+    }
+    div#brands_toggle section.wide_shop_description div.wide_shop_description_item_wrapper div.review_history div.review_icons i  {
+        padding: 20px;
+        font-size: 2em;
+    }
+    
+
+
+    /* buy */
+    div#brands_toggle section.wide_buy,
+    div#brands_toggle section.wide_sell_car  {
+        width: 65vw;
+        margin-left: 5vw;
+        height: auto;
+        text-align: justify;
+        display: flex;
+        flex-direction: column;
+        margin-top: 0vh;
+        right: 0px;
+        flex-wrap: wrap;
+    }
+    div#brands_toggle section.wide_buy h1,
+    div#brands_toggle section.wide_sell_car h1  {
+        width: 65vw;
+        height: auto;
+        text-align: center;
+        padding: 20px;
+        font-family: "Oswald", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 600;
+        font-style: normal;
+        font-size: 2em;
+    }
+    div#brands_toggle section.wide_buy div.deals_img_slider,
+    div#brands_toggle section.wide_sell_car div.sell_img_slider  {
+        width: 60vw;
+        margin-inline: 2.5vw;
+        height: auto;
+        object-fit: contain;
+    }
+    div#brands_toggle section.wide_buy div.deals_img_slider img,
+    div#brands_toggle section.wide_sell_car div.sell_img_slider img  {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        transition: opacity 0.5s;
+    }
+    div#brands_toggle section.wide_buy h2.img_h2,
+    div#brands_toggle section.wide_sell_car h2.img_h2  {
+        width: 65vw;
+        height: auto;
+        text-align: center;
+        font-family: "Exo 2", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 600;
+        font-style: normal;
+        font-size: 1.5em;
+    }
+    div#brands_toggle section.wide_buy h2,
+    div#brands_toggle section.wide_sell_car h2  {
+        width: 65vw;
+        height: auto;
+        text-align: center;
+        font-family: "Exo 2", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 600;
+        font-style: normal;
+        font-size: 2em;
+    }
+    div#brands_toggle section.wide_buy h3,
+    div#brands_toggle section.wide_sell_car h3  {
+        width: 65vw;
+        height: auto;
+        text-align: center;
+        font-family: "Exo 2", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 600;
+        font-style: normal;
+        font-size: 1.8em;
+        margin-block: 10px;
+    }
+    div#brands_toggle section.wide_buy p,
+    div#brands_toggle section.wide_sell_car p  {
+        width: 65vw;
+        min-height: 10vh;
+        text-align: justify;
+        padding: 20px;
+        font-size: 1.8em;
+    }
+    div#brands_toggle section.wide_buy p.center,
+    div#brands_toggle section.wide_sell_car p.center  {
+        width: 65vw;
+        min-height: 10vh;
+        text-align: center;
+        padding: 20px;
+        font-size: 1.8em;
+    }
+
+
+    /* login */
+    div#brands_toggle section.wide_login,
+    div#brands_toggle section.wide_signup  {
+        width: 65vw;
+        margin-left: 5vw;
+        height: auto;
+        display: flex;
+        text-align: justify;
+        flex-direction: column;
+        margin-top: 0vh;
+        right: 0px;
+        flex-wrap: wrap;
+    }
+    div#brands_toggle section.wide_login h1,
+    div#brands_toggle section.wide_signup h1 {
+        width: 65vw;
+        height: auto;
+        text-align: center;
+        padding: 20px;
+        font-family: "Oswald", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 600;
+        font-style: normal;
+        font-size: 2em;
+    }
+    div#brands_toggle section.wide_login h2,
+    div#brands_toggle section.wide_signup h2 {
+        width: 65vw;
+        height: auto;
+        text-align: center;
+        font-family: "Exo 2", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 600;
+        font-style: normal;
+        font-size: 2em;
+    }
+    div#brands_toggle section.wide_login p,
+    div#brands_toggle section.wide_signup p {
+        width: 65vw;
+        height: auto;
+        text-align: center;
+        font-family: "Exo 2", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 600;
+        font-style: normal;
+        font-size: 1.8em;
+    }
+    div#brands_toggle section.wide_login div.wide_login_wrapper,
+    div#brands_toggle section.wide_signup div.wide_signup_wrapper  {
+        width: 60vw;
+        margin-inline: 2.5vw;
+        height: auto;
+        border: 2px solid black;
+        border-top-left-radius: 2%;
+        border-top-right-radius: 2%;
+        border-bottom-left-radius: 2%;
+        border-bottom-right-radius: 2%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        backdrop-filter: blur(50px);
+        padding: 50px 20px;
+        font-size: 1.5em;
+        margin-top: 20px;
+    }
+    div#brands_toggle section.wide_login div.wide_login_wrapper h3,
+    div#brands_toggle section.wide_signup div.wide_signup_wrapper h3 {
+        width: 60vw;
+        height: auto;
+        text-align: center;
+        padding: 5px;
+        font-family: "Oswald", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 600;
+        font-style: normal;
+        font-size: 1.5em;
+    }
+    div#brands_toggle section.wide_login div.wide_login_wrapper p,
+    div#brands_toggle section.wide_signup div.wide_signup_wrapper p  {
+        width: 60vw;
+        height: auto;
+        text-align: center;
+        font-family: "Exo 2", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 1em;
+        padding: 5px;
+    }
+    div#brands_toggle section.wide_login div.wide_login_wrapper form,
+    div#brands_toggle section.wide_signup div.wide_signup_wrapper form  {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        width: 60vw;
+        height: auto;
+    }
+    div#brands_toggle section.wide_login div.wide_login_wrapper form label,
+    div#brands_toggle section.wide_signup div.wide_signup_wrapper form label  {
+        font-size: 1.2em;
+        width: 40vw;
+        height: auto;
+        text-align: left;
+        margin-block: 30px;
+    }
+    div#brands_toggle section.wide_login div.wide_login_wrapper form input,
+    div#brands_toggle section.wide_signup div.wide_signup_wrapper form input  {
+        border-bottom: 2px dotted black;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        padding: 10px;
+        width: 40vw;
+        height: auto;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+    div#brands_toggle section.wide_signup div.wide_signup_wrapper form select  {
+        border-bottom: 2px dotted black;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        padding: 10px;
+        width: 40vw;
+        height: auto;
+        margin-bottom: 10px;
+        text-align: center;
+        margin-top: 30px;
+        cursor: pointer;
+        font-size: 0.8em;
+        font-weight: 600;
+    }
+    div#brands_toggle section.wide_login div.wide_login_wrapper form button,
+    div#brands_toggle section.wide_signup div.wide_signup_wrapper form button   {
+        width: auto;
+        height: auto;
+        margin-block: 30px;
+        padding: 10px;
+        border: none;
+        box-shadow: 2px 2px 2px black;
+        font-family: "Oswald", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 600;
+        font-style: normal;
+        font-size: 1em;
+        cursor: pointer;
+    }
+    div#brands_toggle section.wide_login div.signin_benefits,
+    div#brands_toggle section.wide_signup div.signup_benefits {
+        width: 65vw;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 50px 20px;
+        margin-top: 20px;
+    }
+    div#brands_toggle section.wide_login div.signin_benefits h2,
+    div#brands_toggle section.wide_signup div.signup_benefits h2 {
+        width: 65vw;
+        height: auto;
+        text-align: center;
+        font-family: "Exo 2", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 600;
+        font-style: normal;
+        font-size: 2em;
+        margin-block: 20px;
+    }
+    div#brands_toggle section.wide_login div.signin_benefits p,
+    div#brands_toggle section.wide_signup div.signup_benefits p {
+        width: 65vw;
+        height: auto;
+        text-align: center;
+        font-family: "Amatic SC", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+        padding: 10px;
+    }
+
+
+    /* my account */
+    div#brands_toggle section.wide_my_account  {
+        width: 65vw;
+        margin-left: 5vw;
+        height: auto;
+        text-align: justify;
+        display: flex;
+        flex-direction: column;
+        margin-top: 0vh;
+        right: 0px;
+        flex-wrap: wrap;
+    }
+    div#brands_toggle section.wide_my_account div.wide_my_account_wrapper  {
+        width: 60vw;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 50px 20px;
+        font-size: 1.5em;
+    }
+    div#brands_toggle section.wide_my_account div.wide_my_account_wrapper p  {
+        width: 60vw;
+        height: 60px;
+        margin-block: 10px;
+        padding: 10px;
+    }
+    div#brands_toggle section.wide_my_account div.wide_my_account_wrapper form  {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        width: 60vw;
+        height: auto;
+    }
+    div#brands_toggle section.wide_my_account div.wide_my_account_wrapper form label  {
+        font-size: 1.2em;
+        width: 40vw;
+        height: auto;
+        text-align: left;
+        margin-block: 30px;
+    }
+    div#brands_toggle section.wide_my_account div.wide_my_account_wrapper form input  {
+        border-bottom: 2px dotted black;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        padding: 10px;
+        width: 40vw;
+        height: auto;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+    div#brands_toggle section.wide_my_account div.wide_my_account_wrapper form p  {
+        font-size: 1em;
+        width: 40vw;
+        height: auto;
+        text-align: center;
+        margin-block: 10px;
+    }
+
+
+    /* policy */
+    div#brands_toggle section.wide_policy {
+        width: 65vw;
+        margin-left: 5vw;
+        height: auto;
+        text-align: justify;
+        display: flex;
+        flex-direction: column;
+        margin-top: 0vh;
+        right: 0px;
+        flex-wrap: wrap;
+    }
+    div#brands_toggle section.wide_policy h1 {
+        width: 65vw;
+        height: auto;
+        text-align: center;
+        padding: 20px;
+        font-family: "Oswald", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 600;
+        font-style: normal;
+        font-size: 2em;
+    }
+    div#brands_toggle section.wide_policy h2 {
+        width: 65vw;
+        height: auto;
+        text-align: center;
+        font-family: "Exo 2", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 600;
+        font-style: normal;
+        font-size: 2em;
+        margin-block: 20px;
+        padding: 10px;
+    }
+    div#brands_toggle section.wide_policy h3 {
+        width: 65vw;
+        height: auto;
+        text-align: center;
+        font-family: "Exo 2", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 1.8em;
+        margin-block: 20px;
+        padding: 10px;
+    }
+    div#brands_toggle section.wide_policy p {
+        width: 65vw;
+        height: auto;
+        text-align: center;
+        font-family: "Exo 2", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 200;
+        font-style: normal;
+        font-size: 1.5em;
+        padding: 10px;
+    }
+
+
+    /* message */
+    div#brands_toggle section.wide_message {
+        width: 65vw;
+        margin-left: 5vw;
+        text-align: justify;
+        display: flex;
+        flex-direction: column;
+        margin-top: 0vh;
+        right: 0px;
+        flex-wrap: wrap;
+        min-height: 60vh;
+        text-align: justify;
+        flex-direction: column;
+    }
+    div#brands_toggle section.wide_message h1 {
+        width: 65vw;
+        height: auto;
+        text-align: center;
+        font-family: "Oswald", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 600;
+        font-style: normal;
+        font-size: 2.5em;
+        padding: auto;
+        text-shadow: 3px 3px 2px;
+    }
+    div#brands_toggle section.wide_message div.message_body {
+        width: 65vw;
+        min-height: 60vh;
+        padding: 10px;
+    }
+    div#brands_toggle section.wide_message div.keyboard_wrapper  {
+        width: 65vw;
+        height: auto;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    div#brands_toggle section.wide_message div.keyboard_wrapper div.keyboard  {
+        width: 65vw;
+        height: auto;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        border-top: none;
+        border-bottom: none;
+        border-left: none;
+        border-right: none;
+    }
+    div#brands_toggle section.wide_message div.keyboard_wrapper div.keyboard span.keyboard_icon  {
+        width: auto;
+        height: auto;
+        padding: auto;
+        text-align: left;
+        display: inline;
+    }
+    div#brands_toggle section.wide_message div.keyboard_wrapper div.keyboard span.keyboard_txt  {
+        width: auto;
+        height: auto;
+        padding: auto;
+        text-align: right;
+        display: inline;
+        font-weight: 600;
+        margin-left: 30px;
+    }
+    div#brands_toggle section.wide_message div.keyboard_wrapper div.keyboard input  {
+        width: 100%;
+        border: none;
+        text-align: center;
+        font-size: 1.8em;
+        font-weight: 600;
+        padding: 10px;
+        box-shadow: 2px 2px 2px;
+    }
+
+
+    /* search */
+    div#brands_toggle section.wide_search {
+        width: 65vw;
+        margin-left: 5vw;
+        text-align: justify;
+        display: flex;
+        flex-direction: column;
+        margin-top: 0vh;
+        right: 0px;
+        flex-wrap: wrap;
+        min-height: 60vh;
+        text-align: justify;
+        flex-direction: column;
+
+    }
+    div#brands_toggle section.wide_search div.keyboard_wrapper  {
+        width: 65vw;
+        height: auto;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 30px;
+    }
+    div#brands_toggle section.wide_search div.keyboard_wrapper div.keyboard  {
+        width: 60vw;
+        height: auto;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        border-top: none;
+        border-bottom: 2px solid black;
+        border-left: none;
+        border-right: none;
+    }
+    div#brands_toggle section.wide_search div.keyboard_wrapper div.keyboard span.keyboard_icon  {
+        width: auto;
+        height: auto;
+        padding: auto;
+        text-align: left;
+        display: inline;
+        font-weight: 600;
+    }
+    div#brands_toggle section.wide_search div.keyboard_wrapper div.keyboard span.keyboard_txt  {
+        width: auto;
+        height: auto;
+        padding: auto;
+        text-align: right;
+        display: inline;
+        font-weight: 600;
+        margin-left: 30px;
+    }
+    div#brands_toggle section.wide_search div.keyboard_wrapper div.keyboard input  {
+        width: 100%;
+        border: none;
+        text-align: center;
+        font-size: 1.5em;
+        font-weight: 600;
+        padding: 10px;
+        box-shadow: 2px 2px 2px;
+    }
+    div#brands_toggle section.wide_search div.keyboard_wrapper div.keyboard button  {
+        width: 100%;
+        border: none;
+        text-align: center;
+        font-size: 1.8em;
+        font-weight: 600;
+        padding: 20px;
+    }
+    div#brands_toggle section.wide_search div.search_body  {
+        width: 65vw;
+        min-height: 40vh;
+        padding: 10px;
+        margin-top: 10px;
+    }
+    div#brands_toggle section.wide_search div.search_body div.search_item  {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        width: 65vw;
+        margin-inline: 0vw;
+        height: auto;
+    }
+    div#brands_toggle section.wide_search div.search_body div.search_item div.search_item_name  {
+        width: 65vw;
+        height: auto;
+        padding: 10px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    div#brands_toggle section.wide_search div.search_body div.search_item div.search_item_name p  {
+        font-size: 1.5em;
+    }
+    div#brands_toggle section.wide_search div.search_body div.search_item div.search_item_img_wrapper  {
+        width: 65vw;
+        height: 330px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px;
+    }
+    div#brands_toggle section.wide_search div.search_body div.search_item div.search_item_img_wrapper img  {
+        width: 40vw;
+        height: 300px;
+        left: 0px;
+        object-fit: contain;
+    }
+    div#brands_toggle section.wide_search div.search_body div.search_item div.search_item_img_wrapper div.search_item_price  {
+        width: 10vw;
+        height: 300px;
+        right: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    div#brands_toggle section.wide_search div.search_body div.search_item div.search_item_img_wrapper div.search_item_price p  {
+        width: 10vw;
+        height: 50px;
+        cursor: pointer;
+    }
+    div#brands_toggle section.wide_search div.search_body div.search_item div.rate p  {
+        width: 60vw;
+        height: auto;
+        padding: 10px;
+        text-align: center;
+        background-image: linear-gradient(to bottom, #5f5e5c, #635d5a, #71726b, #333926);
+        background-size: 100% 300px;
+        background-position: 0% 100%;
+        color: white;
+        text-shadow: 2px 2px 2px rgb(251, 0, 0);
+        margin-top: 5px;
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 800;
+        font-style: normal;     
+    }
+
+
+    .save-btn {
+        color: black;
+      }
+      
+      .save-btn.active {
+        color: gold;
+      }
+
+}

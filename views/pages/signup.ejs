@@ -1,0 +1,261 @@
+<div id="brands_toggle">
+
+    <ol id="brands">
+        <a href="/shop-products?id=toyota"><li id="toyota_shop">Toyota</li></a>
+        <a href="/shop-products?id=honda"><li>Honda</li></a>
+        <a href="/shop-products?id=hyundai"><li>Hyundai</li></a>
+        <a href="/shop-products?id=kia"><li>Kia</li></a>
+        <a href="/shop-products?id=nissan"><li>Nissan</li></a>
+        <a href="/shop-products?id=ford"><li>Ford</li></a>
+        <a href="/shop-products?id=mercedes"><li>Mercedes Benz</li></a>
+        <a href="/shop-products?id=volkswagen"><li>Volkswagen</li></a>
+        <a href="/shop-products?id=rolls"><li>Rolls-Royce</li></a>
+        <a href="/shop-products?id=peugeot"><li>Peugeot</li></a>
+        <a href="/shop-products?id=chevrolet"><li>Chevrolet</li></a>
+        <a href="/shop-products?id=bmw"><li>BMW</li></a><li>BMW</li>
+        <a href="/shop-products?id=lexus"><li>Lexus</li></a>
+        <a href="/shop-products?id=mitsubishi"><li>Mitsubishi</li></a>
+        <a href="/shop-products?id=audi"><li>Audi</li></a>
+        <a href="/shop-products?id=land"><li>Land Rover</li></a>
+        <a href="/shop-products?id=jeep"><li>Jeep</li></a>
+        <a href="/shop-products?id=porsche"><li>Porsche</li></a>
+        <a href="/shop-products?id=dodge"><li>Dodge</li></a>
+        <li>Subaru</li>
+        <li>Mazda</li>
+        <li>Chrysler</li>
+        <li>Volvo</li>
+        <li>Acura</li>
+        <li>Infiniti</li>
+        <li>Tesla</li>
+        <li>Maserati</li>
+        <li>Jaguar</li>
+        <li>Lincoln</li>
+        <li>Alfa Romeo</li>
+        <li>Mini</li>
+        <li>Buick</li>
+        <li>Cadillac</li>
+        <li>Genesis</li>
+        <li>Rivian</li>
+        <li>GMC</li>
+    </ol>
+    
+    <section class="wide_signup">
+        <h1>Join the Ride!</h1>
+        <h2>Get Exclusive Access to the Best Car Deals and Inventory!</h2>
+        <p>Create an account to unlock personalized car recommendations, exclusive offers, and more!</p>
+        <div class="wide_signup_wrapper">
+            <h3>Sign Up for Free</h3>
+            <form action="/signup" method="post" enctype="application/x-www-form-urlencoded">
+                <label for="email">Email Address:</label>
+                <input class="email" type="email" name="email" required />
+                <i class="fa-regular fa-envelope"></i>
+              
+                <label for="psw">Password:</label>
+                <input type="password" name="psw" class="psw" id="wide_psw" required />
+                <i class="fa-solid fa-key"></i>
+              
+                <label for="psw_confirm">Confirm Password:</label>
+                <input type="password" name="psw_confirm" class="psw_confirm" id="wide_psw_confirm" required />
+                <i class="fa-solid fa-key"></i>
+
+                <p id="widePassToggle"></p>
+              
+                <label for="name">Username:</label>
+                <input class="username" type="text" name="username" required />
+                <i class="fa-regular fa-user"></i>
+
+                <select name="country" id="country">
+                    <option value="" disabled selected>Select your country:</option>
+                    <option value="australia">Australia</option>
+                    <option value="argentina">Argentina</option>
+                    <option value="benin">Benin Republic</option>
+                    <option value="brazil">Brazil</option>
+                    <option value="canada">Canada</option>
+                    <option value="cameroon">Cameroon</option>
+                    <option value="congo">Congo</option>
+                    <option value="croatia">Croatia</option>
+                    <option value="china">China</option>
+                    <option value="denmark">Denmark</option>
+                    <option value="england">England</option>
+                    <option value="egypt">Egypt</option>
+                    <option value="france">France</option>
+                    <option value="finland">Finland</option>
+                    <option value="germany">Germany</option>
+                    <option value="ghana">Ghana</option>
+                    <option value="gabon">Gabon</option>
+                    <option value="greece">Greece</option>
+                    <option value="isreal">Isreal</option>
+                    <option value="ivory">Ivory Coast</option>
+                    <option value="japan">Japan</option>
+                    <option value="korea">Korea</option>
+                    <option value="morocco">Morocco</option>
+                    <option value="zealand">New Zealand</option>
+                    <option value="niger">Niger</option>
+                    <option value="nigeria">Nigeria</option>
+                    <option value="netherland">Netherland</option>
+                    <option value="norway">Norway</option>
+                    <option value="poland">Poland</option>
+                    <option value="quatar">Quatar</option>
+                    <option value="spain">Spain</option>
+                    <option value="sa">South Africa</option>
+                    <option value="usa">United States Of America</option>
+                    <option value="uk">United Kingdoms</option>
+                    <option value="uae">United Arab Emirates</option>
+                    <option value="zimbabwe">Zimbabwe</option>
+                </select>
+              
+                <label for="city">City:</label>
+                <input class="location" type="text" name="city" required />
+                <i class="fa-solid fa-location-dot"></i>
+              
+                <label for="contact">Phone Number:</label>
+                <input type="number" name="contact" class="contact" required />
+                <i class="fa-solid fa-phone-flip"></i>
+
+                <% if (message != null)  { %>
+
+                    <p style="color:red"><%= message %></p>
+
+                <% } %>
+              
+                <button id="wideSubmit" type="submit" disabled>Sign Up Now</button>
+              </form>
+            <p>Already have an account? <a href="/login"><span id="login">Log in here.</span></a></p>
+        </div>
+        <div class="signup_benefits">
+            <h2>By signing up, you'll get:</h2>
+            <p><b>Personalized Car Recommendations: </b>Get tailored suggestions based on your preferences and budget.</p>
+            <p><b>Exclusive Offers: </b>Receive limited-time discounts and promotions on your favorite cars.</p>
+            <p><b>Early Access: </b>Be the first to know about new inventory, price drops, and special deals.</p>
+            <p><b>Saved Searches: </b>Save your favorite cars and searches for easy access later.</p>
+            <p><b>Priority Support: </b>Get priority assistance from our dedicated customer support team.</p>
+
+            <h2>Trust Badges:</h2>
+            <p><b>Secure: </b>Our website is protected by 256-bit SSL encryption.</p>
+            <p><b>Privacy: </b>We respect your privacy and never share your information with third parties.</p>
+            <p><b>Verified: We verify the identity and ownership of all cars listed on our platform.</b></p>
+            <p><b>Customer Support: </b>Our dedicated customer support team is available to assist you 24/7.</p>
+            <p>100% Satisfaction Guarantee</p>
+            <p>30-Day Money-Back Guarantee</p>
+            <p>Free Vehicle Inspection Report</p>
+
+            <h2>Social Media Links:</h2>
+            <p>Stay connected with us on social media:</p>
+
+            <a href="/policy"><p><b>Terms and Conditions: </b><span class="policy_toggle">By signing up, you agree to our terms and conditions.</span></p></a>
+            <a href="/policy"><p><b>Privacy Policy: </b><span class="policy_toggle">Learn more about how we protect your privacy.</span></p></a>
+        </div>
+    </section>
+
+
+</div>
+
+
+<section class="signup">
+    <h1>Join the Ride!</h1>
+    <h2>Get Exclusive Access to the Best Car Deals and Inventory!</h2>
+    <p>Create an account to unlock personalized car recommendations, exclusive offers, and more!</p>
+    <div class="signup_wrapper">
+        <h3>Sign Up for Free</h3>
+
+        <form action="/signup" method="post" enctype="application/x-www-form-urlencoded">
+            <label for="email">Email Address:</label>
+            <input class="email" type="email" name="email" required />
+            <i class="fa-regular fa-envelope"></i>
+          
+            <label for="psw">Password:</label>
+            <input type="password" name="psw" class="psw" id="mobile_psw" required />
+            <i class="fa-solid fa-key"></i>
+          
+            <label for="psw_confirm">Confirm Password:</label>
+            <input type="password" name="psw_confirm" class="psw_confirm" id="mobile_psw_confirm" required />
+            <i class="fa-solid fa-key"></i>
+
+            <p id="PassToggle"></p>
+          
+            <label for="name">Username:</label>
+            <input class="username" type="text" name="username" required />
+            <i class="fa-regular fa-user"></i>
+
+            <select name="country" id="country">
+                <option value="" disabled selected>Select your country:</option>
+                <option value="australia">Australia</option>
+                <option value="argentina">Argentina</option>
+                <option value="benin">Benin Republic</option>
+                <option value="brazil">Brazil</option>
+                <option value="canada">Canada</option>
+                <option value="cameroon">Cameroon</option>
+                <option value="congo">Congo</option>
+                <option value="croatia">Croatia</option>
+                <option value="china">China</option>
+                <option value="denmark">Denmark</option>
+                <option value="england">England</option>
+                <option value="egypt">Egypt</option>
+                <option value="france">France</option>
+                <option value="finland">Finland</option>
+                <option value="germany">Germany</option>
+                <option value="ghana">Ghana</option>
+                <option value="gabon">Gabon</option>
+                <option value="greece">Greece</option>
+                <option value="isreal">Isreal</option>
+                <option value="ivory">Ivory Coast</option>
+                <option value="japan">Japan</option>
+                <option value="korea">Korea</option>
+                <option value="morocco">Morocco</option>
+                <option value="zealand">New Zealand</option>
+                <option value="niger">Niger</option>
+                <option value="nigeria">Nigeria</option>
+                <option value="netherland">Netherland</option>
+                <option value="norway">Norway</option>
+                <option value="poland">Poland</option>
+                <option value="quatar">Quatar</option>
+                <option value="spain">Spain</option>
+                <option value="sa">South Africa</option>
+                <option value="usa">United States Of America</option>
+                <option value="uk">United Kingdoms</option>
+                <option value="uae">United Arab Emirates</option>
+                <option value="zimbabwe">Zimbabwe</option>
+            </select>
+          
+            <label for="location">City:</label>
+            <input class="location" type="text" name="city" required />
+            <i class="fa-solid fa-location-dot"></i>
+          
+            <label for="contact">Phone Number:</label>
+            <input type="number" name="contact" class="contact" required />
+            <i class="fa-solid fa-phone-flip"></i>
+
+            <% if (message != null)  { %>
+
+                <p style="color:red"><%= message %></p>
+
+            <% } %>
+          
+            <button id="submit" type="submit" disabled>Sign Up Now</button>
+          </form>
+        <p>Already have an account? <a href="/login"><span id="login">Log in here.</span></a></p>
+    </div>
+    <div class="signup_benefits">
+        <h2>By signing up, you'll get:</h2>
+        <p><b>Personalized Car Recommendations: </b>Get tailored suggestions based on your preferences and budget.</p>
+        <p><b>Exclusive Offers: </b>Receive limited-time discounts and promotions on your favorite cars.</p>
+        <p><b>Early Access: </b>Be the first to know about new inventory, price drops, and special deals.</p>
+        <p><b>Saved Searches: </b>Save your favorite cars and searches for easy access later.</p>
+        <p><b>Priority Support: </b>Get priority assistance from our dedicated customer support team.</p>
+
+        <h2>Trust Badges:</h2>
+        <p><b>Secure: </b>Our website is protected by 256-bit SSL encryption.</p>
+        <p><b>Privacy: </b>We respect your privacy and never share your information with third parties.</p>
+        <p><b>Verified: We verify the identity and ownership of all cars listed on our platform.</b></p>
+        <p><b>Customer Support: </b>Our dedicated customer support team is available to assist you 24/7.</p>
+        <p>100% Satisfaction Guarantee</p>
+        <p>30-Day Money-Back Guarantee</p>
+        <p>Free Vehicle Inspection Report</p>
+
+        <h2>Social Media Links:</h2>
+        <p>Stay connected with us on social media:</p>
+
+        <a href="/policy"><p><b>Terms and Conditions: </b><span class="policy_toggle">By signing up, you agree to our terms and conditions.</span></p></a>
+        <a href="/policy"><p><b>Privacy Policy: </b><span class="policy_toggle">Learn more about how we protect your privacy.</span></p></a>
+    </div>
+</section>
