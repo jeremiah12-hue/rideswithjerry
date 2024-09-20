@@ -1,0 +1,160 @@
+div#brands_toggle  {
+  display: flex;
+}
+
+div#brands_toggle ol#brands  {
+  display: none;
+}
+
+.container {
+    max-width: 800px;
+    width: 100%;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+  }
+  div.container h1 {
+    font-family: "Indie Flower", cursive;
+    font-weight: 400;
+    font-style: normal;
+    text-shadow: 2px 2px 2px grey;
+    padding-block: 30px;
+    font-size: 2em;
+    font-weight: 600;
+    text-align: right;
+    color: #da190b;
+    max-width: 800px;
+    width: 100%;
+  }
+ .question-input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+ .ask-button {
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+ .ask-button:hover {
+    background-color: #3e8e41;
+  }
+ .response-section {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+ .response-text {
+    font-size: 16px;
+    color: #333;
+  }
+ .clear-button {
+    background-color: #f44336;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+ .clear-button:hover {
+    background-color: #da190b;
+  }
+
+
+
+  /* widescreen */
+@media only screen and (min-width: 960px) {
+  div#brands_toggle  {
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    height: auto;
+    margin-top: 0px;
+}
+  div#brands_toggle ol#brands  {
+    width: 30vw;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    left: 0px;
+    margin-inline: 0vw;
+  }
+
+  .container {
+    max-width: 800px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-left: 5vw;
+    margin-top: 5vh;
+    width: 65vw;
+    height: auto;
+  }
+  div.container h1 {
+    font-family: "Indie Flower", cursive;
+    font-weight: 400;
+    font-style: normal;
+    text-shadow: 2px 2px 2px grey;
+    padding-block: 30px;
+    font-size: 2em;
+    font-weight: 600;
+    text-align: right;
+    color: #da190b;
+    width: 65vw;
+    max-width: 800px;
+  }
+ .question-input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+ .ask-button {
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+ .ask-button:hover {
+    background-color: #3e8e41;
+  }
+ .response-section {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+ .response-text {
+    font-size: 16px;
+    color: #333;
+  }
+ .clear-button {
+    background-color: #f44336;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+ .clear-button:hover {
+    background-color: #da190b;
+  }
+}
