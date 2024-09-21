@@ -1496,35 +1496,31 @@ sendResetCode(email)
     
 });
 
-app.post('/review', (req, res) => {
+
+app.post('/review', (req, res) =>  { 
+
   function Person(username, thoughts, date) {
-    this.username = username;
+    this.username = username;  
     this.thoughts = thoughts;
     this.date = date;
   }
 
   let person = new Person(req.body.username, req.body.thoughts, req.body.date);
 
-  fs.readFile('database/review.json', (err, data) => {
-    if (err) {
-      console.error(`Error reading file: ${err}`);
-      res.status(500).send({ message: 'Error reading file' });
-      return;
-    }
+  let accounts = err ? [person] : JSON.parse(reviewData);
+  accounts.push(person);
 
-    let accounts = data ? JSON.parse(data) : [];
-    accounts.push(person);
-
-    fs.writeFile('database/review.json', JSON.stringify(accounts, null, 4), (err) => {
+  fs.writeFile('database/review.json', JSON.stringify(accounts, null, 4), (err) => {
       if (err) {
         console.error(`Error writing file: ${err}`);
-        res.status(500).send({ message: 'Error writing file' });
+        res.redirect(`/product-desc?id=${req.query.id}`);
       } else {
         console.log('Review added successfully!');
-        res.redirect(`/product-desc?id=${req.query.id}`);
       }
     });
-  });
+
+  res.redirect(`/product-desc?id=${req.query.id}`);
+
 });
 
 app.use((req, res) =>  {
