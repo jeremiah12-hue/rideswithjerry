@@ -16,7 +16,8 @@ main, body  {
     min-height: 100svh;
     overflow-x: hidden;
     overflow-y: auto;
-    font-family: "Sofadi One", system-ui;
+    font-family: "Dosis", sans-serif;
+    font-optical-sizing: auto;
     font-weight: 400;
     font-style: normal;
 }
@@ -157,7 +158,7 @@ nav.mobile ul.head_nav li.news  {
     border-top-right-radius: 20%;
     border-bottom-right-radius: 10%;
     cursor: pointer;
-    font-family: "Handlee", cursive;
+    font-family: "Dosis", sans-serif;
     font-weight: 600;
     font-style: normal;
     animation: colorToggle 10s infinite;
@@ -329,7 +330,7 @@ footer.footer section.head_footer div.head_footer_txt  {
     justify-content: center;
     text-align: center;
     font-size: 1.5em;
-    font-family: "Pacifico", cursive;
+    font-family: "Dosis", sans-serif;
     font-weight: 600;
     font-style: normal;
     text-shadow: 2px 2px 2px;
@@ -341,7 +342,7 @@ footer.footer section.top_footer  {
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    font-family: "Playwrite NG Modern", cursive;
+    font-family: "Dosis", sans-serif;
     font-optical-sizing: auto;
     font-weight: 400;
     font-style: normal;
@@ -381,7 +382,7 @@ footer.footer section.bottom_footer  {
     align-items: center;
     justify-content: center;
     text-align: center;
-    font-family: "Playwrite PT", cursive;
+    font-family: "Dosis", sans-serif;
     font-optical-sizing: auto;
     font-weight: 400;
     font-style: normal;
@@ -412,7 +413,7 @@ footer.footer section.bottom_footer div.footer_contact  {
 
 footer.footer section.bottom_footer_main  {
     width: 100vw;
-    font-family: "Charm", cursive;
+    font-family: "Dosis", sans-serif;
     font-weight: 700;
     font-style: normal;
     bottom: 20vh;
@@ -585,7 +586,7 @@ section.mobile_main div.top_rated, section.mobile_main div.car_rated  {
     text-align: center;
 }
 section.mobile_main div.top_rated h1, section.mobile_main div.car_rated h1  {
-    font-family: "Pacifico", cursive;
+    font-family: "Dosis", sans-serif;
     font-weight: 400;
     font-style: normal;
     margin-inline: 10px;
@@ -940,7 +941,7 @@ section.mobile_shop_description div.shop_description_item_wrapper div.review_his
 section.mobile_shop_description div.shop_description_item_wrapper div.review_history div.review_history_item p  {
     margin: 20px 0px;
     padding: 10px;
-    width: 80vw;
+    width: 100vw;
     height: auto;
     overflow-wrap: break-word;
 }
@@ -949,8 +950,13 @@ section.mobile_shop_description div.shop_description_item_wrapper div.review_his
     height: auto;
     overflow-wrap: break-word;
 }
+section.mobile_shop_description div.shop_description_item_wrapper div.review_history div.review_icons  {
+    width: 100vw;
+    height: auto;
+}
+
 section.mobile_shop_description div.shop_description_item_wrapper div.review_history div.review_icons i  {
-    padding: 20px;
+    padding: 10px;
     font-size: 2em;
 }
 
@@ -1705,7 +1711,7 @@ section.search div.search_body div.search_item div.rate p  {
         font-size: 1em;
         padding-inline: 5px;
         cursor: pointer;
-        font-family: "Handlee", cursive;
+        font-family: "Dosis", sans-serif;
         font-weight: 400;
     }
     nav.wide_screen ul.head_nav li.nav_item:hover  {
@@ -1735,7 +1741,7 @@ section.search div.search_body div.search_item div.rate p  {
         font-size: 1em;
         padding-inline: 5px;
         cursor: pointer;
-        font-family: "Handlee", cursive;
+        font-family: "Dosis", sans-serif;
         font-weight: 600;
         text-align: center;
         text-shadow: 1px 1px 2px;
@@ -1912,7 +1918,7 @@ section.search div.search_body div.search_item div.rate p  {
         margin-inline: 15vw;
     }
     div.wide_brand_rated h1, div.wide_car_rated h1  {
-        font-family: "Pacifico", cursive;
+        font-family: "Dosis", sans-serif;
         font-weight: 400;
         font-style: normal;
         margin-inline: 10px;
