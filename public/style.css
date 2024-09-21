@@ -16,7 +16,7 @@ main, body  {
     min-height: 100svh;
     overflow-x: hidden;
     overflow-y: auto;
-    font-family: "Indie Flower", cursive;
+    font-family: "Sofadi One", system-ui;
     font-weight: 400;
     font-style: normal;
 }
@@ -291,7 +291,7 @@ nav.footer_nav  {
     z-index: 1;
 }
 nav.footer_nav p.footer_icon  {
-    width: 20vw;
+    width: auto;
     height: auto;
     text-align: center;
     cursor: pointer;
