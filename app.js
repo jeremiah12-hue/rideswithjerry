@@ -1520,12 +1520,12 @@ app.post('/review', (req, res) =>  {
       if (err) {
         console.error(`Error writing file: ${err}`);
       } else {
-        console.log('Account added successfully!');
+        console.log('Review added successfully!');
       }
     });
+    res.redirect(`/product-desc?id=${req.query.id}`);
   });
 
-  res.redirect(`/home`);
   
 }); 
 
