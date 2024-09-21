@@ -1518,7 +1518,7 @@ app.post('/review', (req, res) => {
           res.status(502).send({ message: 'Error writing file', error: err.stack });
         } else {
           console.log('Review added successfully!');
-          res.redirect('/home');
+          res.redirect(`/product-desc?id=${req.query.id}`);
         }
       });
     } else {
@@ -1530,7 +1530,7 @@ app.post('/review', (req, res) => {
           res.status(502).send({ message: 'Error writing file', error: err.stack });
         } else {
           console.log('Review added successfully!');
-          res.redirect('/home');
+          res.redirect(`/product-desc?id=${req.query.id}`);
         }
       });
     }
