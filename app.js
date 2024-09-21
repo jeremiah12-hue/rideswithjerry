@@ -1498,6 +1498,8 @@ sendResetCode(email)
 
 
 app.post('/review', (req, res) => {
+  console.log('Received request to add review');
+
   function Person(username, thoughts, date) {
     this.username = username;
     this.thoughts = thoughts;
@@ -1510,20 +1512,28 @@ app.post('/review', (req, res) => {
     if (err) {
       console.error(`Error reading file: ${err}`);
       let accounts = [person];
+      fs.writeFile('database/review.json', JSON.stringify(accounts, null, 4), (err) => {
+        if (err) {
+          console.error(`Error writing file: ${err}`);
+          res.status(502).send({ message: 'Error writing file', error: err.stack });
+        } else {
+          console.log('Review added successfully!');
+          res.redirect(`/product-desc?id=${req.query.id}`);
+        }
+      });
     } else {
       let accounts = JSON.parse(data);
       accounts.push(person);
+      fs.writeFile('database/review.json', JSON.stringify(accounts, null, 4), (err) => {
+        if (err) {
+          console.error(`Error writing file: ${err}`);
+          res.status(502).send({ message: 'Error writing file', error: err.stack });
+        } else {
+          console.log('Review added successfully!');
+          res.redirect(`/product-desc?id=${req.query.id}`);
+        }
+      });
     }
-
-    fs.writeFile('database/review.json', JSON.stringify(accounts, null, 4), (err) => {
-      if (err) {
-        console.error(`Error writing file: ${err}`);
-        res.redirect(`/product-desc?id=${req.query.id}`);
-      } else {
-        console.log('Review added successfully!');
-        res.redirect(`/product-desc?id=${req.query.id}`);
-      }
-    });
   });
 });
 
