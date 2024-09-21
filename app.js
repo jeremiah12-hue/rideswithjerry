@@ -1525,7 +1525,7 @@ app.post('/review', (req, res) =>  {
     });
   });
 
-  res.redirect(`/product-desc?id=${req.query.id}`);
+  res.redirect(`/home`);
   
 }); 
 
