@@ -180,7 +180,7 @@ const forgot = fs.readFileSync(forgotPath, 'utf8');
 const resetpin = fs.readFileSync(resetpinPath, 'utf8');
 
 
-const connectionString = "mongodb+srv://jeremiah2:iUOEOYkUSYByT9fH@cluster0.iuvcnx1.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+const connectionString = "mongodb+srv://jeremiah:08063452207Ok%40@cluster0.iuvcnx1.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
 let client;
 let db;
