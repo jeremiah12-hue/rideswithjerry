@@ -24,6 +24,8 @@ const session = require('express-session');
 
 const MongoStore = require('connect-mongo');
 
+const fetchReviews = require('./reviews').fetchReviews;
+
 const app = express(); 
 
 const PORT = 8080;
@@ -813,7 +815,8 @@ app.get('/shop-products', (req, res) => {
   }
 }); 
 
-app.get('/product-desc', function(req, res) {
+app.get('/product-desc', async function(req, res) {
+  const productDescHtml = await fetchReviews();
 
   if (!req.query.id) {
     res.redirect('/home');
