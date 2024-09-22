@@ -1,5 +1,6 @@
 const express = require('express');
 const MongoClient = require('mongodb').MongoClient;
+const mongoose = require('mongoose');
 const ejs = require('ejs');
 const fs = require('fs');
 
@@ -21,11 +22,35 @@ const bcrypt = require('bcrypt');
 
 const session = require('express-session');
 
-const cookieSession = require('cookie-session');
+const MongoStore = require('connect-mongo');
 
 const app = express(); 
 
 const PORT = 8080;
+
+mongoose.connect('mongodb+srv://jeremiah2:pYQyMHsSqMhcaQby@cluster0.iuvcnx1.mongodb.net/')
+  .then(() => {
+    console.log('Connected to MongoDB');
+
+    // listen for requests
+  app.listen(PORT, (err) =>  {
+    if(err)  {
+      console.log(err);
+    }
+    console.log(`Server is starting at port ${PORT}`);
+  });
+  })
+  .catch((err) => {
+    console.error(`Error connecting to MongoDB: ${err}`);
+  });
+
+const connection = mongoose.connection;
+
+const sessionStore = MongoStore.create({
+  client: connection.getClient(),
+  collection: 'session'
+});
+
 
 // set the view engine to ejs
 app.set('view engine', 'ejs');
@@ -180,34 +205,6 @@ const forgot = fs.readFileSync(forgotPath, 'utf8');
 const resetpin = fs.readFileSync(resetpinPath, 'utf8');
 
 
-const connectionString = "mongodb+srv://jeremiah:jeremiah@cluster0.iuvcnx1.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
-
-let client;
-let db;
-let collectionReviews;
-let collectionUsers;
-
-MongoClient.connect(connectionString, function(err, _client) {
-  if (err) {
-    console.error(`Error connecting to MongoDB: ${err}`);
-    return;
-  }
-  console.log('Connected to MongoDB');
-  client = _client;
-  db = client.db('Rideswithjerry');
-  collectionReviews = db.collection('RideswithjerryReviewcollection');
-  collectionUsers = db.collection('Rideswithjerrycollection');
-
-  // listen for requests
-  app.listen(PORT, (err) =>  {
-    if(err)  {
-      console.log(err);
-    }
-    console.log(`Server is starting at port ${PORT}`);
-  });
-});
-
-
 const tokenizer = new natural.WordTokenizer();
 const stemmer = natural.PorterStemmer;
 
@@ -262,6 +259,8 @@ const knowledgeBase = {
   'can I purchase a vehicle online?': 'Yes, you can purchase a vehicle online through our website. Our team will guide you through the process and ensure a smooth transaction.',
   'can I buy a vehicle online?': 'Yes, you can purchase a vehicle online through our website. Our team will guide you through the process and ensure a smooth transaction.',
   'buy car online?': 'Yes, you can purchase a vehicle online through our website. Our team will guide you through the process and ensure a smooth transaction.',
+  'i want to buy a car': 'Yes, you can purchase a vehicle online through our website. Our team will guide you through the process and ensure a smooth transaction.',
+  'i need a car': 'Yes, you can purchase a vehicle online through our website. Our team will guide you through the process and ensure a smooth transaction.',
   'online car buying?': 'Yes, you can purchase a vehicle online through our website. Our team will guide you through the process and ensure a smooth transaction.',
   'how do I schedule a test drive?': 'You can schedule a test drive online or by contacting our dealership directly. We\'ll work with you to find a time that fits your schedule.',
   'schedule a test drive?': 'You can schedule a test drive online or by contacting our dealership directly. We\'ll work with you to find a time that fits your schedule.',
@@ -333,7 +332,10 @@ const knowledgeBase = {
   'car loan': ' Yes, we offer loaner cars services to customers. Please contact us to discuss your options and get a quote.',
   'loan': ' Yes, we offer loaner cars services to customers. Please contact us to discuss your options and get a quote.',
   'car rent': ' Yes, we offer renting cars services to customers. Please contact us to discuss your options and get a quote.',
-  'rent': ' Yes, we offer renting cars services to customers. Please contact us to discuss your options and get a quote.'
+  'rent': ' Yes, we offer renting cars services to customers. Please contact us to discuss your options and get a quote.',
+  'i want to sell my car': ' Yes, you can sell your used grade A cars to us. Please contact our representative to discuss your options and get a quote.',
+  'i want to sell a car': ' Yes, you can sell your used grade A cars to us. Please contact our representative to discuss your options and get a quote.',
+  'sell my car': ' Yes, you can sell your used grade A cars to us. Please contact our representative to discuss your options and get a quote.'
 };
 
  
@@ -428,21 +430,14 @@ function replacePlaceholders(htmlTemplate, databaseArray) {
 
 
 app.use(session({
-  secret: '08063452207je',
+  secret: "pj",
   resave: false,
   saveUninitialized: true,
+  store: sessionStore,
   cookie: {
-    secure: false,
-    maxAge: 3600000
+    maxAge: 1000 * 60 * 60 * 24
   }
 }));
-
-app.use(cookieSession({
-  name: 'session',
-  keys: ['key1', 'key2'],
-  maxAge: 24 * 60 * 60 * 1000
-}));
-
 
 app.use((err, req, res, next) => {
   console.error(`Error: ${err}`);
@@ -1232,37 +1227,46 @@ app.post('/api/query', async (req, res) => {
 
 
 app.post('/signup', (req, res) => {
+  const userSchema = new mongoose.Schema({
+    id: String,
+    username: String,
+    email: String,
+    country: String,
+    city: String,
+    contact: String,
+    psw: String
+  });
 
-  function Person(id, username, email, country, city, contact, psw) {
-    this.id = id;
-    this.username = username;
-    this.email = email;
-    this.country = country;
-    this.city = city;
-    this.contact = contact;
-    this.psw = psw;
-  }
+  const User = mongoose.model('User', userSchema);
 
   const hashedPsw = bcrypt.hashSync(req.body.psw, 10);
 
-  let person = new Person(uuidv4(), req.body.username, req.body.email, req.body.country, req.body.city, req.body.contact, hashedPsw);
+  const user = new User({
+    id: uuidv4(),
+    username: req.body.username,
+    email: req.body.email,
+    country: req.body.country,
+    city: req.body.city,
+    contact: req.body.contact,
+    psw: hashedPsw
+  });
 
-  collectionUsers.find({ $or: [{ email: req.body.email }, { username: req.body.username }] }).toArray((err, result) => {
+  User.findOne({ $or: [{ email: req.body.email }, { username: req.body.username }] }, (err, result) => {
     if (err) {
       console.error(`Error finding user: ${err}`);
       return;
     }
 
-    if (result.length > 0) {
-      if (result.find(obj => obj.email === req.body.email && obj.username === req.body.username)) {
+    if (result) {
+      if (result.email === req.body.email && result.username === req.body.username) {
         res.send("Email Address and Username already exists!, you might want to login...");
-      } else if (result.find(obj => obj.email === req.body.email)) {
+      } else if (result.email === req.body.email) {
         res.send("Email Address already exists!, you might want to login...");
-      } else if (result.find(obj => obj.username === req.body.username)) {
+      } else if (result.username === req.body.username) {
         res.send("Username already exists!, you might want to login...");
       }
     } else {
-      collectionUsers.insertOne(person, (err, result) => {
+      user.save((err, result) => {
         if (err) {
           console.error(`Error inserting user: ${err}`);
           res.status(500).send({ message: 'Error inserting user' });
@@ -1275,8 +1279,11 @@ app.post('/signup', (req, res) => {
   });
 });
 
+
 app.post('/login', (req, res) => {
-  collectionUsers.findOne({ email: req.body.email }, (err, result) => {
+  const User = mongoose.model('User', userSchema);
+
+  User.findOne({ email: req.body.email }, (err, result) => {
     if (err) {
       console.error(`Error finding user: ${err}`);
       return;
@@ -1437,15 +1444,21 @@ sendResetCode(email)
 
 
 app.post('/review', (req, res) => {
-  function Person(username, thoughts, date) {
-    this.username = username;  
-    this.thoughts = thoughts;
-    this.date = date;
-  }
+  const reviewSchema = new mongoose.Schema({
+    username: String,
+    thoughts: String,
+    date: Date
+  });
 
-  let person = new Person(req.body.username, req.body.thoughts, req.body.date);
+  const Review = mongoose.model('Review', reviewSchema);
 
-  collectionReviews.insertOne(person, (err, result) => {
+  const review = new Review({
+    username: req.body.username,
+    thoughts: req.body.thoughts,
+    date: req.body.date
+  });
+
+  review.save((err, result) => {
     if (err) {
       console.error(`Error inserting review: ${err}`);
       res.status(500).send({ message: 'Error inserting review' });
