@@ -1,4 +1,5 @@
 const express = require('express');
+const MongoClient = require('mongodb').MongoClient;
 const ejs = require('ejs');
 const fs = require('fs');
 
@@ -16,11 +17,15 @@ const { v4: uuidv4 } = require('uuid');
 
 const jwt = require('jsonwebtoken');
 
+const bcrypt = require('bcrypt');
+
+const session = require('express-session');
+
+const cookieSession = require('cookie-session');
+
 const app = express(); 
 
 const PORT = 8080;
-
-const session = require('express-session');
 
 // set the view engine to ejs
 app.set('view engine', 'ejs');
@@ -175,12 +180,31 @@ const forgot = fs.readFileSync(forgotPath, 'utf8');
 const resetpin = fs.readFileSync(resetpinPath, 'utf8');
 
 
-// listen for requests
-app.listen(PORT, (err) =>  {
-  if(err)  {
-    console.log(err);
+const connectionString = 'mongodb+srv://jeremiah:08063452207Ok@@cluster 0.iuvcnx1.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
+
+let client;
+let db;
+let collectionReviews;
+let collectionUsers;
+
+MongoClient.connect(connectionString, function(err, _client) {
+  if (err) {
+    console.error(`Error connecting to MongoDB: ${err}`);
+    return;
   }
-  console.log(`Server is starting at port ${PORT}`);
+  console.log('Connected to MongoDB');
+  client = _client;
+  db = client.db('Rideswithjerry');
+  collectionReviews = db.collection('RideswithjerryReviewcollection');
+  collectionUsers = db.collection('Rideswithjerrycollection');
+
+  // listen for requests
+  app.listen(PORT, (err) =>  {
+    if(err)  {
+      console.log(err);
+    }
+    console.log(`Server is starting at port ${PORT}`);
+  });
 });
 
 
@@ -411,6 +435,12 @@ app.use(session({
     secure: false,
     maxAge: 3600000
   }
+}));
+
+app.use(cookieSession({
+  name: 'session',
+  keys: ['key1', 'key2'],
+  maxAge: 24 * 60 * 60 * 1000
 }));
 
 
@@ -1202,7 +1232,6 @@ app.post('/api/query', async (req, res) => {
 
 
 app.post('/signup', (req, res) => {
-  const { v4: uuidv4 } = require('uuid');
 
   function Person(id, username, email, country, city, contact, psw) {
     this.id = id;
@@ -1214,147 +1243,58 @@ app.post('/signup', (req, res) => {
     this.psw = psw;
   }
 
-  let person = new Person(uuidv4(), req.body.username, req.body.email, req.body.country, req.body.city, req.body.contact, req.body.psw);
+  const hashedPsw = bcrypt.hashSync(req.body.psw, 10);
 
-  fs.readFile('database/accountdb.json', (err, data) => {
+  let person = new Person(uuidv4(), req.body.username, req.body.email, req.body.country, req.body.city, req.body.contact, hashedPsw);
+
+  collectionUsers.find({ $or: [{ email: req.body.email }, { username: req.body.username }] }).toArray((err, result) => {
     if (err) {
-      console.error(`Error reading file: ${err}`);
+      console.error(`Error finding user: ${err}`);
       return;
-    };
+    }
 
-    let accounts = JSON.parse(data) || [];
-
-    let comparedEmailandUser = accounts.find(obj =>
-      obj.email === req.body.email && obj.username === req.body.username
-    );
-
-    let comparedEmail = accounts.find(obj =>
-      obj.email === req.body.email
-    );
-
-    let comparedUser = accounts.find(obj =>
-      obj.username === req.body.username
-    );
-
-
-    if(comparedEmailandUser)  {
-      // Render the compiled template 
-      const signupHtml = signupTemplate({
-        message: "Email Address and Username already exists!, you might want to login..."
-      });
-
-      let response = html.replace("({% INDEX_MAIN %})", signupHtml);
-  
-      res.send(response);
-
-    } else if(comparedEmail)  {
-      // Render the compiled template 
-      const signupHtml = signupTemplate({
-        message: "Email Address already exists!, you might want to login..."
-      });
-
-      let response = html.replace("({% INDEX_MAIN %})", signupHtml);
-
-      res.send(response);
-
-    } else if(comparedUser)  {
-      // Render the compiled template 
-      const signupHtml = signupTemplate({
-        message: "Username already exists!, you might want to login..."
-      });
-
-      let response = html.replace("({% INDEX_MAIN %})", signupHtml);
-
-      res.send(response);
-    } else  {
-      accounts.push(person);
-  
-      fs.writeFile('database/accountdb.json', JSON.stringify(accounts, null, 4), (err) => {
+    if (result.length > 0) {
+      if (result.find(obj => obj.email === req.body.email && obj.username === req.body.username)) {
+        res.send("Email Address and Username already exists!, you might want to login...");
+      } else if (result.find(obj => obj.email === req.body.email)) {
+        res.send("Email Address already exists!, you might want to login...");
+      } else if (result.find(obj => obj.username === req.body.username)) {
+        res.send("Username already exists!, you might want to login...");
+      }
+    } else {
+      collectionUsers.insertOne(person, (err, result) => {
         if (err) {
-          console.error(`Error writing file: ${err}`);
+          console.error(`Error inserting user: ${err}`);
+          res.status(500).send({ message: 'Error inserting user' });
         } else {
-          console.log('Account added successfully!');
-          fs.readFile('database/userids.json', (err, data) => {
-            if (err) {
-              console.error(`Error reading file: ${err}`);
-              return;
-            };
-
-            let userIds = JSON.parse(data) || {};
-
-            userIds[person.id] = person;
-
-            fs.writeFile('database/userids.json', JSON.stringify(userIds, null, 4), (err) => {
-              if (err) {
-                console.error(`Error writing file: ${err}`);
-              } else {
-                console.log('User ID stored successfully!');
-              }
-            });
-          });
+          console.log('User added successfully!');
+          res.redirect('/home');
         }
       });
     }
-  
-    res.redirect('/home');
   });
 });
-
 
 app.post('/login', (req, res) => {
-  fs.readFile('database/userids.json', (err, data) => {
+  collectionUsers.findOne({ email: req.body.email }, (err, result) => {
     if (err) {
-      console.error(`Error reading file: ${err}`);
+      console.error(`Error finding user: ${err}`);
       return;
-    };
-
-    let userIds = JSON.parse(data);
-    let comparedEmailandPsw = null;
-
-    for (let key in userIds) {
-      if (userIds[key].email === req.body.email && userIds[key].psw === req.body.psw) {
-        comparedEmailandPsw = userIds[key];
-        break;
-      }
     }
 
-    if (comparedEmailandPsw) {
-
-      console.log("Yes")
-
-      res.redirect('/home');
+    if (result) {
+      const isValidPsw = bcrypt.compareSync(req.body.psw, result.psw);
+      if (isValidPsw) {
+        console.log("Yes");
+        res.redirect('/home');
+      } else {
+        console.log("No");
+        res.send("Invalid Email Address Or Wrong Password!");
+      }
     } else {
       console.log("No");
-
-      // Render the compiled template 
-      const loginHtml = loginTemplate({
-        message: "Invalid Email Address Or Wrong Password!"
-      });
-
-      let response = html.replace("({% INDEX_MAIN %})", loginHtml);
-
-      res.send(response);
+      res.send("Invalid Email Address Or Wrong Password!");
     }
-  });
-});
-
-
-app.get('/get-user-id', (req, res) => {
-  if (!req.session || !req.session.email) {
-    res.status(401).json({ error: 'Unauthorized' });
-    return;
-  }
-
-  fs.readFile('database/userids.json', (err, data) => {
-    if (err) {
-      console.error(`Error reading file: ${err}`);
-      return;
-    };
-
-    let userIds = JSON.parse(data);
-    let userId = Object.keys(userIds).find(key => userIds[key].email === req.session.email);
-
-    res.json({ userId });
   });
 });
 
@@ -1376,7 +1316,6 @@ app.post('/resetoption', (req, res) =>  {
   } else  {
     console.log("No");
 
-    // Render the compiled template
       const forgotHtml = forgotTemplate({
         message: "Invalid Email Address!"
       });
@@ -1497,8 +1436,7 @@ sendResetCode(email)
 });
 
 
-app.post('/review', (req, res) =>  { 
-
+app.post('/review', (req, res) => {
   function Person(username, thoughts, date) {
     this.username = username;  
     this.thoughts = thoughts;
@@ -1507,28 +1445,17 @@ app.post('/review', (req, res) =>  {
 
   let person = new Person(req.body.username, req.body.thoughts, req.body.date);
 
-  fs.readFile('database/review.json', (err, data) => {
+  collectionReviews.insertOne(person, (err, result) => {
     if (err) {
-      console.error(`Error reading file: ${err}`);
-      return;
-    };
-
-
-    let accounts = err ? [person] : JSON.parse(reviewData);
-    accounts.push(person);
-
-    fs.writeFile('database/review.json', JSON.stringify(accounts, null, 4), (err) => {
-      if (err) {
-        console.error(`Error writing file: ${err}`);
-      } else {
-        console.log('Review added successfully!');
-      }
-    });
+      console.error(`Error inserting review: ${err}`);
+      res.status(500).send({ message: 'Error inserting review' });
+    } else {
+      console.log('Review added successfully!');
+      res.redirect(`/product-desc?id=${req.query.id}`);
+    }
   });
+});
 
-  res.redirect(`/product-desc?id=${req.query.id}`);
-  
-}); 
 
 app.use((req, res) =>  {
   res.redirect('/home');
