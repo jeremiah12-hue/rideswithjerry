@@ -175,10 +175,6 @@ let jsporscheData = JSON.parse(porscheData);
 const dodgeData = fs.readFileSync('database/dodge.json', 'utf8');
 let jsdodgeData = JSON.parse(dodgeData);
 
-// review database
-const reviewData = fs.readFileSync('database/review.json', 'utf8');
-let jsReviewData = JSON.parse(reviewData);
-
 
 const home = fs.readFileSync(homePath, 'utf8');
 
@@ -367,10 +363,6 @@ const resetpinTemplate = ejs.compile(resetpin, {
 // Render the compiled template 
 const html = template();
 
-const productDescHtml = productDesctemplate({
-  jsReviewData
-});
-
 const signupTemplateMain = signupTemplate({
   message: null,
 });
@@ -382,6 +374,32 @@ const loginTemplateMain = loginTemplate({
 const forgotTemplateMain = forgotTemplate({
   message: null
 });
+
+// Define the review schema
+const reviewSchema = new mongoose.Schema({
+  username: String,
+  thoughts: String,
+  date: Date
+});
+
+// Register the schema with the Review model
+const Review = mongoose.model('Review', reviewSchema);
+
+Review.find()
+  .then(reviews => {
+    const jsReviewData = reviews.map(review => ({
+      username: review.username,
+      thoughts: review.thoughts,
+      date: review.date
+    }));
+
+    const productDescHtml = productDesctemplate({
+      jsReviewData
+    });
+  })
+  .catch(err => {
+    console.error(`Error fetching reviews: ${err}`);
+  });
 
 function replacePlaceholders(htmlTemplate, databaseArray) {
   let resultHtml = '';
@@ -1226,7 +1244,7 @@ app.post('/api/query', async (req, res) => {
 });
 
 
-app.post('/signup', (req, res) => {
+app.post('/signup', async (req, res) => {
   const userSchema = new mongoose.Schema({
     id: String,
     username: String,
@@ -1251,32 +1269,25 @@ app.post('/signup', (req, res) => {
     psw: hashedPsw
   });
 
-  User.findOne({ $or: [{ email: req.body.email }, { username: req.body.username }] }, (err, result) => {
-    if (err) {
-      console.error(`Error finding user: ${err}`);
-      return;
-    }
-
-    if (result) {
-      if (result.email === req.body.email && result.username === req.body.username) {
+  try {
+    const existingUser = await User.findOne({ $or: [{ email: req.body.email }, { username: req.body.username }] });
+    if (existingUser) {
+      if (existingUser.email === req.body.email && existingUser.username === req.body.username) {
         res.send("Email Address and Username already exists!, you might want to login...");
-      } else if (result.email === req.body.email) {
+      } else if (existingUser.email === req.body.email) {
         res.send("Email Address already exists!, you might want to login...");
-      } else if (result.username === req.body.username) {
+      } else if (existingUser.username === req.body.username) {
         res.send("Username already exists!, you might want to login...");
       }
     } else {
-      user.save((err, result) => {
-        if (err) {
-          console.error(`Error inserting user: ${err}`);
-          res.status(500).send({ message: 'Error inserting user' });
-        } else {
-          console.log('User added successfully!');
-          res.redirect('/home');
-        }
-      });
+      await user.save();
+      console.log('User added successfully!');
+      res.redirect('/home');
     }
-  });
+  } catch (err) {
+    console.error(`Error finding or inserting user: ${err}`);
+    res.status(500).send({ message: 'Error inserting user' });
+  }
 });
 
 
@@ -1443,30 +1454,21 @@ sendResetCode(email)
 });
 
 
-app.post('/review', (req, res) => {
-  const reviewSchema = new mongoose.Schema({
-    username: String,
-    thoughts: String,
-    date: Date
-  });
-
-  const Review = mongoose.model('Review', reviewSchema);
-
+app.post('/review', async (req, res) => {
   const review = new Review({
     username: req.body.username,
     thoughts: req.body.thoughts,
     date: req.body.date
   });
 
-  review.save((err, result) => {
-    if (err) {
-      console.error(`Error inserting review: ${err}`);
-      res.status(500).send({ message: 'Error inserting review' });
-    } else {
-      console.log('Review added successfully!');
-      res.redirect(`/product-desc?id=${req.query.id}`);
-    }
-  });
+  try {
+    await review.save();
+    console.log('Review added successfully!');
+    res.redirect(`/product-desc?id=${req.query.id}`);
+  } catch (err) {
+    console.error(`Error inserting review: ${err}`);
+    res.status(500).send({ message: 'Error inserting review' });
+  }
 });
 
 
