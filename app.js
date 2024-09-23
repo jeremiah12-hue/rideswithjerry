@@ -345,6 +345,8 @@ const knowledgeBase = {
   'representative?':'Looking to speak with a representative, please call +234-7059489788  ||  +234-7081065179. You can also send an email directly to Rideswithjerry@gmail.com.',
   'your rep':'Looking to speak with a representative, please call +234-7059489788  ||  +234-7081065179. You can also send an email directly to Rideswithjerry@gmail.com.',
   'rep?':'Looking to speak with a representative, please call +234-7059489788  ||  +234-7081065179. You can also send an email directly to Rideswithjerry@gmail.com.',
+  'number?':'Looking to speak with a representative, please call +234-7059489788  ||  +234-7081065179. You can also send an email directly to Rideswithjerry@gmail.com.',
+  'contact?':'Looking to speak with a representative, please call +234-7059489788  ||  +234-7081065179. You can also send an email directly to Rideswithjerry@gmail.com.',
   'email address':'Do you want to chat with us or make enquiries?, you can send an email directly to Rideswithjerry@gmail.com.',
   'email':'Do you want to chat with us or make enquiries?, you can send an email directly to Rideswithjerry@gmail.com.',
   'your email':'Do you want to chat with us or make enquiries?, you can send an email directly to Rideswithjerry@gmail.com.',
