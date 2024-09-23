@@ -24,7 +24,9 @@ const session = require('express-session');
 
 const MongoStore = require('connect-mongo');
 
-const fetchReviews = require('./reviews').fetchReviews;
+const User = require('./user.model');
+
+const { fetchReviews, Review } = require('./reviews');
 
 const app = express(); 
 
@@ -80,7 +82,6 @@ const wideOtherPath = 'views/pages/wide_shop_other.ejs';
 const signNavPath = 'views/pages/sign_nav.ejs';
 const shopProductsPath = 'views/pages/shop_products.ejs';
 const shopBrandsPath = 'views/pages/shop_brands.ejs';
-const productDescPath = 'views/pages/product_desc.ejs';
 const productSavePath = 'views/pages/product_save.ejs';
 const buyPath = 'views/pages/buy.ejs';
 const sellPath = 'views/pages/sell.ejs';
@@ -189,7 +190,6 @@ const wideOther = fs.readFileSync(wideOtherPath, 'utf8');
 const signNav = fs.readFileSync(signNavPath, 'utf8');
 const shopProducts = fs.readFileSync(shopProductsPath, 'utf8');
 const shopBrands = fs.readFileSync(shopBrandsPath, 'utf8');
-const productDesc = fs.readFileSync(productDescPath, 'utf8');
 const productSave = fs.readFileSync(productSavePath, 'utf8');
 const buy = fs.readFileSync(buyPath, 'utf8');
 const sell = fs.readFileSync(sellPath, 'utf8');
@@ -327,23 +327,35 @@ const knowledgeBase = {
   'Can I get my car delivered to a different state or country?': 'Yes, we offer delivery services to different states and countries. Please contact us to discuss your options and get a quote.',
   'What is the process for scheduling maintenance or repairs for my car?': 'We offer a range of maintenance and repair options for your car. Please contact us to schedule a service appointment.',
   'Can I get a loaner car while my car is being serviced?': ' Yes, we offer loaner cars while your car is being serviced. Please contact us to discuss your options and get a quote.',
-  'car loan': ' Yes, we offer loaner cars services to customers. Please contact us to discuss your options and get a quote.',
-  'loan': ' Yes, we offer loaner cars services to customers. Please contact us to discuss your options and get a quote.',
-  'car rent': ' Yes, we offer renting cars services to customers. Please contact us to discuss your options and get a quote.',
-  'rent': ' Yes, we offer renting cars services to customers. Please contact us to discuss your options and get a quote.',
-  'i want to sell my car': ' Yes, you can sell your used grade A cars to us. Please contact our representative to discuss your options and get a quote.',
-  'i want to sell a car': ' Yes, you can sell your used grade A cars to us. Please contact our representative to discuss your options and get a quote.',
-  'sell my car': ' Yes, you can sell your used grade A cars to us. Please contact our representative to discuss your options and get a quote.'
+  'car loan': 'Yes, we offer loaner cars services to customers. Please contact us to discuss your options and get a quote.',
+  'loan': 'Yes, we offer loaner cars services to customers. Please contact us to discuss your options and get a quote.',
+  'car rent': 'Yes, we offer renting cars services to customers. Please contact us to discuss your options and get a quote.',
+  'rent': 'Yes, we offer renting cars services to customers. Please contact us to discuss your options and get a quote.',
+  'i want to sell my car': 'If you\'re looking to sell your used grade A car. Please contact our representative to discuss your options and get a quote. Before selling your car, make sure to gather all necessary documents, clean and detail your car.',
+  'i want to sell a car': 'If you\'re looking to sell your used grade A car. Please contact our representative to discuss your options and get a quote. Before selling your car, make sure to gather all necessary documents, clean and detail your car.',
+  'sell my car': 'If you\'re looking to sell your used grade A car. Please contact our representative to discuss your options and get a quote. Before selling your car, make sure to gather all necessary documents, clean and detail your car.',
+  'where is your location?': 'We are currently located at Iwofe, Porthacourt, Rivers State, Nigeria. As for where I am located, I am an online assistant and do not have a physical location.',
+  'location?': 'We are currently located at Iwofe, Porthacourt, Rivers State, Nigeria. As for where I am located, I am an online assistant and do not have a physical location.',
+  'address?': 'We are currently located at Iwofe, Porthacourt, Rivers State, Nigeria. As for where I am located, I am an online assistant and do not have a physical location.',
+  'what is the location?': 'We are currently located at Iwofe, Porthacourt, Rivers State, Nigeria. As for where I am located, I am an online assistant and do not have a physical location.',
+  'your representative contact?':'Looking to speak with a representative, please call +234-7059489788  ||  +234-7081065179. You can also send an email directly to Rideswithjerry@gmail.com.',
+  'your representative phone number?':'Looking to speak with a representative, please call +234-7059489788  ||  +234-7081065179. You can also send an email directly to Rideswithjerry@gmail.com.',
+  'your representative number?':'Looking to speak with a representative, please call +234-7059489788  ||  +234-7081065179. You can also send an email directly to Rideswithjerry@gmail.com.',
+  'your representative whatsapp number?':'Looking to speak with a representative, please call +234-7059489788  ||  +234-7081065179. You can also send an email directly to Rideswithjerry@gmail.com.',
+  'representative?':'Looking to speak with a representative, please call +234-7059489788  ||  +234-7081065179. You can also send an email directly to Rideswithjerry@gmail.com.',
+  'your rep':'Looking to speak with a representative, please call +234-7059489788  ||  +234-7081065179. You can also send an email directly to Rideswithjerry@gmail.com.',
+  'rep?':'Looking to speak with a representative, please call +234-7059489788  ||  +234-7081065179. You can also send an email directly to Rideswithjerry@gmail.com.',
+  'email address':'Do you want to chat with us or make enquiries?, you can send an email directly to Rideswithjerry@gmail.com.',
+  'email':'Do you want to chat with us or make enquiries?, you can send an email directly to Rideswithjerry@gmail.com.',
+  'your email':'Do you want to chat with us or make enquiries?, you can send an email directly to Rideswithjerry@gmail.com.',
+  'company email address':'Do you want to chat with us or make enquiries?, you can send an email directly to Rideswithjerry@gmail.com.',
+  'company email':'Do you want to chat with us or make enquiries?, you can send an email directly to Rideswithjerry@gmail.com.'
 };
 
  
 // Compile the EJS template
 const template = ejs.compile(index, { 
   filename: IndexPath           
-});
-
-const productDesctemplate = ejs.compile(productDesc, { 
-  filename: productDescPath           
 });
 
 const signupTemplate = ejs.compile(signup, { 
@@ -377,31 +389,6 @@ const forgotTemplateMain = forgotTemplate({
   message: null
 });
 
-// Define the review schema
-const reviewSchema = new mongoose.Schema({
-  username: String,
-  thoughts: String,
-  date: Date
-});
-
-// Register the schema with the Review model
-const Review = mongoose.model('Review', reviewSchema);
-
-Review.find()
-  .then(reviews => {
-    const jsReviewData = reviews.map(review => ({
-      username: review.username,
-      thoughts: review.thoughts,
-      date: review.date
-    }));
-
-    const productDescHtml = productDesctemplate({
-      jsReviewData
-    });
-  })
-  .catch(err => {
-    console.error(`Error fetching reviews: ${err}`);
-  });
 
 function replacePlaceholders(htmlTemplate, databaseArray) {
   let resultHtml = '';
@@ -463,7 +450,6 @@ app.use((err, req, res, next) => {
   console.error(`Error: ${err}`);
   res.status(500).json({ error: 'Internal Server Error' });
 });
-
 
  
 // index page   
@@ -1248,17 +1234,6 @@ app.post('/api/query', async (req, res) => {
 
 
 app.post('/signup', async (req, res) => {
-  const userSchema = new mongoose.Schema({
-    id: String,
-    username: String,
-    email: String,
-    country: String,
-    city: String,
-    contact: String,
-    psw: String
-  });
-
-  const User = mongoose.model('User', userSchema);
 
   const hashedPsw = bcrypt.hashSync(req.body.psw, 10);
 
@@ -1276,15 +1251,32 @@ app.post('/signup', async (req, res) => {
     const existingUser = await User.findOne({ $or: [{ email: req.body.email }, { username: req.body.username }] });
     if (existingUser) {
       if (existingUser.email === req.body.email && existingUser.username === req.body.username) {
-        res.send("Email Address and Username already exists!, you might want to login...");
+        const signupHtml = signupTemplate({
+          message: "Email Address and Username already exists!, you might want to login..."
+        });
+  
+        let response = html.replace("({% INDEX_MAIN %})", signupHtml);
+    
+        res.send(response);
       } else if (existingUser.email === req.body.email) {
-        res.send("Email Address already exists!, you might want to login...");
+        const signupHtml = signupTemplate({
+          message: "Email Address already exists!, you might want to login..."
+        });
+  
+        let response = html.replace("({% INDEX_MAIN %})", signupHtml);
+    
+        res.send(response);
       } else if (existingUser.username === req.body.username) {
-        res.send("Username already exists!, you might want to login...");
+        const signupHtml = signupTemplate({
+          message: "Username already exists!, you might want to login..."
+        });
+  
+        let response = html.replace("({% INDEX_MAIN %})", signupHtml);
+    
+        res.send(response);
       }
     } else {
       await user.save();
-      console.log('User added successfully!');
       res.redirect('/home');
     }
   } catch (err) {
@@ -1294,29 +1286,35 @@ app.post('/signup', async (req, res) => {
 });
 
 
-app.post('/login', (req, res) => {
-  const User = mongoose.model('User', userSchema);
-
-  User.findOne({ email: req.body.email }, (err, result) => {
-    if (err) {
-      console.error(`Error finding user: ${err}`);
-      return;
-    }
-
-    if (result) {
-      const isValidPsw = bcrypt.compareSync(req.body.psw, result.psw);
+app.post('/login', async (req, res) => {
+  try {
+    const user = await User.findOne({ email: req.body.email });
+    if (user) {
+      const isValidPsw = bcrypt.compareSync(req.body.psw, user.psw);
       if (isValidPsw) {
-        console.log("Yes");
         res.redirect('/home');
       } else {
-        console.log("No");
-        res.send("Invalid Email Address Or Wrong Password!");
+        const loginHtml = loginTemplate({
+          message: "Invalid Email Address Or Wrong Password!"
+        });
+
+        let response = html.replace("({% INDEX_MAIN %})", loginHtml);
+
+        res.send(response);
       }
     } else {
-      console.log("No");
-      res.send("Invalid Email Address Or Wrong Password!");
+      const loginHtml = loginTemplate({
+        message: "Invalid Email Address Or Wrong Password!"
+      });
+
+      let response = html.replace("({% INDEX_MAIN %})", loginHtml);
+
+      res.send(response);
     }
-  });
+  } catch (err) {
+    console.error(`Error finding user: ${err}`);
+    res.status(500).send({ message: 'Error finding user' });
+  }
 });
 
 app.get('/resetoption', function(req, res) {
@@ -1325,18 +1323,12 @@ app.get('/resetoption', function(req, res) {
   res.send(response);
 });
 
-app.post('/resetoption', (req, res) =>  {
-
-  let comparedEmail = jsData.find(obj =>
-    obj.email === req.body.email
-  );
-
-  if(comparedEmail)  { 
-    console.log("Yes")
-    res.redirect(`/resetpin?id=${req.body.email}`);
-  } else  {
-    console.log("No");
-
+app.post('/resetoption', async (req, res) => {
+  try {
+    const user = await User.findOne({ email: req.body.email });
+    if (user) {
+      res.redirect(`/resetpin?id=${req.body.email}`);
+    } else {
       const forgotHtml = forgotTemplate({
         message: "Invalid Email Address!"
       });
@@ -1345,8 +1337,11 @@ app.post('/resetoption', (req, res) =>  {
 
       res.send(response);
     }
+  } catch (err) {
+    console.error(`Error finding user: ${err}`);
+    res.status(500).send({ message: 'Error finding user' });
+  }
 });
-
 
 const oauth2Client = new google.auth.OAuth2(
   '468371157388-ldnl0bac6vcbqjd7etafcpk3848er5g9.apps.googleusercontent.com',
@@ -1466,7 +1461,6 @@ app.post('/review', async (req, res) => {
 
   try {
     await review.save();
-    console.log('Review added successfully!');
     res.redirect(`/product-desc?id=${req.query.id}`);
   } catch (err) {
     console.error(`Error inserting review: ${err}`);
