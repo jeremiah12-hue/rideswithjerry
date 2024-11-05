@@ -4301,7 +4301,7 @@ section.mobile_funding_home .funding_home_main form .choose_withdrawal_method .m
     }
     div#brands_toggle section.wide_news_home div.news_home_container div.news_intro_container .news_intro_item .news_intro_txt  {
         width: 65vw;
-        max-height: 15vh;
+        height: auto;
         display: flex;
         flex-direction: row;
         align-items: center;
