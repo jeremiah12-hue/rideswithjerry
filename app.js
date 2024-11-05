@@ -20,17 +20,36 @@ const jwt = require('jsonwebtoken');
 
 const bcrypt = require('bcrypt');
 
+const cookieParser = require('cookie-parser');
+
 const session = require('express-session');
 
 const MongoStore = require('connect-mongo');
 
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+
+const SibApiV3Sdk = require('sib-api-v3-sdk');
+SibApiV3Sdk.ApiClient.instance.authentications['api-key'].apiKey = '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';
+
+const paystack = require('paystack-api');
+
+const PAYSTACK_SECRET_KEY = 'sk_live_824a89a447ed30cf4165c3ceaed99aedb175310b';
+
+const axios = require('axios');
+
 const User = require('./user.model');
+const newsData2 = require('./news.model');
 
 const { fetchReviews, Review } = require('./reviews');
 
 const app = express(); 
 
 const PORT = 8080;
+
+
+const secretKey = crypto.randomBytes(32).toString('hex');
+const JWT_SECRET = crypto.randomBytes(32).toString('hex');
 
 mongoose.connect('mongodb+srv://jeremiah2:pYQyMHsSqMhcaQby@cluster0.iuvcnx1.mongodb.net/')
   .then(() => {
@@ -60,13 +79,6 @@ const sessionStore = MongoStore.create({
 app.set('view engine', 'ejs');
 
 
-// static files
-app.use(cors());
-app.use(express.static(path.join(__dirname, 'public')));
-
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
 
 // files path
 const IndexPath = 'views/pages/index.ejs';
@@ -79,7 +91,6 @@ const mobileOtherPath = 'views/pages/mobile_shop_other.ejs';
 const wideOtherPath = 'views/pages/wide_shop_other.ejs';
 
 
-const signNavPath = 'views/pages/sign_nav.ejs';
 const shopProductsPath = 'views/pages/shop_products.ejs';
 const shopBrandsPath = 'views/pages/shop_brands.ejs';
 const productSavePath = 'views/pages/product_save.ejs';
@@ -94,13 +105,19 @@ const searchPath = 'views/pages/search.ejs';
 const forgotPath = 'views/pages/forgot.ejs';
 const resetpinPath = 'views/pages/resetpin.ejs';
 
+const news_homePath = 'views/pages/news_home.ejs';
+const news_mainPath = 'views/pages/news.ejs';
+const news_itemPath = 'views/pages/news_item.ejs';
+
+const fundingPath = 'views/pages/fund.ejs';
+const withdrawPath = 'views/pages/withdraw.ejs';
+
 
 // files reading
 const index = fs.readFileSync(IndexPath, 'utf8');
 
 // account database
 const data = fs.readFileSync('database/accountdb.json', 'utf8');
-let jsData = JSON.parse(data);
 
 // toyota database
 const toyotaData = fs.readFileSync('database/toyota.json', 'utf8');
@@ -178,6 +195,10 @@ let jsporscheData = JSON.parse(porscheData);
 const dodgeData = fs.readFileSync('database/dodge.json', 'utf8');
 let jsdodgeData = JSON.parse(dodgeData);
 
+// news database
+const newsData = fs.readFileSync('database/news.json', 'utf8');
+let jsnewsData = JSON.parse(newsData);
+
 
 const home = fs.readFileSync(homePath, 'utf8');
 
@@ -187,7 +208,6 @@ const mobileOther = fs.readFileSync(mobileOtherPath, 'utf8');
 const wideOther = fs.readFileSync(wideOtherPath, 'utf8');
 
 
-const signNav = fs.readFileSync(signNavPath, 'utf8');
 const shopProducts = fs.readFileSync(shopProductsPath, 'utf8');
 const shopBrands = fs.readFileSync(shopBrandsPath, 'utf8');
 const productSave = fs.readFileSync(productSavePath, 'utf8');
@@ -201,6 +221,13 @@ const message = fs.readFileSync(messagePath, 'utf8');
 const search = fs.readFileSync(searchPath, 'utf8');
 const forgot = fs.readFileSync(forgotPath, 'utf8');
 const resetpin = fs.readFileSync(resetpinPath, 'utf8');
+
+const news_home = fs.readFileSync(news_homePath, 'utf8');
+const news_main = fs.readFileSync(news_mainPath, 'utf8');
+const news_item = fs.readFileSync(news_itemPath, 'utf8');
+
+const funding = fs.readFileSync(fundingPath, 'utf8');
+const withdraw = fs.readFileSync(withdrawPath, 'utf8');
 
 
 const tokenizer = new natural.WordTokenizer();
@@ -376,11 +403,63 @@ const resetpinTemplate = ejs.compile(resetpin, {
   filename: resetpinPath           
 });
 
+const homeTemplate = ejs.compile(home, { 
+  filename: homePath           
+});
+
+const shopBrandsTemplate = ejs.compile(shopBrands, { 
+  filename: shopBrandsPath           
+});
+
+const productSaveTemplate = ejs.compile(productSave, { 
+  filename: productSavePath           
+});
+
+const buyTemplate = ejs.compile(buy, { 
+  filename: buyPath           
+});
+
+const sellTemplate = ejs.compile(sell, { 
+  filename: sellPath           
+});
+
+const accountTemplate = ejs.compile(account, { 
+  filename: accountPath           
+});
+
+const policyTemplate = ejs.compile(policy, { 
+  filename: policyPath           
+});
+
+const searchTemplate = ejs.compile(search, { 
+  filename: searchPath           
+});
+
+const messageTemplate = ejs.compile(message, { 
+  filename: messagePath           
+});
+
+const news_homeTemplate = ejs.compile(news_home, { 
+  filename: news_homePath           
+});
+
+const news_mainTemplate = ejs.compile(news_main, { 
+  filename: news_mainPath           
+});
+
+const fundingTemplate = ejs.compile(funding, { 
+  filename: fundingPath           
+});
+
+const withdrawTemplate = ejs.compile(withdraw, { 
+  filename: withdrawPath           
+});
+
+
 // Render the compiled template 
-const html = template();
 
 const signupTemplateMain = signupTemplate({
-  message: null,
+  message: null
 });
 
 const loginTemplateMain = loginTemplate({
@@ -390,6 +469,33 @@ const loginTemplateMain = loginTemplate({
 const forgotTemplateMain = forgotTemplate({
   message: null
 });
+
+const homeTemplateMain = homeTemplate();
+
+const shopBrandsTemplateMain = shopBrandsTemplate();
+
+const productSaveTemplateMain = productSaveTemplate();
+
+const buyTemplateMain = buyTemplate();
+
+const sellTemplateMain = sellTemplate();
+
+const accountTemplateMain = accountTemplate();
+
+const policyTemplateMain = policyTemplate();
+
+const searchTemplateMain = searchTemplate();
+
+const messageTemplateMain = messageTemplate();
+
+const news_homeTemplateMain = news_homeTemplate();
+
+const news_mainTemplateMain = news_mainTemplate();
+
+const fundingTemplateMain = fundingTemplate();
+
+const withdrawTemplateMain = withdrawTemplate();
+
 
 
 function replacePlaceholders(htmlTemplate, databaseArray) {
@@ -430,6 +536,22 @@ function replacePlaceholders(htmlTemplate, databaseArray) {
     tempHtml = tempHtml.replace("({% IMG_TRUNK2 %})", databaseObject.imgTrunk);
     tempHtml = tempHtml.replace("({% IMG_WHEEL %})", databaseObject.imgWheel);
     tempHtml = tempHtml.replace("({% IMG_WHEEL2 %})", databaseObject.imgWheel);
+    
+    tempHtml = tempHtml.replace("({% NEWS_ID %})", databaseObject.newsId);
+    tempHtml = tempHtml.replace("({% NEWS_IMG %})", databaseObject.newsImg);
+    tempHtml = tempHtml.replace("({% NEWS_IMG2 %})", databaseObject.newsImg);
+    tempHtml = tempHtml.replace("({% NEWS_INTRO %})", databaseObject.newsIntro);
+    tempHtml = tempHtml.replace("({% NEWS_INTRO2 %})", databaseObject.newsIntro);
+    tempHtml = tempHtml.replace("({% NEWS %})", databaseObject.news);
+    tempHtml = tempHtml.replace("({% NEWS2 %})", databaseObject.news);
+    tempHtml = tempHtml.replace("({% NEWS_DATE %})", databaseObject.date);
+    tempHtml = tempHtml.replace("({% NEWS_DATE2 %})", databaseObject.date);
+    tempHtml = tempHtml.replace("({% NEWS_TAG %})", databaseObject.tag);
+    tempHtml = tempHtml.replace("({% NEWS_TAG2 %})", databaseObject.tag);
+    tempHtml = tempHtml.replace("({% NEWS_BRAND %})", databaseObject.brand);
+    tempHtml = tempHtml.replace("({% NEWS_BRAND2 %})", databaseObject.brand);
+    tempHtml = tempHtml.replace("({% NEWS_HEADER %})", databaseObject.header1);
+    tempHtml = tempHtml.replace("({% NEWS_HEADER2 %})", databaseObject.header1);
 
     resultHtml += tempHtml;
   });
@@ -438,37 +560,144 @@ function replacePlaceholders(htmlTemplate, databaseArray) {
 }
 
 
+
 app.use(session({
-  secret: "pj",
+  secret: secretKey,
   resave: false,
-  saveUninitialized: true,
+  saveUninitialized: false,
   store: sessionStore,
   cookie: {
-    maxAge: 1000 * 60 * 60 * 24
+    secure: false,
+    maxAge: 1000 * 60 * 60 * 24 * 7  
   }
 }));
 
+
+app.use(cors());
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(cookieParser());
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.use(passport.initialize());
+
+
+passport.use(new LocalStrategy(
+  {
+    usernameField: 'email', // Use 'email' as the username field
+    passwordField: 'psw'    // Use 'psw' as the password field
+  },
+  async (email, psw, done) => {
+    try {
+      // Find the user by email
+      const user = await User.findOne({ email: email });
+
+      // Check if user exists
+      if (!user || !user.psw) {
+        return done(null, false, { message: 'Invalid Email Address Or Wrong Password!' });
+      }
+
+      // Compare the provided password with the hashed password in the database
+      const isMatch = await bcrypt.compare(psw, user.psw);
+      if (!isMatch) {
+        return done(null, false, { message: 'Invalid Email Address Or Wrong Password!' });
+      }
+
+      // If everything is fine, return the user
+      return done(null, user);
+    } catch (error) {
+      // Handle any errors that occur during the database query
+      return done(error);
+    }
+  }
+));
+
+passport.serializeUser ((user, done) => {
+  done(null, user.id); // Use the UUID
+});
+
+passport.deserializeUser (async (id, done) => {
+  try {
+      const user = await User.findOne({ id }); // Find by UUID
+      done(null, user);
+  } catch (err) {
+      done(err);
+  }
+});
+
+// Middleware to verify JWT
+const verifyToken = () => {
+  return (req, res, next) => {
+    const token = req.cookies.token; // Get token from cookies
+    if (!token) {
+      return res.status(401).json({ message: 'Unauthorized', username: null, email: null, country: null, city: null, contact: null });
+    }
+    jwt.verify(token, JWT_SECRET, (err, user) => {
+      if (err) {
+        return res.status(403).json({ message: 'Forbidden', username: null, email: null, country: null, city: null, contact: null });
+      }
+      req.user = user; // Attach user info to request
+      next(); 
+    });
+  };
+};
+
+const verifyTokenII = () => {
+  return (req, res, next) => {
+    const token = req.cookies.token; // Get token from cookies
+    if (!token) {
+      return res.redirect('/login');
+    }
+    jwt.verify(token, JWT_SECRET, (err, user) => {
+      if (err) {
+        return res.redirect('/login');
+      }
+      req.user = user; // Attach user info to request
+      next();
+    });
+  };
+};
+
 app.use((err, req, res, next) => {
   console.error(`Error: ${err}`);
-  res.status(500).json({ error: 'Internal Server Error' });
+  res.redirect('/login');
+});
+
+app.get('/api/auth/check-login', verifyToken(), (req, res) => {
+  // If the token is valid, the user info will be attached to req.user
+  res.json({ isLoggedIn: true, user: req.user });
+});
+
+app.get('/api/data', verifyToken(), (req, res) => {
+  
+  const { username, country, contact, email, city } = req.user;
+
+  if (username || email || country || city || contact) {
+    res.json({ username, email, country, city, contact });
+  } else {
+    res.json({ username: null, email: null, country: null, city: null, contact: null });
+  }
 });
 
  
 // index page   
-app.get('/home', function(req, res) {  
-  let response = html.replace("({% INDEX_MAIN %})", home);
+app.get('/home', function(req, res) {
+  const html = template({
+    title: 'Home'
+  });
+
+  let response = html.replace("({% INDEX_MAIN %})", homeTemplateMain);
  
   res.send(response);
 });
 
-app.get('/more', function(req, res) {
-  let response = html.replace("({% INDEX_MAIN %})", signNav);
-
-  res.send(response);
-});
-
 app.get('/shop-brands', function(req, res) {
-  let response = html.replace("({% INDEX_MAIN %})", shopBrands);
+  const html = template({
+    title: 'Brands'
+  });
+  let response = html.replace("({% INDEX_MAIN %})", shopBrandsTemplateMain);
 
   res.send(response);
 });
@@ -482,12 +711,22 @@ app.get('/shop-products', (req, res) => {
 
     let toyotaShopItemHtml = replacePlaceholders(shopItem, jstoyotaData);
 
-    let shopProductsHtml1 = shopProducts.replace("({% WIDE_SHOP_ITEM %})", toyotaShopItemHtml);
+    let shopProductsTemplate = ejs.compile(shopProducts, { 
+      filename: shopProductsPath           
+    });
+    
+    let shopProductsTemplateMain = shopProductsTemplate();
+
+    let shopProductsHtml1 = shopProductsTemplateMain.replace("({% WIDE_SHOP_ITEM %})", toyotaShopItemHtml);
     let shopProductsHtml2 = shopProductsHtml1.replace("({% MOBILE_SHOP_ITEM %})", toyotaShopItemHtml);
     let shopProductsHtml3 = shopProductsHtml2.replace("({% HOME_IMG %})", homeImg);
     let shopProductsHtml4 = shopProductsHtml3.replace("({% HOME_IMG2 %})", homeImg);
     let shopProductsHtml5 = shopProductsHtml4.replace("({% HOME_TXT %})", hometxt);
     let shopProductsHtml6 = shopProductsHtml5.replace("({% HOME_TXT2 %})", hometxt);
+
+    const html = template({
+      title: 'Toyota Rides'
+    });
 
     let response = html.replace("({% INDEX_MAIN %})", shopProductsHtml6);
 
@@ -499,12 +738,22 @@ app.get('/shop-products', (req, res) => {
 
     let hondaShopItemHtml = replacePlaceholders(shopItem, jshondaData);
 
-    let shopProductsHtml1 = shopProducts.replace("({% WIDE_SHOP_ITEM %})", hondaShopItemHtml);
+    let shopProductsTemplate = ejs.compile(shopProducts, { 
+      filename: shopProductsPath           
+    });
+    
+    let shopProductsTemplateMain = shopProductsTemplate();
+
+    let shopProductsHtml1 = shopProductsTemplateMain.replace("({% WIDE_SHOP_ITEM %})", hondaShopItemHtml);
     let shopProductsHtml2 = shopProductsHtml1.replace("({% MOBILE_SHOP_ITEM %})", hondaShopItemHtml);
     let shopProductsHtml3 = shopProductsHtml2.replace("({% HOME_IMG %})", homeImg);
     let shopProductsHtml4 = shopProductsHtml3.replace("({% HOME_IMG2 %})", homeImg);
     let shopProductsHtml5 = shopProductsHtml4.replace("({% HOME_TXT %})", hometxt);
     let shopProductsHtml6 = shopProductsHtml5.replace("({% HOME_TXT2 %})", hometxt);
+
+    const html = template({
+      title: 'Honda Rides'
+    });
 
     let response = html.replace("({% INDEX_MAIN %})", shopProductsHtml6);
 
@@ -516,12 +765,22 @@ app.get('/shop-products', (req, res) => {
 
     let hyundaiShopItemHtml = replacePlaceholders(shopItem, jshyundaiData);
 
-    let shopProductsHtml1 = shopProducts.replace("({% WIDE_SHOP_ITEM %})", hyundaiShopItemHtml);
+    let shopProductsTemplate = ejs.compile(shopProducts, { 
+      filename: shopProductsPath           
+    });
+    
+    let shopProductsTemplateMain = shopProductsTemplate();
+
+    let shopProductsHtml1 = shopProductsTemplateMain.replace("({% WIDE_SHOP_ITEM %})", hyundaiShopItemHtml);
     let shopProductsHtml2 = shopProductsHtml1.replace("({% MOBILE_SHOP_ITEM %})", hyundaiShopItemHtml);
     let shopProductsHtml3 = shopProductsHtml2.replace("({% HOME_IMG %})", homeImg);
     let shopProductsHtml4 = shopProductsHtml3.replace("({% HOME_IMG2 %})", homeImg);
     let shopProductsHtml5 = shopProductsHtml4.replace("({% HOME_TXT %})", hometxt);
     let shopProductsHtml6 = shopProductsHtml5.replace("({% HOME_TXT2 %})", hometxt);
+
+    const html = template({
+      title: 'Hyundai Rides'
+    });
 
     let response = html.replace("({% INDEX_MAIN %})", shopProductsHtml6);
 
@@ -533,12 +792,22 @@ app.get('/shop-products', (req, res) => {
 
     let kiaShopItemHtml = replacePlaceholders(shopItem, jskiaData);
 
-    let shopProductsHtml1 = shopProducts.replace("({% WIDE_SHOP_ITEM %})", kiaShopItemHtml);
+    let shopProductsTemplate = ejs.compile(shopProducts, { 
+      filename: shopProductsPath           
+    });
+    
+    let shopProductsTemplateMain = shopProductsTemplate();
+
+    let shopProductsHtml1 = shopProductsTemplateMain.replace("({% WIDE_SHOP_ITEM %})", kiaShopItemHtml);
     let shopProductsHtml2 = shopProductsHtml1.replace("({% MOBILE_SHOP_ITEM %})", kiaShopItemHtml);
     let shopProductsHtml3 = shopProductsHtml2.replace("({% HOME_IMG %})", homeImg);
     let shopProductsHtml4 = shopProductsHtml3.replace("({% HOME_IMG2 %})", homeImg);
     let shopProductsHtml5 = shopProductsHtml4.replace("({% HOME_TXT %})", hometxt);
     let shopProductsHtml6 = shopProductsHtml5.replace("({% HOME_TXT2 %})", hometxt);
+
+    const html = template({
+      title: 'Kia Rides'
+    });
 
     let response = html.replace("({% INDEX_MAIN %})", shopProductsHtml6);
 
@@ -550,12 +819,22 @@ app.get('/shop-products', (req, res) => {
 
     let nissanShopItemHtml = replacePlaceholders(shopItem, jsnissanData);
 
-    let shopProductsHtml1 = shopProducts.replace("({% WIDE_SHOP_ITEM %})", nissanShopItemHtml);
+    let shopProductsTemplate = ejs.compile(shopProducts, { 
+      filename: shopProductsPath           
+    });
+    
+    let shopProductsTemplateMain = shopProductsTemplate();
+
+    let shopProductsHtml1 = shopProductsTemplateMain.replace("({% WIDE_SHOP_ITEM %})", nissanShopItemHtml);
     let shopProductsHtml2 = shopProductsHtml1.replace("({% MOBILE_SHOP_ITEM %})", nissanShopItemHtml);
     let shopProductsHtml3 = shopProductsHtml2.replace("({% HOME_IMG %})", homeImg);
     let shopProductsHtml4 = shopProductsHtml3.replace("({% HOME_IMG2 %})", homeImg);
     let shopProductsHtml5 = shopProductsHtml4.replace("({% HOME_TXT %})", hometxt);
     let shopProductsHtml6 = shopProductsHtml5.replace("({% HOME_TXT2 %})", hometxt);
+
+    const html = template({
+      title: 'Nissan Rides'
+    });
 
     let response = html.replace("({% INDEX_MAIN %})", shopProductsHtml6);
 
@@ -567,12 +846,22 @@ app.get('/shop-products', (req, res) => {
 
     let fordShopItemHtml = replacePlaceholders(shopItem, jsfordData);
 
-    let shopProductsHtml1 = shopProducts.replace("({% WIDE_SHOP_ITEM %})", fordShopItemHtml);
+    let shopProductsTemplate = ejs.compile(shopProducts, { 
+      filename: shopProductsPath           
+    });
+    
+    let shopProductsTemplateMain = shopProductsTemplate();
+
+    let shopProductsHtml1 = shopProductsTemplateMain.replace("({% WIDE_SHOP_ITEM %})", fordShopItemHtml);
     let shopProductsHtml2 = shopProductsHtml1.replace("({% MOBILE_SHOP_ITEM %})", fordShopItemHtml);
     let shopProductsHtml3 = shopProductsHtml2.replace("({% HOME_IMG %})", homeImg);
     let shopProductsHtml4 = shopProductsHtml3.replace("({% HOME_IMG2 %})", homeImg);
     let shopProductsHtml5 = shopProductsHtml4.replace("({% HOME_TXT %})", hometxt);
     let shopProductsHtml6 = shopProductsHtml5.replace("({% HOME_TXT2 %})", hometxt);
+
+    const html = template({
+      title: 'Ford Rides'
+    });
 
     let response = html.replace("({% INDEX_MAIN %})", shopProductsHtml6);
 
@@ -584,12 +873,22 @@ app.get('/shop-products', (req, res) => {
 
     let mercedesShopItemHtml = replacePlaceholders(shopItem, jsmercedesData);
 
-    let shopProductsHtml1 = shopProducts.replace("({% WIDE_SHOP_ITEM %})", mercedesShopItemHtml);
+    let shopProductsTemplate = ejs.compile(shopProducts, { 
+      filename: shopProductsPath           
+    });
+    
+    let shopProductsTemplateMain = shopProductsTemplate();
+
+    let shopProductsHtml1 = shopProductsTemplateMain.replace("({% WIDE_SHOP_ITEM %})", mercedesShopItemHtml);
     let shopProductsHtml2 = shopProductsHtml1.replace("({% MOBILE_SHOP_ITEM %})", mercedesShopItemHtml);
     let shopProductsHtml3 = shopProductsHtml2.replace("({% HOME_IMG %})", homeImg);
     let shopProductsHtml4 = shopProductsHtml3.replace("({% HOME_IMG2 %})", homeImg);
     let shopProductsHtml5 = shopProductsHtml4.replace("({% HOME_TXT %})", hometxt);
     let shopProductsHtml6 = shopProductsHtml5.replace("({% HOME_TXT2 %})", hometxt);
+
+    const html = template({
+      title: 'Mercedes Rides'
+    });
 
     let response = html.replace("({% INDEX_MAIN %})", shopProductsHtml6);
 
@@ -601,12 +900,22 @@ app.get('/shop-products', (req, res) => {
 
     let bmwShopItemHtml = replacePlaceholders(shopItem, jsbmwData);
 
-    let shopProductsHtml1 = shopProducts.replace("({% WIDE_SHOP_ITEM %})", bmwShopItemHtml);
+    let shopProductsTemplate = ejs.compile(shopProducts, { 
+      filename: shopProductsPath           
+    });
+    
+    let shopProductsTemplateMain = shopProductsTemplate();
+
+    let shopProductsHtml1 = shopProductsTemplateMain.replace("({% WIDE_SHOP_ITEM %})", bmwShopItemHtml);
     let shopProductsHtml2 = shopProductsHtml1.replace("({% MOBILE_SHOP_ITEM %})", bmwShopItemHtml);
     let shopProductsHtml3 = shopProductsHtml2.replace("({% HOME_IMG %})", homeImg);
     let shopProductsHtml4 = shopProductsHtml3.replace("({% HOME_IMG2 %})", homeImg);
     let shopProductsHtml5 = shopProductsHtml4.replace("({% HOME_TXT %})", hometxt);
     let shopProductsHtml6 = shopProductsHtml5.replace("({% HOME_TXT2 %})", hometxt);
+
+    const html = template({
+      title: 'BMW Rides'
+    });
 
     let response = html.replace("({% INDEX_MAIN %})", shopProductsHtml6);
 
@@ -618,12 +927,22 @@ app.get('/shop-products', (req, res) => {
 
     let lexusShopItemHtml = replacePlaceholders(shopItem, jslexusData);
 
-    let shopProductsHtml1 = shopProducts.replace("({% WIDE_SHOP_ITEM %})", lexusShopItemHtml);
+    let shopProductsTemplate = ejs.compile(shopProducts, { 
+      filename: shopProductsPath           
+    });
+    
+    let shopProductsTemplateMain = shopProductsTemplate();
+
+    let shopProductsHtml1 = shopProductsTemplateMain.replace("({% WIDE_SHOP_ITEM %})", lexusShopItemHtml);
     let shopProductsHtml2 = shopProductsHtml1.replace("({% MOBILE_SHOP_ITEM %})", lexusShopItemHtml);
     let shopProductsHtml3 = shopProductsHtml2.replace("({% HOME_IMG %})", homeImg);
     let shopProductsHtml4 = shopProductsHtml3.replace("({% HOME_IMG2 %})", homeImg);
     let shopProductsHtml5 = shopProductsHtml4.replace("({% HOME_TXT %})", hometxt);
     let shopProductsHtml6 = shopProductsHtml5.replace("({% HOME_TXT2 %})", hometxt);
+
+    const html = template({
+      title: 'Lexus Rides'
+    });
 
     let response = html.replace("({% INDEX_MAIN %})", shopProductsHtml6);
 
@@ -635,12 +954,22 @@ app.get('/shop-products', (req, res) => {
 
     let audiShopItemHtml = replacePlaceholders(shopItem, jsaudiData);
 
-    let shopProductsHtml1 = shopProducts.replace("({% WIDE_SHOP_ITEM %})", audiShopItemHtml);
+    let shopProductsTemplate = ejs.compile(shopProducts, { 
+      filename: shopProductsPath           
+    });
+    
+    let shopProductsTemplateMain = shopProductsTemplate();
+
+    let shopProductsHtml1 = shopProductsTemplateMain.replace("({% WIDE_SHOP_ITEM %})", audiShopItemHtml);
     let shopProductsHtml2 = shopProductsHtml1.replace("({% MOBILE_SHOP_ITEM %})", audiShopItemHtml);
     let shopProductsHtml3 = shopProductsHtml2.replace("({% HOME_IMG %})", homeImg);
     let shopProductsHtml4 = shopProductsHtml3.replace("({% HOME_IMG2 %})", homeImg);
     let shopProductsHtml5 = shopProductsHtml4.replace("({% HOME_TXT %})", hometxt);
     let shopProductsHtml6 = shopProductsHtml5.replace("({% HOME_TXT2 %})", hometxt);
+
+    const html = template({
+      title: 'Audi Rides'
+    });
 
     let response = html.replace("({% INDEX_MAIN %})", shopProductsHtml6);
 
@@ -652,12 +981,22 @@ app.get('/shop-products', (req, res) => {
 
     let volkswagenShopItemHtml = replacePlaceholders(shopItem, jsvolkswagenData);
 
-    let shopProductsHtml1 = shopProducts.replace("({% WIDE_SHOP_ITEM %})", volkswagenShopItemHtml);
+    let shopProductsTemplate = ejs.compile(shopProducts, { 
+      filename: shopProductsPath           
+    });
+    
+    let shopProductsTemplateMain = shopProductsTemplate();
+
+    let shopProductsHtml1 = shopProductsTemplateMain.replace("({% WIDE_SHOP_ITEM %})", volkswagenShopItemHtml);
     let shopProductsHtml2 = shopProductsHtml1.replace("({% MOBILE_SHOP_ITEM %})", volkswagenShopItemHtml);
     let shopProductsHtml3 = shopProductsHtml2.replace("({% HOME_IMG %})", homeImg);
     let shopProductsHtml4 = shopProductsHtml3.replace("({% HOME_IMG2 %})", homeImg);
     let shopProductsHtml5 = shopProductsHtml4.replace("({% HOME_TXT %})", hometxt);
     let shopProductsHtml6 = shopProductsHtml5.replace("({% HOME_TXT2 %})", hometxt);
+
+    const html = template({
+      title: 'Volkswagen Rides'
+    });
 
     let response = html.replace("({% INDEX_MAIN %})", shopProductsHtml6);
 
@@ -669,12 +1008,22 @@ app.get('/shop-products', (req, res) => {
 
     let rollsShopItemHtml = replacePlaceholders(shopItem, jsrollsData);
 
-    let shopProductsHtml1 = shopProducts.replace("({% WIDE_SHOP_ITEM %})", rollsShopItemHtml);
+    let shopProductsTemplate = ejs.compile(shopProducts, { 
+      filename: shopProductsPath           
+    });
+    
+    let shopProductsTemplateMain = shopProductsTemplate();
+
+    let shopProductsHtml1 = shopProductsTemplateMain.replace("({% WIDE_SHOP_ITEM %})", rollsShopItemHtml);
     let shopProductsHtml2 = shopProductsHtml1.replace("({% MOBILE_SHOP_ITEM %})", rollsShopItemHtml);
     let shopProductsHtml3 = shopProductsHtml2.replace("({% HOME_IMG %})", homeImg);
     let shopProductsHtml4 = shopProductsHtml3.replace("({% HOME_IMG2 %})", homeImg);
     let shopProductsHtml5 = shopProductsHtml4.replace("({% HOME_TXT %})", hometxt);
     let shopProductsHtml6 = shopProductsHtml5.replace("({% HOME_TXT2 %})", hometxt);
+
+    const html = template({
+      title: 'Rolls-Royce Rides'
+    });
 
     let response = html.replace("({% INDEX_MAIN %})", shopProductsHtml6);
 
@@ -686,12 +1035,22 @@ app.get('/shop-products', (req, res) => {
 
     let peugeotShopItemHtml = replacePlaceholders(shopItem, jspeugeotData);
 
-    let shopProductsHtml1 = shopProducts.replace("({% WIDE_SHOP_ITEM %})", peugeotShopItemHtml);
+    let shopProductsTemplate = ejs.compile(shopProducts, { 
+      filename: shopProductsPath           
+    });
+    
+    let shopProductsTemplateMain = shopProductsTemplate();
+
+    let shopProductsHtml1 = shopProductsTemplateMain.replace("({% WIDE_SHOP_ITEM %})", peugeotShopItemHtml);
     let shopProductsHtml2 = shopProductsHtml1.replace("({% MOBILE_SHOP_ITEM %})", peugeotShopItemHtml);
     let shopProductsHtml3 = shopProductsHtml2.replace("({% HOME_IMG %})", homeImg);
     let shopProductsHtml4 = shopProductsHtml3.replace("({% HOME_IMG2 %})", homeImg);
     let shopProductsHtml5 = shopProductsHtml4.replace("({% HOME_TXT %})", hometxt);
     let shopProductsHtml6 = shopProductsHtml5.replace("({% HOME_TXT2 %})", hometxt);
+
+    const html = template({
+      title: 'Peugeot Rides'
+    });
 
     let response = html.replace("({% INDEX_MAIN %})", shopProductsHtml6);
 
@@ -703,12 +1062,22 @@ app.get('/shop-products', (req, res) => {
 
     let chevroletShopItemHtml = replacePlaceholders(shopItem, jschevroletData);
 
-    let shopProductsHtml1 = shopProducts.replace("({% WIDE_SHOP_ITEM %})", chevroletShopItemHtml);
+    let shopProductsTemplate = ejs.compile(shopProducts, { 
+      filename: shopProductsPath           
+    });
+    
+    let shopProductsTemplateMain = shopProductsTemplate();
+
+    let shopProductsHtml1 = shopProductsTemplateMain.replace("({% WIDE_SHOP_ITEM %})", chevroletShopItemHtml);
     let shopProductsHtml2 = shopProductsHtml1.replace("({% MOBILE_SHOP_ITEM %})", chevroletShopItemHtml);
     let shopProductsHtml3 = shopProductsHtml2.replace("({% HOME_IMG %})", homeImg);
     let shopProductsHtml4 = shopProductsHtml3.replace("({% HOME_IMG2 %})", homeImg);
     let shopProductsHtml5 = shopProductsHtml4.replace("({% HOME_TXT %})", hometxt);
     let shopProductsHtml6 = shopProductsHtml5.replace("({% HOME_TXT2 %})", hometxt);
+
+    const html = template({
+      title: 'Chevrolet Rides'
+    });
 
     let response = html.replace("({% INDEX_MAIN %})", shopProductsHtml6);
 
@@ -720,12 +1089,22 @@ app.get('/shop-products', (req, res) => {
 
     let mitsubishiShopItemHtml = replacePlaceholders(shopItem, jsmitsubishiData);
 
-    let shopProductsHtml1 = shopProducts.replace("({% WIDE_SHOP_ITEM %})", mitsubishiShopItemHtml);
+    let shopProductsTemplate = ejs.compile(shopProducts, { 
+      filename: shopProductsPath           
+    });
+    
+    let shopProductsTemplateMain = shopProductsTemplate();
+
+    let shopProductsHtml1 = shopProductsTemplateMain.replace("({% WIDE_SHOP_ITEM %})", mitsubishiShopItemHtml);
     let shopProductsHtml2 = shopProductsHtml1.replace("({% MOBILE_SHOP_ITEM %})", mitsubishiShopItemHtml);
     let shopProductsHtml3 = shopProductsHtml2.replace("({% HOME_IMG %})", homeImg);
     let shopProductsHtml4 = shopProductsHtml3.replace("({% HOME_IMG2 %})", homeImg);
     let shopProductsHtml5 = shopProductsHtml4.replace("({% HOME_TXT %})", hometxt);
     let shopProductsHtml6 = shopProductsHtml5.replace("({% HOME_TXT2 %})", hometxt);
+
+    const html = template({
+      title: 'Mitsubishi Rides'
+    });
 
     let response = html.replace("({% INDEX_MAIN %})", shopProductsHtml6);
 
@@ -737,12 +1116,22 @@ app.get('/shop-products', (req, res) => {
 
     let landShopItemHtml = replacePlaceholders(shopItem, jslandData);
 
-    let shopProductsHtml1 = shopProducts.replace("({% WIDE_SHOP_ITEM %})", landShopItemHtml);
+    let shopProductsTemplate = ejs.compile(shopProducts, { 
+      filename: shopProductsPath           
+    });
+    
+    let shopProductsTemplateMain = shopProductsTemplate();
+
+    let shopProductsHtml1 = shopProductsTemplateMain.replace("({% WIDE_SHOP_ITEM %})", landShopItemHtml);
     let shopProductsHtml2 = shopProductsHtml1.replace("({% MOBILE_SHOP_ITEM %})", landShopItemHtml);
     let shopProductsHtml3 = shopProductsHtml2.replace("({% HOME_IMG %})", homeImg);
     let shopProductsHtml4 = shopProductsHtml3.replace("({% HOME_IMG2 %})", homeImg);
     let shopProductsHtml5 = shopProductsHtml4.replace("({% HOME_TXT %})", hometxt);
     let shopProductsHtml6 = shopProductsHtml5.replace("({% HOME_TXT2 %})", hometxt);
+
+    const html = template({
+      title: 'Land Rides'
+    });
 
     let response = html.replace("({% INDEX_MAIN %})", shopProductsHtml6);
 
@@ -754,12 +1143,22 @@ app.get('/shop-products', (req, res) => {
 
     let jeepShopItemHtml = replacePlaceholders(shopItem, jsjeepData);
 
-    let shopProductsHtml1 = shopProducts.replace("({% WIDE_SHOP_ITEM %})", jeepShopItemHtml);
+    let shopProductsTemplate = ejs.compile(shopProducts, { 
+      filename: shopProductsPath           
+    });
+    
+    let shopProductsTemplateMain = shopProductsTemplate();
+
+    let shopProductsHtml1 = shopProductsTemplateMain.replace("({% WIDE_SHOP_ITEM %})", jeepShopItemHtml);
     let shopProductsHtml2 = shopProductsHtml1.replace("({% MOBILE_SHOP_ITEM %})", jeepShopItemHtml);
     let shopProductsHtml3 = shopProductsHtml2.replace("({% HOME_IMG %})", homeImg);
     let shopProductsHtml4 = shopProductsHtml3.replace("({% HOME_IMG2 %})", homeImg);
     let shopProductsHtml5 = shopProductsHtml4.replace("({% HOME_TXT %})", hometxt);
     let shopProductsHtml6 = shopProductsHtml5.replace("({% HOME_TXT2 %})", hometxt);
+
+    const html = template({
+      title: 'Jeep Rides'
+    });
 
     let response = html.replace("({% INDEX_MAIN %})", shopProductsHtml6);
 
@@ -771,12 +1170,22 @@ app.get('/shop-products', (req, res) => {
 
     let porscheShopItemHtml = replacePlaceholders(shopItem, jsporscheData);
 
-    let shopProductsHtml1 = shopProducts.replace("({% WIDE_SHOP_ITEM %})", porscheShopItemHtml);
+    let shopProductsTemplate = ejs.compile(shopProducts, { 
+      filename: shopProductsPath           
+    });
+    
+    let shopProductsTemplateMain = shopProductsTemplate();
+
+    let shopProductsHtml1 = shopProductsTemplateMain.replace("({% WIDE_SHOP_ITEM %})", porscheShopItemHtml);
     let shopProductsHtml2 = shopProductsHtml1.replace("({% MOBILE_SHOP_ITEM %})", porscheShopItemHtml);
     let shopProductsHtml3 = shopProductsHtml2.replace("({% HOME_IMG %})", homeImg);
     let shopProductsHtml4 = shopProductsHtml3.replace("({% HOME_IMG2 %})", homeImg);
     let shopProductsHtml5 = shopProductsHtml4.replace("({% HOME_TXT %})", hometxt);
     let shopProductsHtml6 = shopProductsHtml5.replace("({% HOME_TXT2 %})", hometxt);
+
+    const html = template({
+      title: 'Porsche Rides'
+    });
 
     let response = html.replace("({% INDEX_MAIN %})", shopProductsHtml6);
 
@@ -788,12 +1197,22 @@ app.get('/shop-products', (req, res) => {
 
     let dodgeShopItemHtml = replacePlaceholders(shopItem, jsdodgeData);
 
-    let shopProductsHtml1 = shopProducts.replace("({% WIDE_SHOP_ITEM %})", dodgeShopItemHtml);
+    let shopProductsTemplate = ejs.compile(shopProducts, { 
+      filename: shopProductsPath           
+    });
+    
+    let shopProductsTemplateMain = shopProductsTemplate();
+
+    let shopProductsHtml1 = shopProductsTemplateMain.replace("({% WIDE_SHOP_ITEM %})", dodgeShopItemHtml);
     let shopProductsHtml2 = shopProductsHtml1.replace("({% MOBILE_SHOP_ITEM %})", dodgeShopItemHtml);
     let shopProductsHtml3 = shopProductsHtml2.replace("({% HOME_IMG %})", homeImg);
     let shopProductsHtml4 = shopProductsHtml3.replace("({% HOME_IMG2 %})", homeImg);
     let shopProductsHtml5 = shopProductsHtml4.replace("({% HOME_TXT %})", hometxt);
     let shopProductsHtml6 = shopProductsHtml5.replace("({% HOME_TXT2 %})", hometxt);
+
+    const html = template({
+      title: 'Dodge Rides'
+    });
 
     let response = html.replace("({% INDEX_MAIN %})", shopProductsHtml6);
 
@@ -809,6 +1228,10 @@ app.get('/product-desc', async function(req, res) {
   if (!req.query.id) {
     res.redirect('/home');
   }
+
+  const html = template({
+    title: `${req.query.id}`
+  });
 
   let checkToyotaId = jstoyotaData.filter(obj =>
     obj.id === req.query.id
@@ -1156,57 +1579,170 @@ app.get('/product-desc', async function(req, res) {
 
 });
 
-app.get('/product-save', function(req, res) {
-  let response = html.replace("({% INDEX_MAIN %})", productSave);
+app.get('/product-save', verifyToken(), function(req, res) {
+
+  const html = template({
+    title: 'Saved Rides'
+  });
+  
+  let response = html.replace("({% INDEX_MAIN %})", productSaveTemplateMain);
 
   res.send(response);
 });
 
 app.get('/buy', function(req, res) {
-  let response = html.replace("({% INDEX_MAIN %})", buy);
+
+  const html = template({
+    title: 'Buy Rides'
+  });
+
+  let response = html.replace("({% INDEX_MAIN %})", buyTemplateMain);
 
   res.send(response);
 });
 
-app.get('/sell', function(req, res) {
-  let response = html.replace("({% INDEX_MAIN %})", sell);
+app.get('/sell', verifyTokenII(), function(req, res) {
+
+  const html = template({
+    title: 'Sell Rides'
+  });
+
+  let response = html.replace("({% INDEX_MAIN %})", sellTemplateMain);
 
   res.send(response);
 });
 
 app.get('/login', function(req, res) {
+
+  const html = template({
+    title: 'Log In'
+  });
+
   let response = html.replace("({% INDEX_MAIN %})", loginTemplateMain);
 
   res.send(response);
 });
 
 app.get('/signup', function(req, res) {
+
+  const html = template({
+    title: 'Sign Up'
+  });
+
   let response = html.replace("({% INDEX_MAIN %})", signupTemplateMain);
 
   res.send(response);
 });
 
-app.get('/my-account', function(req, res) {
-  let response = html.replace("({% INDEX_MAIN %})", account);
+app.get('/my-account', verifyTokenII(), function(req, res) {
+
+  const html = template({
+    title: 'My Account'
+  });
+
+  let response = html.replace("({% INDEX_MAIN %})", accountTemplateMain);
 
   res.send(response);
 });
 
 app.get('/policy', function(req, res) {
-  let response = html.replace("({% INDEX_MAIN %})", policy);
+
+  const html = template({
+    title: 'Privacy Policy'
+  });
+
+  let response = html.replace("({% INDEX_MAIN %})", policyTemplateMain);
 
   res.send(response);
 });
 
 app.get('/search', function(req, res) {
-  let response = html.replace("({% INDEX_MAIN %})", search);
+
+  const html = template({
+    title: 'Search Rides'
+  });
+
+  let response = html.replace("({% INDEX_MAIN %})", searchTemplateMain);
 
   res.send(response); 
 });
 
-app.get('/message', (req, res) => {
-  let response = html.replace("({% INDEX_MAIN %})", message);
+app.get('/message', verifyToken(), (req, res) => {
 
+  const html = template({
+    title: 'Ask Jerry!'
+  });
+
+  let response = html.replace("({% INDEX_MAIN %})", messageTemplateMain);
+
+  res.send(response);
+});
+ 
+app.get('/rides-updates', verifyTokenII(), (req, res) => {
+  const html = template({
+    title: 'Rides Updates'
+  });
+
+  let newsItemHtml = replacePlaceholders(news_item, jsnewsData);
+
+  let newsProductsHtml1 = news_homeTemplateMain.replace("({% WIDE_NEWS_ITEM %})", newsItemHtml);
+  let newsProductsHtml2 = newsProductsHtml1.replace("({% MOBILE_NEWS_ITEM %})", newsItemHtml);
+
+  let response = html.replace("({% INDEX_MAIN %})", newsProductsHtml2);
+
+  res.send(response);
+
+});
+
+app.get('/update', verifyTokenII(), (req, res) => {
+  // Check if the 'id' query parameter is provided
+  if (!req.query.id) {
+    return res.redirect('/home'); // Use return to exit the function after redirecting
+  }
+
+  // Create the HTML template with the provided id
+  const html = template({
+    title: `${req.query.id}`
+  });
+
+  // Filter the news data to find the matching id
+  const checkNewsId = jsnewsData.filter(obj => obj.newsId === req.query.id);
+
+  // Check if any news item was found
+  if (checkNewsId.length > 0) {
+    // Replace placeholders in the main template with the news item HTML
+    const newsIdHtml = replacePlaceholders(news_mainTemplateMain, checkNewsId);
+
+    // Replace the placeholder in the HTML with the news item HTML
+    const response = html.replace("({% INDEX_MAIN %})", newsIdHtml);
+
+    // Send the response back to the client
+    return res.send(response); // Use return to exit the function after sending the response
+  } else {
+    // Handle the case where no news item was found
+    return res.status(404).send('News item not found'); // Send a 404 response if no item matches
+  }
+});
+
+app.get('/account-funding', verifyTokenII(), (req, res) => {  
+
+  const html = template({
+    title: 'Funding'
+  }); 
+
+  let response = html.replace("({% INDEX_MAIN %})", fundingTemplateMain);
+ 
+  res.send(response);
+});
+
+app.get('/funds-withdrawal', verifyTokenII(), (req, res) => {  
+
+  const html = template({
+    title: 'Withdrawal'
+  }); 
+
+  let response = html.replace("({% INDEX_MAIN %})", withdrawTemplateMain);
+ 
   res.send(response);
 });
 
@@ -1249,12 +1785,17 @@ app.post('/signup', async (req, res) => {
     psw: hashedPsw
   });
 
+  const html = template({
+    title: 'Sign Up'
+  });
+
   try {
     const existingUser = await User.findOne({ $or: [{ email: req.body.email }, { username: req.body.username }] });
     if (existingUser) {
       if (existingUser.email === req.body.email && existingUser.username === req.body.username) {
         const signupHtml = signupTemplate({
-          message: "Email Address and Username already exists!, you might want to login..."
+          message: "Email Address and Username already exists!, you might want to login...",
+          title: "Sign Up"
         });
   
         let response = html.replace("({% INDEX_MAIN %})", signupHtml);
@@ -1262,7 +1803,8 @@ app.post('/signup', async (req, res) => {
         res.send(response);
       } else if (existingUser.email === req.body.email) {
         const signupHtml = signupTemplate({
-          message: "Email Address already exists!, you might want to login..."
+          message: "Email Address already exists!, you might want to login...",
+          title: "Sign Up"
         });
   
         let response = html.replace("({% INDEX_MAIN %})", signupHtml);
@@ -1270,7 +1812,8 @@ app.post('/signup', async (req, res) => {
         res.send(response);
       } else if (existingUser.username === req.body.username) {
         const signupHtml = signupTemplate({
-          message: "Username already exists!, you might want to login..."
+          message: "Username already exists!, you might want to login...",
+          title: "Sign Up"
         });
   
         let response = html.replace("({% INDEX_MAIN %})", signupHtml);
@@ -1279,6 +1822,16 @@ app.post('/signup', async (req, res) => {
       }
     } else {
       await user.save();
+      
+      // Generate a token
+    const token = jwt.sign({ username: user.username, email: user.email, contact: user.contact, country: user.country, city: user.city }, JWT_SECRET, { expiresIn: '7d' });
+
+    // Set the token in a cookie
+    res.cookie('token', token, {
+      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+      secure: false, // Set to true if using HTTPS
+    });
+
       res.redirect('/home');
     }
   } catch (err) {
@@ -1288,48 +1841,66 @@ app.post('/signup', async (req, res) => {
 });
 
 
-app.post('/login', async (req, res) => {
-  try {
-    const user = await User.findOne({ email: req.body.email });
-    if (user) {
-      const isValidPsw = bcrypt.compareSync(req.body.psw, user.psw);
-      if (isValidPsw) {
-        res.redirect('/home');
-      } else {
-        const loginHtml = loginTemplate({
-          message: "Invalid Email Address Or Wrong Password!"
-        });
+app.post('/login', (req, res, next) => {
 
-        let response = html.replace("({% INDEX_MAIN %})", loginHtml);
+  const html = template({
+    title: 'Log In'
+  });
 
-        res.send(response);
-      }
-    } else {
+  passport.authenticate('local', (err, user, info) => {
+    if (err) {
+      return next(err);
+    }
+
+    if (!user) {
       const loginHtml = loginTemplate({
-        message: "Invalid Email Address Or Wrong Password!"
+        message: info.message
       });
 
       let response = html.replace("({% INDEX_MAIN %})", loginHtml);
-
-      res.send(response);
+      return res.send(response);
     }
-  } catch (err) {
-    console.error(`Error finding user: ${err}`);
-    res.status(500).send({ message: 'Error finding user' });
-  }
+
+    req.logIn(user, (err) => {
+      if (err) {
+        return next(err);
+      }
+
+    // Generate a token
+    const token = jwt.sign({ username: user.username, email: user.email, contact: user.contact, country: user.country, city: user.city }, JWT_SECRET, { expiresIn: '7d' });
+
+    // Set the token in a cookie
+    res.cookie('token', token, {
+      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+      secure: false, // Set to true if using HTTPS
+    });
+
+      return res.redirect('/home');
+    });
+  })(req, res, next);
 });
 
 app.get('/resetoption', function(req, res) {
+
+  const html = template({
+    title: 'Forgotten Password'
+  });
+
   let response = html.replace("({% INDEX_MAIN %})", forgotTemplateMain); 
 
   res.send(response);
 });
 
 app.post('/resetoption', async (req, res) => {
+
+  const html = template({
+    title: 'Forgotten Password'
+  });
+
   try {
     const user = await User.findOne({ email: req.body.email });
     if (user) {
-      res.redirect(`/resetpin?id=${req.body.email}`);
+      res.redirect(`/resetpin?id=${encodeURIComponent(req.body.email)}`);
     } else {
       const forgotHtml = forgotTemplate({
         message: "Invalid Email Address!"
@@ -1345,115 +1916,106 @@ app.post('/resetoption', async (req, res) => {
   }
 });
 
-const oauth2Client = new google.auth.OAuth2(
-  '468371157388-ldnl0bac6vcbqjd7etafcpk3848er5g9.apps.googleusercontent.com',
-  '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',
-  'https://www.rideswithjerry.com'
-);
-
-const authorizationUrl = oauth2Client.generateAuthUrl({
-  access_type: 'offline',
-  scope: ['https://mail.google.com/']
+// Configure the SMTP transporter
+const transporter = nodemailer.createTransport({
+  host: 'smtp.mailersend.net',
+  port: 587, // or 465 587 for SSL
+  secure: false, // true for 465, false for other ports
+  auth: {
+      user: 'MS_eTEVso@rideswithjerry.com', // Replace with your MailerSend SMTP username
+      pass: 'Yre3Z0oRk91X11Wo', // Replace with your MailerSend SMTP password
+  },
 });
 
-app.get('/resetpin', function(req, res) {
+// Function to send email
+async function sendEmail(recipientEmail, randomNumber) {
+  const mailOptions = {
+      from: '"Rides.With.Jerry" <no-reply@rideswithjerry.com>', // sender address
+      to: recipientEmail, // list of receivers
+      subject: 'Your Password Reset Code', // Subject line
+      text: `Your password reset code is: ${randomNumber}`, // plain text body
+      html: `
+          <div style="font-family: Arial, sans-serif; color: #333; line-height: 1.6;">
+              <div style="padding: 20px; max-width: 600px; margin: 0 auto; background-color: #f7f7f7; border: 1px solid #e0e0e0;">
+                  <h2 style="color: #007bff;">Password Reset Request</h2>
+                  <p>Dear User,</p>
+                  <p>You recently requested to reset your password for your account. Please use the following code to complete the process:</p>
+                  <div style="font-size: 24px; font-weight: bold; color: #007bff; margin: 20px 0;">
+                      ${randomNumber}
+                  </div>
+                  <p>If you did not request a password reset, please ignore this email or contact support if you have questions.</p>
+                  <p>Thank you,<br>Your Company Name</p>
+                  <hr style="border: none; border-top: 1px solid #e0e0e0;" />
+                  <p style="font-size: 12px; color: #777;">This is an automated message, please do not reply. If you need assistance, contact us at <a href="mailto:rideswithjerry@gmail.com" style="color: #007bff;">support@rideswithjerry.com</a>.</p>
+              </div>
+          </div>
+      `, // html body
+  };
 
-  const resetpinTemplateMain = resetpinTemplate({
-    message: null,
-    email: req.query.id
+  try {
+      const info = await transporter.sendMail(mailOptions);
+      return info;
+  } catch (error) {
+      throw error; // Rethrow the error for further handling
+  }
+}
+ 
+// Function to generate a random number
+function generateRandomNumber() {
+  return crypto.randomInt(100000, 999999);
+}
+
+// Route to handle password reset requests
+app.get('/resetpin', async (req, res) => {
+  const email = req.query.id;
+
+  const html = template({
+    title: 'Reset Code'
   });
 
-  let response = html.replace("({% INDEX_MAIN %})", resetpinTemplateMain);
-
-  function generateRandomNumber() {
-    return crypto.randomInt(100000, 999999);
+  if (!email) {
+      return res.status(400).send('Email is required');
   }
 
-  async function sendEmail(recipientEmail, randomNumber) {
+  const randomNumber = generateRandomNumber();
 
-    const authorizationCode = 'THE_AUTHORIZATION_CODE_FROM_STEP_6';
+  try { 
+      await sendEmail(email, randomNumber);
 
-    const { tokens } = await oauth2Client.getToken(authorizationCode);
-    const refreshToken = tokens.refresh_token;
-
-    oauth2Client.setCredentials({ refresh_token: refreshToken });
-
-
-    const accessToken = await oauth2Client.getAccessToken();
-
-      let transporter = nodemailer.createTransport({
-        service: 'Gmail',
-        auth: {
-          type: 'OAuth2',
-          user: 'rideswithjerry@gmail.com',
-          clientId: '468371157388-ldnl0bac6vcbqjd7etafcpk3848er5g9.apps.googleusercontent.com',
-          clientSecret: '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',
-          refreshToken: refreshToken,
-          accessToken: accessToken
-        }
+      const resetpinTemplateMain = resetpinTemplate({ 
+        message: "Invalid Code!",
+        email: email
       });
 
-      let mailOptions = {
-        from: '"Rides.With.Jerry" <no-reply@rideswithjerry.com>',
-        to: `${req.query.id}`,
-        subject: 'Your Password Reset Code',
-        text: `Your password reset code is: ${randomNumber}`,
-        html: `
-            <div style="font-family: Arial, sans-serif; color: #333; line-height: 1.6;">
-                <div style="padding: 20px; max-width: 600px; margin: 0 auto; background-color: #f7f7f7; border: 1px solid #e0e0e0;">
-                    <h2 style="color: #007bff;">Password Reset Request</h2>
-                    <p>Dear User,</p>
-                    <p>You recently requested to reset your password for your account. Please use the following code to complete the process:</p>
-                    <div style="font-size: 24px; font-weight: bold; color: #007bff; margin: 20px 0;">
-                        ${randomNumber}
-                    </div>
-                    <p>If you did not request a password reset, please ignore this email or contact support if you have questions.</p>
-                    <p>Thank you,<br>Your Company Name</p>
-                    <hr style="border: none; border-top: 1px solid #e0e0e0;" />
-                    <p style="font-size: 12px; color: #777;">This is an automated message, please do not reply. If you need assistance, contact us at <a href="mailto:rideswithjerry@gmail.com" style="color: #007bff;">support@rideswithjerry.com</a>.</p>
-                </div>
-            </div>
-        `,
-        headers: {
-            'X-Company-ID': '12345678',
-            'X-Priority': '1 (Highest)',
-            'Importance': 'High'
-        },
-        replyTo: 'rideswithjerry@gmail.com',
-        attachments: [
-            {
-                filename: 'CompanyLogo.ico',
-                path: 'public/gallery/favicon.ico',
-                cid: 'rideswithjerry@gmail.com'
-            }
-        ]
-    };
+      let response = html.replace("({% INDEX_MAIN %})", resetpinTemplateMain);
 
-  await transporter.sendMail(mailOptions);
-}
+      res.send(response);
+  } catch (err) {
+      const forgotHtml = forgotTemplate({
+        message: "Error sending email"
+      });
 
-async function sendResetCode(email) {
-  const randomNumber = generateRandomNumber();
-  await sendEmail(email, randomNumber);
-  console.log(`Password reset code ${randomNumber} sent to ${email}`);
-    
-  return randomNumber;
-}
+      let response = html.replace("({% INDEX_MAIN %})", forgotHtml);
 
-const email = `${req.query.id}`;
-sendResetCode(email)
-  .then(code => {
-    console.log(`Stored reset code: ${code}`);
-  })
-  .catch(err => {
-    console.error('Error sending email:', err);
-  });
-
-  res.send(response);
-    
+      res.send(response);
+  }
 });
 
+app.get('/logout', (req, res) => {
+  // Clear the token cookie
+  res.clearCookie('token', { httpOnly: true, secure: false }); // Set secure to true if using HTTPS
 
+  // Optionally, if you are using sessions, you can also log the user out of the session
+  req.logout((err) => {
+    if (err) {
+      return res.status(500).send('Logout failed.'); // Handle error if needed
+    }
+    // Redirect to login page after logout
+    res.redirect('/login');
+  });
+});
+
+ 
 app.post('/review', async (req, res) => {
   const review = new Review({
     username: req.body.username,
@@ -1471,7 +2033,67 @@ app.post('/review', async (req, res) => {
 });
 
 
+
+app.get('/api/auth/verify-bank', verifyToken(), async (req, res) => {
+  const accountNumber = req.query.accountNumber; // Get the account number from the query parameters
+  const bankName = req.query.bankName; // Get the bank name from the query parameters
+
+  async function verifyBankAccount(accountNumber, bankName) {
+      try {
+          // First, you need to get the bank code from the bank name
+          const bankResponse = await axios.get('https://api.paystack.co/bank', {
+              headers: {
+                  Authorization: `Bearer ${PAYSTACK_SECRET_KEY}`,
+                  'Content-Type': 'application/json',
+              },
+          });
+
+          // Find the bank code based on the bank name
+          const bank = bankResponse.data.data.find(b => b.name.toLowerCase() === bankName.toLowerCase());
+          
+          if (!bank) {
+              console.error('Bank not found');
+              return res.status(404).json({ error: 'Bank not found' });
+          }
+
+          const bankCode = bank.code;
+
+          // Now verify the bank account using the account number and bank code
+          const response = await axios.get(`https://api.paystack.co/bank/resolve`, {
+              headers: {
+                  Authorization: `Bearer ${PAYSTACK_SECRET_KEY}`,
+                  'Content-Type': 'application/json',
+              },
+              params: {
+                  account_number: accountNumber,
+                  bank_code: bankCode
+              }
+          });
+
+          // Extracting account holder name
+          const accountHolderName = response.data.data.account_name;
+
+          // Log the result to the console
+          console.log('Account Holder Name:', accountHolderName);
+
+          // Send the account holder name back in the response
+          res.json({ accountHolderName });
+      } catch (error) {
+          console.error('Error verifying account:', error.response ? error.response.data : error.message);
+          if (error.response) {
+              console.error('Error response from Paystack:', error.response);
+          }
+          res.status(500).json({ error: 'Error verifying account' });
+      }
+  }
+
+  // Call the verifyBankAccount function
+  await verifyBankAccount(accountNumber, bankName);
+});
+
+
 app.use((req, res) =>  {
   res.redirect('/home');
 });
 
+ 

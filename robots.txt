@@ -1,0 +1,21 @@
+User-agent: *
+Disallow: /admin
+Disallow: /private
+Disallow: /cgi-bin
+Disallow: /wp-admin Disallow: /wp-includes
+Disallow: /wp-content/plugins
+Disallow: /wp-content/themes
+Disallow: /wp-content/uploads
+
+Crawl-delay: 5
+
+Sitemap: https://www.rideswithjerry.com/sitemap.xml
+
+User-agent: Googlebot
+Disallow: /search-results
+
+User-agent: Bingbot
+Disallow: /search-results
+
+User-agent: YandexBot
+Disallow: /search-results
