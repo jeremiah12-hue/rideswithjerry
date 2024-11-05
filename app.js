@@ -1,5 +1,4 @@
 const express = require('express');
-const MongoClient = require('mongodb').MongoClient;
 const mongoose = require('mongoose');
 const ejs = require('ejs');
 const fs = require('fs');
@@ -11,8 +10,6 @@ const jaroWinkler = require('jaro-winkler');
 
 const crypto = require('crypto');
 const nodemailer = require('nodemailer');
-
-const { google } = require('googleapis');
 
 const { v4: uuidv4 } = require('uuid');
 
@@ -29,17 +26,11 @@ const MongoStore = require('connect-mongo');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 
-const SibApiV3Sdk = require('sib-api-v3-sdk');
-SibApiV3Sdk.ApiClient.instance.authentications['api-key'].apiKey = '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';
-
-const paystack = require('paystack-api');
-
 const PAYSTACK_SECRET_KEY = 'sk_live_824a89a447ed30cf4165c3ceaed99aedb175310b';
 
 const axios = require('axios');
 
 const User = require('./user.model');
-const newsData2 = require('./news.model');
 
 const { fetchReviews, Review } = require('./reviews');
 
