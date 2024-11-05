@@ -265,3 +265,73 @@ for (const key of input_txt_toggle) {
 
 
 
+
+
+
+
+let fundToggle = document.getElementsByClassName('fundToggle');
+let fundDisplay = document.getElementsByClassName('fundDisplay');
+
+let trackToggle = document.getElementsByClassName('trackToggle');
+let trackDisplay = document.getElementsByClassName('trackDisplay');
+
+let userToggle = document.getElementsByClassName('userToggle');
+let userDisplay = document.getElementsByClassName('userDisplay');
+
+
+for (const fundToggleKey of fundToggle)  {
+    for (const fundDisplayKey of fundDisplay)  {
+
+        for (const trackDisplayKey of trackDisplay)  {
+            for (const userDisplayKey of userDisplay)  {
+
+                fundToggleKey.addEventListener('click', () =>  {
+                    if (fundDisplayKey.style.display != "flex" || trackDisplayKey.style.display != "none" || userDisplayKey.style.display != "none")  {
+                        fundDisplayKey.style.display = "flex";
+                        trackDisplayKey.style.display = "none";
+                        userDisplayKey.style.display = "none";
+                    }
+                })
+            }
+        }
+    }
+}
+
+for (const trackToggleKey of trackToggle)  {
+    for (const trackDisplayKey of trackDisplay)  {
+
+        for (const fundDisplayKey of fundDisplay)  {
+            for (const userDisplayKey of userDisplay)  {
+
+                trackToggleKey.addEventListener('click', () =>  {
+                    if (fundDisplayKey.style.display != "none" || trackDisplayKey.style.display != "flex" || userDisplayKey.style.display != "none")  {
+                        fundDisplayKey.style.display = "none";
+                        trackDisplayKey.style.display = "flex";
+                        userDisplayKey.style.display = "none";
+                    }
+                })
+            }
+        }
+    }
+}
+
+for (const userToggleKey of userToggle)  {
+    for (const userDisplayKey of userDisplay)  {
+
+        for (const fundDisplayKey of fundDisplay)  {
+            for (const trackDisplayKey of trackDisplay)  {
+
+                userToggleKey.addEventListener('click', () =>  {
+                    if (fundDisplayKey.style.display != "none" || trackDisplayKey.style.display != "none" || userDisplayKey.style.display != "flex")  {
+                        fundDisplayKey.style.display = "none";
+                        trackDisplayKey.style.display = "none";
+                        userDisplayKey.style.display = "flex";
+                    }
+                })
+            }
+        }
+    }
+}
+
+
+

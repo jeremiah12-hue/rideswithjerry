@@ -21,6 +21,24 @@ main, body  {
     font-weight: 400;
     font-style: normal;
 }
+option  {
+    background-color: #000000;
+    color: white;
+    text-shadow: 2px 2px 4px;
+    border-bottom: 4px groove white;
+    padding: 15px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    width: auto;
+    height: auto;
+    cursor: pointer;
+}
+.fundToggle  {color: rgba(216, 184, 0, 0.309);}
+.fundToggleNone, .SwitchNone  {display: none;}
+.json-formatter-container, pre {
+    display: none;
+}
 nav#top_nav  {
     width: 100vw;
     top: 0px;
@@ -112,29 +130,47 @@ div#brands_toggle section.wide_sell_car,
 div#brands_toggle section.wide_my_account,
 div#brands_toggle section.wide_policy,
 div#brands_toggle section.wide_message,
-div#brands_toggle section.wide_search  {display: none}
+div#brands_toggle section.wide_search,
+div#brands_toggle section.wide_news_home,
+div#brands_toggle section.wide_main_news,
+div#brands_toggle section.wide_funding_home  {display: none}
 
 nav.mobile  {
-    display: block;
+    display: flex;
+    flex-direction: column;
     max-width: 100vw;
     width: 100vw;
     position: absolute;
-    max-height: 350px;
-    padding-top: 5vh;
+    min-height: 150px;
 }
 nav.mobile ul.head_nav  {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
     width: 100vw;
     height: auto;
 }
-nav.mobile ul.head_nav li.logo  {
-    width: 55vw;
+nav.mobile ul.head_nav ol.first  {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    width: 60vw;
     height: auto;
-    padding: 15px;
+    align-self: center;
+}
+nav.mobile ul.head_nav ol.second  {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 40vw;
+    height: auto;
+}
+nav.mobile ul.head_nav ol.first li.logo  {
+    width: auto;
+    height: auto;
+    padding: 10px;
     font-size: 3em;
     font-weight: 600;
     text-align: left;
@@ -142,75 +178,102 @@ nav.mobile ul.head_nav li.logo  {
     cursor: pointer;
     font-family: "Ga Maamli", sans-serif;
     font-style: normal;
-    text-shadow: 2px 2px 2px grey;
+    text-shadow: 1px 1px 2px grey;
 }
-nav.mobile ul.head_nav li.news  {
-    width: 25vw;
+nav.mobile ul.head_nav ol.first li.news  {
+    width: auto;
     height: auto;
     padding: 5px;
     font-size: 1.6em;
     font-weight: 600;
     text-align: center;
-    border: none;
-    box-shadow: 2px 2px 2px;
-    border-top-left-radius: 10%;
-    border-bottom-left-radius: 20%;
-    border-top-right-radius: 20%;
-    border-bottom-right-radius: 10%;
     cursor: pointer;
     font-family: "Dosis", sans-serif;
     font-weight: 600;
     font-style: normal;
-    animation: colorToggle 10s infinite;
-    text-shadow: 2px 2px 2px;
+    text-shadow: 1px 1px 2px;
 }
-@keyframes colorToggle {
-    0%  {background-color: rgb(255, 255, 255);}
-    10%  {background-color: rgba(120, 120, 120, 0.922);}
-    20%  {background-color: rgb(124, 125, 123);}
-    30%  {background-color: rgba(152, 140, 140, 0.537);}
-    40%  {background-color: rgb(92, 92, 93);}
-    50%  {background-color: rgb(98, 97, 97);}
-    60%  {background-color: grey}
-    70%  {background-color: rgb(124, 121, 121)}
-    80%  {background-color: rgb(133, 131, 131)}
-    90%  {background-color: rgba(120, 107, 107, 0.479)}
-    100%  {background-color: rgb(253, 250, 250)}
+nav.mobile ul.head_nav ol.second ul.top  {
+    width: 40vw;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    align-self: flex-start;
 }
-nav.mobile ul.head_nav li.nav_icon  {
-    width: 10vw;
+nav.mobile ul.head_nav ol.second ul.bottom  {
+    width: 40vw;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    align-self: flex-end;
+}
+nav.mobile ul.head_nav ol.second ul.top ol  {
+    width: auto;
     height: auto;
     padding: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
-    font-family: "Playwrite RO", cursive;
-    font-optical-sizing: auto;
-    font-weight: 600;
-    font-size: auto;
-    font-style: normal;
 }
-nav.mobile ul.head_nav li.nav_bar  {
-    width: 10vw;
-    height: 20vh;
-    padding: 15px;
-    font-size: 1.5em;
-    font-weight: 300;
-    display: flex;
+nav.mobile ul.head_nav ol.second ul.top ol li  {
+    width: auto;
+    height: auto;
+    cursor: pointer;
+    font-size: 1.6em;
+    font-weight: 600;
+    font-style: normal;
+    text-align: center;
+    text-shadow: 1px 1px 2px grey;
+    color: rgba(255, 217, 0, 0.439);
+}
+nav.mobile ul.head_nav ol.second ul.bottom ol  {
+    width: 100%;
+    height: auto;
+    padding: 10px;
+    display: none;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    backdrop-filter: blur(100px);
+}
+nav.mobile ul.head_nav ol.second ul.bottom ol li  {
+    width: 100%;
+    height: auto;
     cursor: pointer;
+    font-weight: 200;
+    font-size: 0.8em;
+    font-style: normal;
+    text-align: center;
+    border-bottom: 1px solid black;
+    text-shadow: 1px 1px 2px grey;
 }
-nav.mobile ul.head_nav li.nav_bar p.bar  {
-    width: 20px;
-    height: 3px;
-    padding: 2px;
-    margin: 2px;
-    background-color: black;
+nav.mobile div.user_nav  {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 100vw;
+    height: auto;
+    font-family: "Londrina Sketch", sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }
+nav.mobile div.user_nav p  {
+    width: 100vw;
+    height: auto;
+    text-align: left;
+    font-size: 1.2em;
+    padding: 5px;
+    font-family: "Londrina Sketch", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+
 
 div.sign_toggle  {
     display: block;
@@ -301,11 +364,6 @@ nav.footer_nav p.footer_icon  {
 nav.footer_nav p.footer_icon i  {
     padding: 10px;
 }
-nav.footer_nav p.footer_icon i:hover  {
-    box-shadow: 1px 1px 2px;
-    border: 2px solid black;
-    border-radius: 100%;
-}
 
 footer.footer  {
     width: 100vw;
@@ -329,11 +387,10 @@ footer.footer section.head_footer div.head_footer_txt  {
     align-items: center;
     justify-content: center;
     text-align: center;
-    font-size: 1.5em;
-    font-family: "Dosis", sans-serif;
-    font-weight: 600;
+    font-size: 1.8em;
+    font-family: "Ga Maamli", sans-serif;
     font-style: normal;
-    text-shadow: 2px 2px 2px;
+    text-shadow: 2px 2px 4px grey;
 }
 
 footer.footer section.top_footer  {
@@ -439,6 +496,7 @@ section.mobile_main {
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
+    margin-top: 30px;
 }
 section.mobile_main div.home_slider, section.mobile_main div.efficiency,
 section.mobile_main div.safety, section.mobile_main div.price,
@@ -670,6 +728,7 @@ section.save_mobile_shop  {
     justify-content: space-evenly;
     height: auto;
     margin-inline: 0vw;
+    margin-top: 30px;
 }
 section.mobile_shop div.shop_items_wrapper,
 section.mobile_shop_description div.shop_description_item_wrapper,
@@ -781,7 +840,6 @@ section.mobile_shop_description div.shop_description_item_wrapper div.shop_descr
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-evenly;
 }
 section.mobile_shop_description div.shop_description_item_wrapper div.shop_description_img_wrapper img  {
     width: 80vw;
@@ -972,6 +1030,7 @@ section.sell_car {
     align-items: center;
     justify-content: space-evenly;
     padding: 20px;
+    margin-top: 30px;
 }
 section.buy h1,
 section.sell_car h1  {
@@ -1060,6 +1119,7 @@ section.signup {
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
+    margin-top: 30px;
 }
 section.login h1,
 section.signup h1 {
@@ -1250,6 +1310,7 @@ section.my_account  {
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
+    margin-top: 30px;
 }
 section.my_account div.my_account_wrapper  {
     width: 80vw;
@@ -1313,6 +1374,7 @@ section.policy {
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
+    margin-top: 30px;
 }
 section.policy h1 {
     width: 100vw;
@@ -1370,6 +1432,7 @@ section.message {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+    margin-top: 30px;
 }
 section.message h1 {
     width: 100vw;
@@ -1444,6 +1507,7 @@ section.search {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+    margin-top: 30px;
 }
 section.search div.keyboard_wrapper  {
     width: 100vw;
@@ -1584,6 +1648,1101 @@ section.search div.search_body div.search_item div.rate p  {
   }
 
 
+.user_right_nav  {
+    position: fixed;
+    right: -200px;
+    top: 40vh;
+    width: 80px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    transition: right 0.3s ease;
+}
+.user_right_nav .toggle_cont,
+.user_right_nav .username_container,
+.user_right_nav .call_cont  {
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+.user_right_nav .toggle_cont p,
+.user_right_nav .username_container p {
+    padding: 2px;
+    font-size: 1.2em;
+    font-weight: 800;
+    writing-mode: vertical-rl;
+}
+.user_right_nav .username_container p  {
+    color: #8c0303;
+}
+.user_right_nav .call_cont  {
+    width: 100%;
+    height: 100%;
+    padding-block: 10px;
+}
+.user_right_nav .call_cont,
+.user_right_nav .toggle_cont  {
+    cursor: pointer;
+}
+#on_user_right_nav  {
+    display: none;
+    color: red;
+}
+#off_user_right_nav  {
+    color: green;
+}
+.user_right_nav .call_cont a i  {
+    color: #434343;
+}
+
+
+#pls_login_bg  {
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    z-index: 999;
+    position: fixed;
+    top: -300vh;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: top 0.3s ease;
+}
+#pls_login_cont  {
+    left: 10vw;
+    width: 80vw;
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    transition: top 0.3s ease;
+    background-color: black;
+    color: white;
+    backdrop-filter: blur(10px);
+    z-index: 900;
+    box-shadow: 1px 1px 2px;
+}
+#pls_login_cont .pls_login_close_icon  {
+    width: 100%;
+    height: 10vh;
+    justify-self: right;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: right;
+}
+#pls_login_cont .pls_login_close_icon i  {
+    width: auto;
+    height: auto;
+    text-align: right;
+    padding: 10px;
+    border: 10px solid white;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+    color: red;
+    font-size: 2em;
+    background-color: white;
+    cursor: pointer;
+    text-shadow: 1px 1px 2px black;
+}
+#pls_login_cont .pls_login_icon  {
+    width: 100%;
+    height: 15vh;
+    align-self: center;
+    justify-self: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+#pls_login_cont .pls_login_icon i  {
+    color: white;
+    font-size: 3em;
+    width: auto;
+    height: auto;
+}
+#pls_login_cont .pls_login_txt  {
+    width: 100%;
+    height: 25vh;
+    align-self: center;
+    justify-self: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+#pls_login_cont .pls_login_txt p  {
+    color: white;
+    font-size: 1.3em;
+    width: auto;
+    height: auto;
+    text-shadow: 2px 2px 4px white;
+    padding: 10px;
+    overflow-wrap: break-word;
+    text-align: center;
+    height: 20vh;
+    font-weight: 600;
+}
+#pls_login_cont .pls_login_txt .redirect  {
+    width: 100%;
+    height: 5vh;
+    align-self: center;
+    justify-self: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-inline: 5vw;
+}
+#pls_login_cont .pls_login_txt .redirect a  {
+    width: 42%;
+    height: 5vh;
+    align-self: center;
+    justify-self: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: white;
+    padding: 4px;
+    font-weight: 600;
+}
+
+
+
+/* NEWS HOME */
+section.mobile_news_home  {
+    width: 100vw;
+    display: flex;
+    text-align: justify;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    height: auto;
+    margin-top: 30px;
+}
+section.mobile_news_home div.news_slider  {
+    width: 95vw;
+    margin-inline: 2.5vw;
+    height: auto;
+    object-fit: contain;
+    border: none;
+}
+section.mobile_news_home div.news_slider div.news_img_wrapper   {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+section.mobile_news_home div.news_slider div.news_img_wrapper img  {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    transition: opacity 0.5s;
+}
+section.mobile_news_home div.news_slider div.news_img_wrapper p  {
+    color: #000000;
+    font-size: 24px;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+section.mobile_news_home div.news_home_container  {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100vw;
+    height: auto;
+}
+section.mobile_news_home div.news_home_container div.news_header_container  {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 95vw;
+    height: auto;
+}
+section.mobile_news_home div.news_home_container div.news_header_container .icon,
+section.mobile_news_home div.news_home_container div.news_header_container .icon button  {
+    width: 10vw;
+    height: auto;
+    border: none;
+    cursor: pointer;
+}
+section.mobile_news_home div.news_home_container div.news_header_container .icon button i  {
+    width: 10vw;
+    height: auto;
+    padding: 10px;
+    font-size: 1.8em;
+}
+section.mobile_news_home div.news_home_container div.news_header_container .search  {
+    width: 75vw;
+    height: auto;
+}
+section.mobile_news_home div.news_home_container div.news_header_container .search input  {
+    width: 75vw;
+    height: auto;
+    padding: 10px;
+    font-size: 1.8em;
+    border: none;
+}
+section.mobile_news_home div.news_home_container div.news_header_container .sort  {
+    width: 10vw;
+    height: auto;
+    cursor: pointer;
+}
+section.mobile_news_home div.news_home_container div.news_header_container .sort i  {
+    width: 10vw;
+    height: auto;
+    padding: 10px;
+    font-size: 1.8em;
+}
+section.mobile_news_home div.news_home_container div.read_container  {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 95vw;
+    min-height: 200px;
+    margin-inline: 2.5vw;
+}
+section.mobile_news_home div.news_home_container div.read_container div.read_item  {
+    width: 180px;
+    max-height: 150px;
+    border: 2px solid black;
+    border-top-left-radius: 10%;
+    border-top-right-radius: 10%;
+    border-bottom-left-radius: 10%;
+    border-bottom-right-radius: 10%;
+    background-color: black;
+}
+section.mobile_news_home div.news_home_container div.read_container div.read_item p  {
+    padding: 7px;
+    font-size: 2em;
+    font-weight: 800;
+    color: white;
+    text-shadow: 2px 2px 4px;
+    text-align: center;
+}
+section.mobile_news_home div.news_home_container div.news_intro_container  {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    width: 95vw;
+    height: auto;
+}
+section.mobile_news_home div.news_home_container div.news_intro_container .news_intro_item  {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    width: 95vw;
+    height: auto;
+    margin-bottom: 70px;
+}
+section.mobile_news_home div.news_home_container div.news_intro_container .news_intro_item .news_intro_img  {
+    width: 95vw;
+    height: 300px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+section.mobile_news_home div.news_home_container div.news_intro_container .news_intro_item .news_intro_img img  {
+    width: 90vw;
+    height: 250px;
+    object-fit: cover;
+    padding: auto;
+}
+section.mobile_news_home div.news_home_container div.news_intro_container .news_intro_item .news_intro_txt  {
+    width: 95vw;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+section.mobile_news_home div.news_home_container div.news_intro_container .news_intro_item .news_intro_txt p  {
+    width: 95vw;
+    height: auto;
+    font-size: 1.2em;
+    font-weight: 800;
+    padding: 10px;
+    text-align: center;
+}
+section.mobile_news_home div.news_home_container div.news_intro_container .news_intro_item .news_intro_txt p a  {
+    width: 95vw;
+    height: auto;
+    font-size: 1.6em;
+    font-weight: 600;
+    padding: 10px;
+    text-align: center;
+}
+
+
+/* NEWS MAIN */
+section.mobile_main_news  {
+    width: 100vw;
+    display: flex;
+    text-align: justify;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    height: auto;
+    margin-inline: 0vw;
+    margin-top: 30px;
+}
+section.mobile_main_news .news_top_nav  {
+    width: 95vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    margin-inline: 2.5vw;
+}
+section.mobile_main_news .news_top_nav .news_top_nav_icon  {
+    width: 19vw;
+    height: auto;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+}
+section.mobile_main_news .news_top_nav .news_top_nav_icon i  {
+    text-align: center;
+    font-size: 1.8em;
+    font-weight: 800;
+}
+section.mobile_main_news .news_tag_container  {
+    width: 95vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    max-height: 250px;
+    margin-inline: 2.5vw;
+    margin-block: 20px;
+}
+section.mobile_main_news .news_tag_container .news_tag_item  {
+    width: 70vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: auto;
+}
+section.mobile_main_news .news_tag_container .news_tag_item p  {
+    width: 30vw;
+    height: auto;
+    text-align: center;
+    font-size: 0.6em;
+    font-weight: 600;
+    text-shadow: 2px 2px 4px;
+    color: white;
+    background-color: black;
+    padding: 10px;
+}
+section.mobile_main_news .news_head  {
+    width: 95vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: justify;
+    min-height: 200px;
+    margin-inline: 2.5vw;
+}
+section.mobile_main_news .news_head h1  {
+    text-align: center;
+    padding: 10px;
+    font-weight: 800;
+    font-size: 1.6em;
+}
+section.mobile_main_news .news_head h2  {
+    text-align: center;
+    padding: 5px;
+    font-size: 1.2em;
+}
+section.mobile_main_news .news_main  {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    text-align: justify;
+    height: auto;
+    margin-block: 20px;
+}
+section.mobile_main_news .news_main .img  {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    margin-inline: 0px;
+}
+section.mobile_main_news .news_main .img img  {
+    width: 100vw;
+    height: auto;
+    margin-inline: 0px;
+    object-fit: contain;
+}
+section.mobile_main_news .news_main .news_news  {
+    width: 95vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    margin-inline: 2.5px;
+}
+section.mobile_main_news .news_main .news_news p  {
+    width: 95vw;
+    height: auto;
+    padding: 20px;
+    font-size: 1.4em;
+    font-family: "Roboto", sans-serif;
+    font-style: normal;
+}
+section.mobile_main_news .news_main .date  {
+    width: 95vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: auto;
+    margin-inline: 2.5px;
+}
+section.mobile_main_news .news_main .date p  {
+    width: auto;
+    justify-self: right;
+    height: auto;
+    font-size: 1.6em;
+    font-weight: 600;
+    padding: 10px;
+}
+section.mobile_main_news .news_review  {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    height: auto;
+    margin-block: 15px;
+}
+section.mobile_main_news .news_review .review_icons  {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    width: 100vw;
+    height: auto;
+}
+section.mobile_main_news .news_review .review_icons i  {
+    padding: 10px;
+    font-size: 2em;
+}
+section.mobile_main_news .news_review form  {
+    width: 80vw;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+}
+section.mobile_main_news .news_review form textarea  {
+    width: 80vw;
+    min-height: 100px;
+    font-size: 1.2em;
+    font-family: "Roboto", sans-serif;
+    font-weight: 800;
+    font-style: normal;
+    padding: 20px;
+    overflow-wrap: break-word;
+    border: none;
+}
+section.mobile_main_news .news_review form input  {
+    width: 80vw;
+    font-size: 1.2em;
+    font-family: "Roboto", sans-serif;
+    font-weight: 800;
+    font-style: normal;
+    padding: 20px;
+    overflow-wrap: break-word;
+    border: none;
+}
+section.mobile_main_news .news_review form button  {
+    width: auto;
+    height: auto;
+    font-size: 1.2em;
+    font-family: "Roboto", sans-serif;
+    font-weight: 800;
+    font-style: normal;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
+section.mobile_main_news .news_review form button:hover  {
+    box-shadow: 2px 2px 2px black;
+}
+section.mobile_main_news .loadMore_container  {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 95vw;
+    min-height: 200px;
+    margin-inline: 2.5vw;
+}
+section.mobile_main_news .loadMore_container .loadMore_item  {
+    width: 180px;
+    max-height: 150px;
+    border: 2px solid black;
+    border-top-left-radius: 10%;
+    border-top-right-radius: 10%;
+    border-bottom-left-radius: 10%;
+    border-bottom-right-radius: 10%;
+    background-color: black;
+    cursor: pointer;
+}
+section.mobile_main_news .loadMore_container .loadMore_item p  {
+    padding: 7px;
+    font-size: 1.2em;
+    font-weight: 800;
+    color: white;
+    text-shadow: 2px 2px 4px;
+    text-align: center;
+}
+
+
+
+
+
+/* FUNDING MAIN */
+section.mobile_funding_home  {
+    width: 100vw;
+    display: flex;
+    text-align: justify;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    height: auto;
+    margin-inline: 0vw;
+    margin-top: 30px;
+}
+section.mobile_funding_home .funding_top_nav  {
+    width: 95vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    margin-inline: 2.5vw;
+}
+section.mobile_funding_home .funding_top_nav .funding_top_nav_icon  {
+    width: 19vw;
+    height: auto;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+}
+section.mobile_funding_home .funding_top_nav .funding_top_nav_icon i  {
+    text-align: center;
+    font-size: 1.8em;
+    font-weight: 800;
+}
+section.mobile_funding_home .funding_tag_container  {
+    width: 95vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    max-height: 250px;
+    margin-inline: 2.5vw;
+    margin-block: 20px;
+}
+section.mobile_funding_home .funding_tag_container .funding_tag_item  {
+    width: 70vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: auto;
+}
+section.mobile_funding_home .funding_tag_container .funding_tag_item p  {
+    width: 30vw;
+    height: auto;
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: 600;
+    text-shadow: 2px 2px 4px;
+    color: white;
+    background-color: black;
+    padding: 10px;
+}
+section.mobile_funding_home .funding_head  {
+    width: 95vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: justify;
+    min-height: 200px;
+    margin-inline: 2.5vw;
+}
+section.mobile_funding_home .funding_head h1  {
+    text-align: center;
+    padding: 10px;
+    font-weight: 800;
+    font-size: 1.6em;
+}
+section.mobile_funding_home .funding_home_main  {
+    width: 95vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    margin-inline: 2.5vw;
+}
+section.mobile_funding_home .funding_home_main form  {
+    width: 95vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    height: auto;
+}
+section.mobile_funding_home .funding_home_main form .currency  {
+    width: 95vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: auto;
+    padding: 20px;
+}
+section.mobile_funding_home .funding_home_main form .currency label  {
+    width: 45vw;
+    height: auto;
+    text-align: left;
+    font-size: 1.4em;
+    font-weight: 600;
+}
+section.mobile_funding_home .funding_home_main form .currency select  {
+    width: 50vw;
+    height: auto;
+    text-align: left;
+    font-size: 1.6em;
+    font-weight: 600;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+section.mobile_funding_home .funding_home_main form .amount  {
+    width: 95vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: auto;
+    padding: 20px;
+}
+section.mobile_funding_home .funding_home_main form .amount label  {
+    width: 45vw;
+    height: auto;
+    text-align: left;
+    font-size: 1.4em;
+    font-weight: 600;
+}
+section.mobile_funding_home .funding_home_main form .amount input  {
+    width: 50vw;
+    height: auto;
+    text-align: left;
+    font-size: 1.6em;
+    font-weight: 600;
+    border-left: 5px solid rgb(70, 0, 0);
+    border-top: none;
+    border-bottom: none;
+    border-right: none;
+    padding: 10px;
+}
+section.mobile_funding_home .funding_home_main form .choose_payment_method  {
+    width: 95vw;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: auto;
+    padding: 20px;
+}
+section.mobile_funding_home .funding_home_main form .choose_payment_method h3  {
+    width: 95vw;
+    height: auto;
+    padding: 10px;
+    text-align: center;
+    font-size: 1.8em;
+    font-weight: 800;
+}
+section.mobile_funding_home .funding_home_main form .choose_payment_method .methods  {
+    width: 95vw;
+    height: auto;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+section.mobile_funding_home .funding_home_main form .choose_payment_method .methods input  {
+    width: auto;
+    height: auto;
+    font-size: 1.4em;
+    font-weight: 600;
+    padding: 20px;
+    cursor: pointer;
+}
+section.mobile_funding_home .funding_home_main form .choose_payment_method .methods label  {
+    width: auto;
+    height: auto;
+    font-size: 1.4em;
+    font-weight: 600;
+    padding: 20px;
+    cursor: pointer;
+}
+section.mobile_funding_home .funding_home_main form .add_card_container  {
+    width: 95vw;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    height: auto;
+}
+section.mobile_funding_home .funding_home_main form .add_card_container h3  {
+    width: 95vw;
+    height: auto;
+    padding: 10px;
+    text-align: center;
+    font-size: 1.8em;
+    font-weight: 800;
+}
+section.mobile_funding_home .funding_home_main form .add_card_container .card_number  {
+    width: 95vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: auto;
+}
+section.mobile_funding_home .funding_home_main form .add_card_container .card_number label  {
+    width: 45vw;
+    height: auto;
+    text-align: left;
+    font-size: 1.4em;
+    font-weight: 600;
+    padding: 10px;
+}
+section.mobile_funding_home .funding_home_main form .add_card_container .card_number input  {
+    width: 50vw;
+    height: auto;
+    text-align: left;
+    font-size: 1.6em;
+    font-weight: 600;
+    border-left: 5px solid rgb(70, 0, 0);
+    border-top: none;
+    border-bottom: none;
+    border-right: none;
+    padding: 10px;
+}
+section.mobile_funding_home .funding_home_main form .add_card_container .number_error p,
+section.mobile_funding_home .funding_home_main form .add_card_container .expire_error p  {
+    width: 95vw;
+    height: auto;
+    text-align: center;
+    font-size: 1em;
+    padding: 10px;
+    color: rgb(189, 4, 4);
+    display: none;
+
+}
+section.mobile_funding_home .funding_home_main form .add_card_container .cvv_container  {
+    width: 95vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 200px;
+}
+section.mobile_funding_home .funding_home_main form .add_card_container .cvv_container .expire_item,
+section.mobile_funding_home .funding_home_main form .add_card_container .cvv_container .cvv_item  {
+    width: 47.5vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+}
+section.mobile_funding_home .funding_home_main form .add_card_container .cvv_container .expire_item label,
+section.mobile_funding_home .funding_home_main form .add_card_container .cvv_container .cvv_item label  {
+    width: 47.5vw;
+    height: auto;
+    text-align: center;
+    font-size: 1.4em;
+    font-weight: 600;
+    padding: 20px;
+}
+section.mobile_funding_home .funding_home_main form .add_card_container .cvv_container .expire_item input  {
+    width: 47.5vw;
+    height: auto;
+    text-align: center;
+    font-size: 1.6em;
+    font-weight: 600;
+    border-left: 5px solid rgb(70, 0, 0);
+    border-top: none;
+    border-bottom: none;
+    border-right: none;
+    padding: 10px;
+}
+section.mobile_funding_home .funding_home_main form .add_card_container .cvv_container .cvv_item input  {
+    width: 47.5vw;
+    height: auto;
+    text-align: center;
+    font-size: 1.6em;
+    font-weight: 600;
+    padding: 10px;
+    border: none;
+}
+section.mobile_funding_home .funding_home_main form .add_card_container .holder_name_container  {
+    width: 95vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: auto;
+}
+section.mobile_funding_home .funding_home_main form .add_card_container .holder_name_container label  {
+    width: 45vw;
+    height: auto;
+    text-align: left;
+    font-size: 1.4em;
+    font-weight: 600;
+    padding: 10px;
+}
+section.mobile_funding_home .funding_home_main form .add_card_container .holder_name_container input  {
+    width: 50vw;
+    height: auto;
+    text-align: left;
+    font-size: 1.6em;
+    font-weight: 600;
+    border-left: 5px solid rgb(70, 0, 0);
+    border-top: none;
+    border-bottom: none;
+    border-right: none;
+    padding: 10px;
+}
+section.mobile_funding_home .funding_home_main form .transaction_summary_container  {
+    width: 95vw;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+}
+section.mobile_funding_home .funding_home_main form .transaction_summary_container h4  {
+    width: 95vw;
+    height: auto;
+    padding: 20px;
+    text-align: center;
+    font-size: 1.8em;
+    font-weight: 800;
+}
+section.mobile_funding_home .funding_home_main form .transaction_summary_container p  {
+    width: 95vw;
+    height: auto;
+    padding: 10px;
+    text-align: left;
+    font-size: 1.6em;
+}
+section.mobile_funding_home .funding_home_main form p  {
+    width: 95vw;
+    height: auto;
+    padding: 20px;
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: 600;
+}
+section.mobile_funding_home .funding_home_main form .button_container  {
+    width: 95vw;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+section.mobile_funding_home .funding_home_main form .button_container button  {
+    width: auto;
+    height: auto;
+    padding: 20px;
+    text-align: center;
+    font-size: 1.4em;
+    font-weight: 600;
+    border: none;
+    color: white;
+    text-shadow: 2px 2px 4px;
+    background-color: black;
+    cursor: pointer;
+}
+section.mobile_funding_home .funding_home_main form .button_container button:hover  {
+    background-color: rgb(95, 0, 0);
+}
+
+
+
+/* WITHDRAWAL */
+section.mobile_funding_home .funding_home_main form .withdrawAmountContainer  {
+    width: 95vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+}
+section.mobile_funding_home .funding_home_main form .withdrawAmountContainer .amount_item  {
+    width: 95vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: auto;
+    padding: 20px;
+}
+section.mobile_funding_home .funding_home_main form .withdrawAmountContainer .amount_item label  {
+    width: 45vw;
+    height: auto;
+    text-align: left;
+    font-size: 1.4em;
+    font-weight: 600;
+}
+section.mobile_funding_home .funding_home_main form .withdrawAmountContainer .amount_item input  {
+    width: 50vw;
+    height: auto;
+    text-align: left;
+    font-size: 1.6em;
+    font-weight: 600;
+    border-left: 5px solid rgb(70, 0, 0);
+    border-top: none;
+    border-bottom: none;
+    border-right: none;
+    padding: 10px;
+}
+section.mobile_funding_home .funding_home_main form .withdrawAmountContainer .amount_error_msg  {
+    width: 100%;
+    height: auto;
+    font-size: 1.2em;
+    font-weight: 600;
+    text-align: center;
+    color: #660202;
+    display: none;
+}
+section.mobile_funding_home .funding_home_main form .choose_withdrawal_method  {
+    width: 95vw;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: auto;
+    padding: 20px;
+}
+section.mobile_funding_home .funding_home_main form .choose_withdrawal_method h3  {
+    width: 95vw;
+    height: auto;
+    padding: 10px;
+    text-align: center;
+    font-size: 1.8em;
+    font-weight: 800;
+}
+section.mobile_funding_home .funding_home_main form .choose_withdrawal_method .methods  {
+    width: 95vw;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+section.mobile_funding_home .funding_home_main form .choose_withdrawal_method .methods .accNumber,
+section.mobile_funding_home .funding_home_main form .choose_withdrawal_method .methods .bankName  {
+    width: 95vw;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-block: 15px;
+}
+section.mobile_funding_home .funding_home_main form .choose_withdrawal_method .methods .accNumber label  {
+    width: 45vw;
+    height: auto;
+    text-align: left;
+    font-size: 1.4em;
+    font-weight: 600;
+}
+section.mobile_funding_home .funding_home_main form .choose_withdrawal_method .methods .accNumber input  {
+    width: 50vw;
+    height: auto;
+    text-align: left;
+    font-size: 1.6em;
+    font-weight: 600;
+    border-left: 5px solid rgb(70, 0, 0);
+    border-top: none;
+    border-bottom: none;
+    border-right: none;
+    padding: 10px;
+}
+section.mobile_funding_home .funding_home_main form .choose_withdrawal_method .methods .bankName label  {
+    width: 45vw;
+    height: auto;
+    text-align: left;
+    font-size: 1.4em;
+    font-weight: 600;
+}
+section.mobile_funding_home .funding_home_main form .choose_withdrawal_method .methods .bankName select  {
+    width: 50vw;
+    height: auto;
+    text-align: left;
+    font-size: 1.4em;
+    font-weight: 600;
+    border-left: 5px solid rgb(70, 0, 0);
+    border-top: none;
+    border-bottom: none;
+    border-right: none;
+    padding: 10px;
+    cursor: pointer;
+}
+section.mobile_funding_home .funding_home_main form .choose_withdrawal_method .methods .account_holder_name  {
+    width: 95vw;
+    height: auto;
+    font-size: 1.6em;
+    font-weight: 800;
+    text-align: center;
+    color: darkgreen;
+}
 
 
 
@@ -1593,7 +2752,9 @@ section.search div.search_body div.search_item div.rate p  {
     section.mobile_shop, section.save_mobile_shop,
     section.buy, section.sell_car, section.login,
     section.signup, section.my_account, section.policy,
-    section.search, section.mobile_shop_description  {display: none}
+    section.search, section.mobile_shop_description,
+    section.mobile_news_home, section.mobile_main_news,
+    section.mobile_funding_home  {display: none}
 
 
     nav#top_nav  {
@@ -1677,20 +2838,22 @@ section.search div.search_body div.search_item div.rate p  {
 
     nav.wide_screen  {
         display: flex;
-        width: 100vw;
-        max-height: 20vh;
+        flex-direction: column;
+        max-width: 100vw;
+        min-height: 35vh;
     }
     nav.wide_screen ul.head_nav  {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
         align-items: center;
-        justify-content: center;
+        justify-content: space-around;
         width: 100vw;
-        height: 20vh;
+        min-height: 30vh;
+        text-align: center;
     }
     nav.wide_screen ul.head_nav li.logo  {
-        width: 40vw;
+        width: auto;
         max-height: 20vh;
         padding: 15px;
         font-size: 3em;
@@ -1701,41 +2864,67 @@ section.search div.search_body div.search_item div.rate p  {
         font-family: "Ga Maamli", sans-serif;
         font-weight: 400;
         font-style: normal;
-        text-shadow: 2px 2px 2px grey;
+        text-shadow: 1px 1px 2px grey;
     }
-    nav.wide_screen ul.head_nav li.nav_item  {
-        width: 10vw;
-        max-height: auto;
-        overflow-wrap: normal;
+    nav.wide_screen ul.head_nav ol  {
+        width: auto;
+        height: auto;
         text-align: center;
-        font-size: 1em;
-        padding-inline: 5px;
-        cursor: pointer;
-        font-family: "Dosis", sans-serif;
-        font-weight: 400;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
     }
-    nav.wide_screen ul.head_nav li.nav_item:hover  {
+    nav.wide_screen ul.head_nav ol li  {
+        width: auto;
+        height: auto;
+        text-align: center;
+        font-size: 1.8em;
+        cursor: pointer;
+        font-weight: 600;
         text-shadow: 1px 1px 2px;
+        align-self: flex-start;
+        border: none;
+        padding: 12px;
     }
-    nav.wide_screen ul.head_nav li.nav_icon  {
-        width: 10vw;
-        max-height: auto;
-        overflow-wrap: normal;
-        text-align: center;
-        cursor: pointer;
-        font-weight: 400;
-        font-style: 2em;
-    }
-    nav.wide_screen ul.head_nav li.nav_icon i  {
-        padding: 10px;
-    }
-    nav.wide_screen ul.head_nav li.nav_icon i:hover  {
-        box-shadow: 1px 1px 2px;
-        border: 2px solid black;
+    .hoverAnimate:hover  {
+        animation: hoverAnimate 3s infinite;
         border-radius: 100%;
+        box-shadow: 1px 1px 2px;
+    }
+    @keyframes hoverAnimate {
+        0%  {border-left: 4px solid black;}
+        10%  {border-top: 4px solid black;}
+        20%  {border-right: 4px solid black;}
+        30%  {border-bottom: 4px solid black;}
+        40%  {background-color: white}
+        50%  {background-color: white}
+        60%  {background-color: white}
+        70%  {border-bottom: none}
+        80%  {border-right: none}
+        90%  {border-top: none}
+        100%  {border-left: none}
+    }
+    nav.wide_screen ul.head_nav ol ul  {
+        width: 100%;
+        height: auto;
+        align-self: flex-end;
+        display: none;
+        flex-direction: column;
+        flex-wrap: wrap;
+        backdrop-filter: blur(100px);
+    }
+    nav.wide_screen ul.head_nav ol ul li  {
+        width: 100%;
+        height: auto;
+        text-align: center;
+        font-size: 0.8em;
+        cursor: pointer;
+        font-weight: 200;
+        border-bottom: 1px solid black;
+        padding: 0px;
     }
     nav.wide_screen ul.head_nav li.nav_news  {
-        width: 10vw;
+        width: auto;
         max-height: auto;
         overflow-wrap: normal;
         font-size: 1em;
@@ -1752,7 +2941,6 @@ section.search div.search_body div.search_item div.rate p  {
         flex-direction: row;
         width: 100vw;
         height: auto;
-        margin-top: 0px;
     }
     div#brands_toggle ol#brands, div#brands_toggle ol#brands_wide  {
         width: 30vw;
@@ -1762,6 +2950,7 @@ section.search div.search_body div.search_item div.rate p  {
         flex-wrap: wrap;
         left: 0px;
         margin-inline: 0vw;
+        margin-top: 0px;
     }
     div#brands_toggle ol.brands  {
         width: 80vw;
@@ -1770,6 +2959,7 @@ section.search div.search_body div.search_item div.rate p  {
         flex-direction: column;
         flex-wrap: wrap;
         margin-inline: 10vw;
+        margin-top: 0px;
     }
     div#brands_toggle ol#brands li, div#brands_toggle ol#brands_wide li {
         width: 100%;
@@ -1808,9 +2998,9 @@ section.search div.search_body div.search_item div.rate p  {
         text-align: justify;
         display: flex;
         flex-direction: column;
-        margin-top: 0vh;
         right: 0px;
         flex-wrap: wrap;
+        margin-top: 0px;
     }
     div#brands_toggle section.wide_screen_main div.home_slider,
     div#brands_toggle section.wide_screen_main div.efficiency,
@@ -1936,7 +3126,6 @@ section.search div.search_body div.search_item div.rate p  {
         display: flex;
         flex-direction: row;
         align-items: center;
-        justify-content: space-evenly;
         overflow-x: auto;
         overflow-y: hidden;
     }
@@ -2061,7 +3250,7 @@ section.search div.search_body div.search_item div.rate p  {
         text-align: justify;
         display: flex;
         flex-direction: column;
-        margin-top: 0vh;
+        margin-top: 0px;
         right: 0px;
         flex-wrap: wrap;
     }
@@ -2338,7 +3527,7 @@ section.search div.search_body div.search_item div.rate p  {
         text-align: justify;
         display: flex;
         flex-direction: column;
-        margin-top: 0vh;
+        margin-top: 0px;
         right: 0px;
         flex-wrap: wrap;
     }
@@ -2429,7 +3618,7 @@ section.search div.search_body div.search_item div.rate p  {
         display: flex;
         text-align: justify;
         flex-direction: column;
-        margin-top: 0vh;
+        margin-top: 0px;
         right: 0px;
         flex-wrap: wrap;
     }
@@ -2614,7 +3803,7 @@ section.search div.search_body div.search_item div.rate p  {
         text-align: justify;
         display: flex;
         flex-direction: column;
-        margin-top: 0vh;
+        margin-top: 0px;
         right: 0px;
         flex-wrap: wrap;
     }
@@ -2678,7 +3867,7 @@ section.search div.search_body div.search_item div.rate p  {
         text-align: justify;
         display: flex;
         flex-direction: column;
-        margin-top: 0vh;
+        margin-top: 0px;
         right: 0px;
         flex-wrap: wrap;
     }
@@ -2737,7 +3926,7 @@ section.search div.search_body div.search_item div.rate p  {
         text-align: justify;
         display: flex;
         flex-direction: column;
-        margin-top: 0vh;
+        margin-top: 0px;
         right: 0px;
         flex-wrap: wrap;
         min-height: 60vh;
@@ -2815,7 +4004,7 @@ section.search div.search_body div.search_item div.rate p  {
         text-align: justify;
         display: flex;
         flex-direction: column;
-        margin-top: 0vh;
+        margin-top: 0px;
         right: 0px;
         flex-wrap: wrap;
         min-height: 60vh;
@@ -2955,10 +4144,921 @@ section.search div.search_body div.search_item div.rate p  {
 
     .save-btn {
         color: black;
-      }
+    }
       
-      .save-btn.active {
+    .save-btn.active {
         color: gold;
-      }
+    }
+
+
+
+    /* NEWS HOME */
+    div#brands_toggle section.wide_news_home  {
+        width: 65vw;
+        margin-left: 5vw;
+        height: auto;
+        text-align: justify;
+        display: flex;
+        flex-direction: column;
+        margin-top: 0px;
+        right: 0px;
+        flex-wrap: wrap;
+    }
+    div#brands_toggle section.wide_news_home div.news_slider  {
+        width: 65vw;
+        height: auto;
+        object-fit: contain;
+        border: none;
+    }
+    div#brands_toggle section.wide_news_home div.news_slider div.news_img_wrapper img  {
+        width: auto;
+        height: auto;
+        transition: opacity 0.5s;
+        top: 50%;
+        left: 50%;
+    }
+    div#brands_toggle section.wide_news_home div.news_slider div.news_img_wrapper p  {
+        color: #000000;
+        font-size: 24px;
+        font-weight: bold;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        text-align: center;
+        padding: 10px;
+    }
+
+    div#brands_toggle section.wide_news_home div.news_home_container  {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        width: 65vw;
+        height: auto;
+    }
+    div#brands_toggle section.wide_news_home div.news_home_container div.news_header_container  {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        width: 65vw;
+        height: auto;
+    }
+    div#brands_toggle section.wide_news_home div.news_home_container div.news_header_container .icon,
+    div#brands_toggle section.wide_news_home div.news_home_container div.news_header_container .icon button  {
+        width: 5vw;
+        height: auto;
+        border: none;
+        cursor: pointer;
+    }
+    div#brands_toggle section.wide_news_home div.news_home_container div.news_header_container .icon button i  {
+        width: 5vw;
+        height: auto;
+        padding: 10px;
+        font-size: 1.8em;
+    }
+    div#brands_toggle section.wide_news_home div.news_home_container div.news_header_container .search  {
+        width: 55vw;
+        height: auto;
+    }
+    div#brands_toggle section.wide_news_home div.news_home_container div.news_header_container .search input  {
+        width: 55vw;
+        height: auto;
+        padding: 10px;
+        font-size: 1.8em;
+        border: none;
+    }
+    div#brands_toggle section.wide_news_home div.news_home_container div.news_header_container .sort  {
+        width: 5vw;
+        height: auto;
+        cursor: pointer;
+    }
+    div#brands_toggle section.wide_news_home div.news_home_container div.news_header_container .sort i  {
+        width: 5vw;
+        height: auto;
+        padding: 10px;
+        font-size: 1.8em;
+    }
+    div#brands_toggle section.wide_news_home div.news_home_container div.read_container  {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        width: 65vw;
+        min-height: 200px;
+    }
+    div#brands_toggle section.wide_news_home div.news_home_container div.read_item  {
+        width: 180px;
+        max-height: 150px;
+        border: 2px solid black;
+        border-top-left-radius: 10%;
+        border-top-right-radius: 10%;
+        border-bottom-left-radius: 10%;
+        border-bottom-right-radius: 10%;
+        background-color: black;
+    }
+    div#brands_toggle section.wide_news_home div.news_home_container div.read_item p  {
+        padding: 7px;
+        font-size: 2em;
+        font-weight: 800;
+        color: white;
+        text-shadow: 2px 2px 4px;
+        text-align: center;
+    }
+    div#brands_toggle section.wide_news_home div.news_home_container div.news_intro_container  {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+        width: 65vw;
+        height: auto;
+    }
+    div#brands_toggle section.wide_news_home div.news_home_container div.news_intro_container .news_intro_item  {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+        width: 65vw;
+        height: auto;
+        margin-bottom: 100px;
+    }
+    div#brands_toggle section.wide_news_home div.news_home_container div.news_intro_container .news_intro_item .news_intro_img  {
+        width: 65vw;
+        height: 60vh;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+    div#brands_toggle section.wide_news_home div.news_home_container div.news_intro_container .news_intro_item .news_intro_img img  {
+        width: 65vh;
+        height: 60vh;
+        object-fit: cover;
+        padding: auto;
+    }
+    div#brands_toggle section.wide_news_home div.news_home_container div.news_intro_container .news_intro_item .news_intro_txt  {
+        width: 65vw;
+        max-height: 15vh;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+    div#brands_toggle section.wide_news_home div.news_home_container div.news_intro_container .news_intro_item .news_intro_txt p  {
+        width: 65vw;
+        height: auto;
+        font-size: 1.6em;
+        font-weight: 600;
+        padding: 10px;
+        text-align: center;
+    }
+    div#brands_toggle section.wide_news_home div.news_home_container div.news_intro_container .news_intro_item .news_intro_txt p a  {
+        width: 65vw;
+        height: auto;
+        font-size: 1.6em;
+        font-weight: 600;
+        padding: 10px;
+        text-align: center;
+    }
+
+
+    /* NEWS MAIN */
+    div#brands_toggle section.wide_main_news  {
+        width: 65vw;
+        margin-left: 5vw;
+        height: auto;
+        text-align: justify;
+        display: flex;
+        flex-direction: column;
+        margin-top: 0px;
+        right: 0px;
+        flex-wrap: wrap;
+    }
+    div#brands_toggle section.wide_main_news .news_top_nav  {
+        width: 60vw;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-evenly;
+        height: auto;
+        margin-inline: 2.5vw;
+    }
+    div#brands_toggle section.wide_main_news .news_top_nav .news_top_nav_icon  {
+        width: 12vw;
+        height: auto;
+        padding: 10px;
+        cursor: pointer;
+    }
+    div#brands_toggle section.wide_main_news .news_top_nav .news_top_nav_icon i  {
+        text-align: center;
+        font-size: 1.8em;
+        font-weight: 800;
+    }
+    div#brands_toggle section.wide_main_news .news_tag_container  {
+        width: 60vw;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        max-height: 250px;
+        margin-inline: 2.5vw;
+        margin-block: 20px;
+    }
+    div#brands_toggle section.wide_main_news .news_tag_container .news_tag_item  {
+        width: 30vw;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        height: auto;
+    }
+    div#brands_toggle section.wide_main_news .news_tag_container .news_tag_item p  {
+        width: 12vw;
+        height: auto;
+        text-align: center;
+        font-size: 0.6em;
+        font-weight: 600;
+        text-shadow: 2px 2px 4px;
+        color: white;
+        background-color: black;
+        padding: 10px;
+    }
+    div#brands_toggle section.wide_main_news .news_head  {
+        width: 60vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: justify;
+        min-height: 200px;
+        margin-inline: 2.5vw;
+    }
+    div#brands_toggle section.wide_main_news .news_head h1  {
+        text-align: center;
+        padding: 10px;
+        font-size: 1.6em;
+        font-weight: 800;
+    }
+    div#brands_toggle section.wide_main_news .news_head h2  {
+        text-align: center;
+        padding: 5px;
+        font-size: 1.4em;
+    }
+    div#brands_toggle section.wide_main_news .news_main  {
+        width: 65vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        text-align: justify;
+        height: auto;
+        margin-block: 20px;
+    }
+    div#brands_toggle section.wide_main_news .news_main .img  {
+        width: 60vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: auto;
+        margin-inline: 2.5vw;
+    }
+    div#brands_toggle section.wide_main_news .news_main .img img  {
+        width: 50vw;
+        height: auto;
+        margin-inline: 0px;
+        object-fit: contain;
+    }
+    div#brands_toggle section.wide_main_news .news_main .news_news  {
+        width: 60vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: auto;
+        margin-inline: 2.5px;
+    }
+    div#brands_toggle section.wide_main_news .news_main .news_news p  {
+        width: 55vw;
+        height: auto;
+        padding: 20px;
+        font-size: 1.6em;
+    }
+    div#brands_toggle section.wide_main_news .news_main .date  {
+        width: 60vw;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        height: auto;
+        margin-inline: 2.5px;
+    }
+    div#brands_toggle section.wide_main_news .news_main .date p  {
+        width: auto;
+        justify-self: right;
+        height: auto;
+        font-size: 1.6em;
+        font-weight: 600;
+        padding: 10px;
+    }
+    div#brands_toggle section.wide_main_news .news_review  {
+        width: 65vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        height: auto;
+        margin-block: 15px;
+    }
+    div#brands_toggle section.wide_main_news .news_review .review_icons  {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+        width: 65vw;
+        height: auto;
+    }
+    div#brands_toggle section.wide_main_news .news_review .review_icons i  {
+        padding: 10px;
+        font-size: 2em;
+    }
+    div#brands_toggle section.wide_main_news .news_review form  {
+        width: 55vw;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-top: 40px;
+    }
+    div#brands_toggle section.wide_main_news .news_review form textarea  {
+        width: 55vw;
+        min-height: 100px;
+        font-size: 1.2em;
+        font-family: "Roboto", sans-serif;
+        font-weight: 800;
+        font-style: normal;
+        padding: 20px;
+        overflow-wrap: break-word;
+        border: none;
+    }
+    div#brands_toggle section.wide_main_news .news_review form input  {
+        width: 55vw;
+        font-size: 1.2em;
+        font-family: "Roboto", sans-serif;
+        font-weight: 800;
+        font-style: normal;
+        padding: 20px;
+        overflow-wrap: break-word;
+        border: none;
+    }
+    div#brands_toggle section.wide_main_news .news_review form button  {
+        width: auto;
+        height: auto;
+        font-size: 1.2em;
+        font-family: "Roboto", sans-serif;
+        font-weight: 800;
+        font-style: normal;
+        padding: 10px;
+        border: none;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+    div#brands_toggle section.wide_main_news .news_review form button:hover  {
+        box-shadow: 2px 2px 2px black;
+    }
+    div#brands_toggle section.wide_main_news .loadMore_container  {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        width: 65vw;
+        min-height: 200px;
+        margin-inline: 2.5vw;
+    }
+    div#brands_toggle section.wide_main_news .loadMore_container .loadMore_item  {
+        width: 180px;
+        max-height: 150px;
+        border: 2px solid black;
+        border-top-left-radius: 10%;
+        border-top-right-radius: 10%;
+        border-bottom-left-radius: 10%;
+        border-bottom-right-radius: 10%;
+        background-color: black;
+        cursor: pointer;
+    }
+    div#brands_toggle section.wide_main_news .loadMore_container .loadMore_item p  {
+        padding: 7px;
+        font-size: 1.2em;
+        font-weight: 800;
+        color: white;
+        text-shadow: 2px 2px 4px;
+        text-align: center;
+    }
+
+    
+    /* FUNDING MAIN */
+    div#brands_toggle section.wide_funding_home  {
+        width: 65vw;
+        margin-left: 5vw;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        margin-top: 0px;
+        right: 0px;
+        flex-wrap: wrap;
+    }
+    div#brands_toggle section.wide_funding_home .funding_top_nav  {
+        width: 60vw;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-evenly;
+        height: auto;
+        margin-inline: 2.5vw;
+    }
+    div#brands_toggle section.wide_funding_home .funding_top_nav .funding_top_nav_icon  {
+        width: 12vw;
+        height: auto;
+        padding: 10px;
+        cursor: pointer;
+    }
+    div#brands_toggle section.wide_funding_home .funding_top_nav .funding_top_nav_icon i  {
+        text-align: center;
+        font-size: 1.8em;
+        font-weight: 800;
+    }
+    div#brands_toggle section.wide_funding_home .funding_tag_container  {
+        width: 60vw;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        max-height: 250px;
+        margin-inline: 2.5vw;
+        margin-block: 20px;
+    }
+    div#brands_toggle section.wide_funding_home .funding_tag_container .funding_tag_item  {
+        width: 30vw;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        height: auto;
+    }
+    div#brands_toggle section.wide_funding_home .funding_tag_container .funding_tag_item p  {
+        width: 12vw;
+        height: auto;
+        text-align: center;
+        font-size: 1.2em;
+        font-weight: 600;
+        text-shadow: 2px 2px 4px;
+        color: white;
+        background-color: black;
+        padding: 10px;
+    }
+    div#brands_toggle section.wide_funding_home .funding_head  {
+        width: 60vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: justify;
+        min-height: 200px;
+        margin-inline: 2.5vw;
+    }
+    div#brands_toggle section.wide_funding_home .funding_head h2  {
+        text-align: center;
+        padding: 10px;
+        font-size: 1.6em;
+        font-weight: 800;
+    }
+    div#brands_toggle section.wide_funding_home .funding_home_main  {
+        width: 65vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: auto;
+        margin-block: 20px;
+    }
+    div#brands_toggle section.wide_funding_home .funding_home_main form  {
+        width: 65vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        height: auto;
+    }
+    div#brands_toggle section.wide_funding_home .funding_home_main form .currency  {
+        width: 65vw;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        height: auto;
+        padding: 20px;
+    }
+    div#brands_toggle section.wide_funding_home .funding_home_main form .currency label  {
+        width: 30vw;
+        height: auto;
+        text-align: left;
+        font-size: 1.6em;
+        font-weight: 600;
+    }
+    div#brands_toggle section.wide_funding_home .funding_home_main form .currency select  {
+        width: 35vw;
+        height: auto;
+        text-align: left;
+        font-size: 1.6em;
+        font-weight: 600;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+    }
+    div#brands_toggle section.wide_funding_home .funding_home_main form .amount  {
+        width: 65vw;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        height: auto;
+        padding: 20px;
+    }
+    div#brands_toggle section.wide_funding_home .funding_home_main form .amount label  {
+        width: 30vw;
+        height: auto;
+        text-align: left;
+        font-size: 1.6em;
+        font-weight: 600;
+    }
+    div#brands_toggle section.wide_funding_home .funding_home_main form .amount input  {
+        width: 35vw;
+        height: auto;
+        text-align: left;
+        font-size: 1.6em;
+        font-weight: 600;
+        border-left: 5px solid rgb(70, 0, 0);
+        border-top: none;
+        border-bottom: none;
+        border-right: none;
+        padding: 10px;
+    }
+    div#brands_toggle section.wide_funding_home .funding_home_main form .choose_payment_method  {
+        width: 65vw;
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        height: auto;
+        padding: 20px;
+    }
+    div#brands_toggle section.wide_funding_home .funding_home_main form .choose_payment_method h3  {
+        width: 65vw;
+        height: auto;
+        padding: 10px;
+        text-align: center;
+        font-size: 1.8em;
+        font-weight: 800;
+    }
+    div#brands_toggle section.wide_funding_home .funding_home_main form .choose_payment_method .methods  {
+        width: 65vw;
+        height: auto;
+        padding: 10px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+    div#brands_toggle section.wide_funding_home .funding_home_main form .choose_payment_method .methods input  {
+        width: auto;
+        height: auto;
+        font-size: 1.6em;
+        font-weight: 600;
+        padding: 20px;
+        cursor: pointer;
+    }
+    div#brands_toggle section.wide_funding_home .funding_home_main form .choose_payment_method .methods label  {
+        width: auto;
+        height: auto;
+        font-size: 1.6em;
+        font-weight: 600;
+        padding: 20px;
+        cursor: pointer;
+    }
+    div#brands_toggle section.wide_funding_home .funding_home_main form .add_card_container  {
+        width: 65vw;
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        height: auto;
+    }
+    div#brands_toggle section.wide_funding_home .funding_home_main form .add_card_container h3  {
+        width: 65vw;
+        height: auto;
+        padding: 10px;
+        text-align: center;
+        font-size: 1.8em;
+        font-weight: 800;
+    }
+    div#brands_toggle section.wide_funding_home .funding_home_main form .add_card_container .card_number  {
+        width: 65vw;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        height: auto;
+    }
+    div#brands_toggle section.wide_funding_home .funding_home_main form .add_card_container .card_number label  {
+        width: 30vw;
+        height: auto;
+        text-align: left;
+        font-size: 1.6em;
+        font-weight: 600;
+        padding: 10px;
+    }
+    div#brands_toggle section.wide_funding_home .funding_home_main form .add_card_container .card_number input  {
+        width: 35vw;
+        height: auto;
+        text-align: left;
+        font-size: 1.6em;
+        font-weight: 600;
+        border-left: 5px solid rgb(70, 0, 0);
+        border-top: none;
+        border-bottom: none;
+        border-right: none;
+        padding: 10px;
+    }
+    div#brands_toggle section.wide_funding_home .funding_home_main form .add_card_container .number_error p,
+    div#brands_toggle section.wide_funding_home .funding_home_main form .add_card_container .expire_error p  {
+        width: 65vw;
+        height: auto;
+        text-align: center;
+        font-size: 1em;
+        padding: 10px;
+        color: rgb(189, 4, 4);
+        display: none;
+    }
+    div#brands_toggle section.wide_funding_home .funding_home_main form .add_card_container .cvv_container  {
+        width: 65vw;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 200px;
+    }
+    div#brands_toggle section.wide_funding_home .funding_home_main form .add_card_container .cvv_container .expire_item,
+    div#brands_toggle section.wide_funding_home .funding_home_main form .add_card_container .cvv_container .cvv_item  {
+        width: 32.5vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: auto;
+    }
+    div#brands_toggle section.wide_funding_home .funding_home_main form .add_card_container .cvv_container .expire_item label,
+    div#brands_toggle section.wide_funding_home .funding_home_main form .add_card_container .cvv_container .cvv_item label  {
+        width: 32.5vw;
+        height: auto;
+        text-align: center;
+        font-size: 1.6em;
+        font-weight: 600;
+        padding: 20px;
+    }
+    div#brands_toggle section.wide_funding_home .funding_home_main form .add_card_container .cvv_container .expire_item input  {
+        width: 32.5vw;
+        height: auto;
+        text-align: center;
+        font-size: 1.6em;
+        font-weight: 600;
+        border-left: 5px solid rgb(70, 0, 0);
+        border-top: none;
+        border-bottom: none;
+        border-right: none;
+    }
+    div#brands_toggle section.wide_funding_home .funding_home_main form .add_card_container .cvv_container .cvv_item input  {
+        width: 32.5vw;
+        height: auto;
+        text-align: center;
+        font-size: 1.6em;
+        font-weight: 600;
+        border: none;
+    }
+    div#brands_toggle section.wide_funding_home .funding_home_main form .add_card_container .holder_name_container  {
+        width: 65vw;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        height: auto;
+    }
+    div#brands_toggle section.wide_funding_home .funding_home_main form .add_card_container .holder_name_container label  {
+        width: 30vw;
+        height: auto;
+        text-align: left;
+        font-size: 1.6em;
+        font-weight: 600;
+        padding: 10px;
+    }
+    div#brands_toggle section.wide_funding_home .funding_home_main form .add_card_container .holder_name_container input  {
+        width: 35vw;
+        height: auto;
+        text-align: left;
+        font-size: 1.6em;
+        font-weight: 600;
+        border-left: 5px solid rgb(70, 0, 0);
+        border-top: none;
+        border-bottom: none;
+        border-right: none;
+        padding: 10px;
+    }
+    div#brands_toggle section.wide_funding_home .funding_home_main form .transaction_summary_container  {
+        width: 65vw;
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: auto;
+    }
+    div#brands_toggle section.wide_funding_home .funding_home_main form .transaction_summary_container h4  {
+        width: 65vw;
+        height: auto;
+        padding: 20px;
+        text-align: center;
+        font-size: 1.8em;
+        font-weight: 800;
+    }
+    div#brands_toggle section.wide_funding_home .funding_home_main form .transaction_summary_container p  {
+        width: 65vw;
+        height: auto;
+        padding: 10px;
+        text-align: left;
+        font-size: 1.6em;
+    }
+    div#brands_toggle section.wide_funding_home .funding_home_main p  {
+        width: 65vw;
+        height: auto;
+        padding: 20px;
+        text-align: center;
+        font-size: 1.2em;
+        font-weight: 600;
+    }
+    div#brands_toggle section.wide_funding_home .funding_home_main form .button_container  {
+        width: 65vw;
+        height: auto;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+    div#brands_toggle section.wide_funding_home .funding_home_main form .button_container button  {
+        width: auto;
+        height: auto;
+        padding: 20px;
+        text-align: center;
+        font-size: 1.4em;
+        font-weight: 600;
+        border: none;
+        color: white;
+        text-shadow: 2px 2px 4px;
+        background-color: black;
+        cursor: pointer;
+    }
+    div#brands_toggle section.wide_funding_home .funding_home_main form .button_container button:hover  {
+        background-color: rgb(95, 0, 0);
+    }
+
+    /* WITHDRAWAL */
+    div#brands_toggle section.wide_funding_home .funding_home_main form .withdrawAmountContainer  {
+        width: 65vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: auto;
+    }
+    div#brands_toggle section.wide_funding_home .funding_home_main form .withdrawAmountContainer .amount_item  {
+        width: 65vw;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        height: auto;
+        padding: 20px;
+    }
+    div#brands_toggle section.wide_funding_home .funding_home_main form .withdrawAmountContainer .amount_item label  {
+        width: 30vw;
+        height: auto;
+        text-align: left;
+        font-size: 1.4em;
+        font-weight: 600;
+    }
+    div#brands_toggle section.wide_funding_home .funding_home_main form .withdrawAmountContainer .amount_item input  {
+        width: 35vw;
+        height: auto;
+        text-align: left;
+        font-size: 1.6em;
+        font-weight: 600;
+        border-left: 5px solid rgb(70, 0, 0);
+        border-top: none;
+        border-bottom: none;
+        border-right: none;
+        padding: 10px;
+    }
+    div#brands_toggle section.wide_funding_home .funding_home_main form .withdrawAmountContainer .amount_error_msg  {
+        width: 100%;
+        height: auto;
+        font-size: 1.2em;
+        font-weight: 600;
+        text-align: center;
+        color: #660202;
+        display: none;
+    }
+    div#brands_toggle section.wide_funding_home .funding_home_main form .choose_withdrawal_method  {
+        width: 65vw;
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        height: auto;
+        padding: 20px;
+    }
+    div#brands_toggle section.wide_funding_home .funding_home_main form .choose_withdrawal_method h3  {
+        width: 65vw;
+        height: auto;
+        padding: 10px;
+        text-align: center;
+        font-size: 1.8em;
+        font-weight: 800;
+    }
+    div#brands_toggle section.wide_funding_home .funding_home_main form .choose_withdrawal_method .methods  {
+        width: 65vw;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+    }
+    div#brands_toggle section.wide_funding_home .funding_home_main form .choose_withdrawal_method .methods .accNumber,
+    div#brands_toggle section.wide_funding_home .funding_home_main form .choose_withdrawal_method .methods .bankName  {
+        width: 60vw;
+        height: auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        margin-block: 15px;
+    }
+    div#brands_toggle section.wide_funding_home .funding_home_main form .choose_withdrawal_method .methods .accNumber label  {
+        width: 30vw;
+        height: auto;
+        text-align: left;
+        font-size: 1.4em;
+        font-weight: 600;
+    }
+    div#brands_toggle section.wide_funding_home .funding_home_main form .choose_withdrawal_method .methods .accNumber input  {
+        width: 35vw;
+        height: auto;
+        text-align: left;
+        font-size: 1.6em;
+        font-weight: 600;
+        border-left: 5px solid rgb(70, 0, 0);
+        border-top: none;
+        border-bottom: none;
+        border-right: none;
+        padding: 10px;
+    }
+    div#brands_toggle section.wide_funding_home .funding_home_main form .choose_withdrawal_method .methods .bankName label  {
+        width: 30vw;
+        height: auto;
+        text-align: left;
+        font-size: 1.4em;
+        font-weight: 600;
+    }
+    div#brands_toggle section.wide_funding_home .funding_home_main form .choose_withdrawal_method .methods .bankName select  {
+        width: 35vw;
+        height: auto;
+        text-align: left;
+        font-size: 1.4em;
+        font-weight: 600;
+        border-left: 5px solid rgb(70, 0, 0);
+        border-top: none;
+        border-bottom: none;
+        border-right: none;
+        padding: 10px;
+        cursor: pointer;
+    }
+    div#brands_toggle section.wide_funding_home .funding_home_main form .choose_withdrawal_method .methods .account_holder_name  {
+        width: 65vw;
+        height: auto;
+        font-size: 1.6em;
+        font-weight: 800;
+        text-align: center;
+        color: darkgreen;
+    } 
 
 }
