@@ -1,14 +1,57 @@
-<nav class="mobile">
+<nav class="mobile" id="mobile_top_nav">
     <ul class="head_nav">
-        <li class="logo">Rides <br> With <br> Jerry</li>
-        <li class="news">News</li>
-        <a href="/login"><li id="login_icon" class="nav_icon"><i class="fa-solid fa-user"></i></li></a>
-        <a href="/more">
-            <li class="nav_bar" id="bar">
-                <p class="bar bar1"></p>
-                <p class="bar bar2"></p>
-                <p class="bar bar3"></p>
-            </li>
-        </a>
+
+        <ol class="first">
+            <li class="logo">Rides <br> With <br> Jerry</li>
+
+            <li class="news"><a href="/rides-updates">News</a></li>
+        </ol>
+
+        <ol class="second">
+            <ul class="top">
+                <ol>
+                    <li class="fundToggle fundOn">$<span id="mobile_usd_bal">0.0</span></li>
+                    <li class="fundToggle fundToggleNone">₦<span id="mobile_ngn_bal">0.0</span></li>
+                </ol>
+        
+                <ol>
+                    <li class="trackToggle"><i class="fa-solid fa-angle-down fa-bounce"></i></li>
+                </ol>
+        
+                <ol>
+                    <li class="userToggle"><i class="fa-solid fa-user"></i></li>
+                </ol>
+            </ul>
+
+            <ul class="bottom">
+
+                <ol class="fundDisplay">
+                    <li class="nairaSwitch">Switch To Naira</li>
+                    <li class="SwitchNone dollarSwitch">Switch To Dollar</li>
+                    <li><a href="/account-funding">Fund My Account</a></li>
+                    <li><a href="/funds-withdrawal">Withdraw My Funds</a></li>
+                </ol>
+
+                <ol class="trackDisplay">
+                    <li><a href="/sell">Sell My Car</a></li>
+                    <li><a href="/sell">Become A Dealer</a></li>
+                    <li>Track My Car</li>
+                    <li>You're Appreciated!</li>
+                </ol>
+
+                <ol class="userDisplay">
+                    <li><a href="/my-account">My Account</a></li>
+                    <li><a href="/signup">Sign Up</a></li>
+                    <li><a href="/login">Sign In</a></li>
+                    <li><a href="/logout">Sign Out</a></li>
+                </ol>
+            </ul>
+        </ol>
+        
     </ul>
+
+    <div class="user_nav">
+        <p>Welcome to Rides! <b id="mobile_logged_user_username"></b> 🎉</p>
+    </div>
+
 </nav>

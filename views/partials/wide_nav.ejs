@@ -1,11 +1,41 @@
-<nav class="wide_screen">
+<nav class="wide_screen" id="wide_top_nav">
     <ul class="head_nav">
+        
         <li class="logo">Rides.With.Jerry</li>
-        <a href="/my-account"><li class="nav_item my_account_toggle">My Account</li></a>
-        <a href="/sell"><li class="nav_item sell_car_toggle">Sell My Car</li></a>
-        <a href="/sell"><li class="nav_item sell_car_toggle">Become A Dealer</li></a>
-        <li class="nav_item">You're Appreciated!</li>
-        <a href="/login"><li id="wide_login_icon" class="nav_icon"><i class="fa-solid fa-user"></i></li></a>
-        <li class="nav_news">News</li>
+
+        <ol>
+            <li class="hoverAnimate fundToggle fundOn">$<span id="wide_usd_bal">0.0</span></li>
+            <li class="hoverAnimate fundToggle fundToggleNone">₦<span id="wide_ngn_bal">0.0</span></li>
+            <ul class="fundDisplay">
+                <li class="nairaSwitch">Switch To Naira</li>
+                <li class="SwitchNone dollarSwitch">Switch To Dollar</li>
+                <li><a href="/account-funding">Fund My Account</a></li>
+                <li><a href="/funds-withdrawal">Withdraw My Funds</a></li>
+            </ul>
+        </ol>
+
+        <ol>
+            <li class="hoverAnimate trackToggle"><i class="fa-solid fa-angle-down fa-bounce"></i></li>
+            <ul class="trackDisplay">
+                <li><a href="/sell">Sell My Car</a></li>
+                <li><a href="/sell">Become A Dealer</a></li>
+                <li>Track My Car</li>
+                <li>You're Appreciated!</li>
+            </ul>
+        </ol>
+
+        <ol>
+            <li class="hoverAnimate userToggle"><i class="fa-solid fa-user"></i></li>
+            <ul class="userDisplay">
+                <li><a href="/my-account">My Account</a></li>
+                <li><a href="/signup">Sign Up</a></li>
+                <li><a href="/login">Sign In</a></li>
+                <li><a href="/logout">Sign Out</a></li>
+            </ul>
+        </ol>
+
+        <li class="nav_news"><a href="/rides-updates">News</a></li>
+
     </ul>
+
 </nav>

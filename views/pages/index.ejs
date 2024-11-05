@@ -5,10 +5,11 @@
         <meta author="OKWUDIRI JEREMIAH AKUMEFULE" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
-        <meta name="description" content="Electronic cars store" />
-        <meta name="keywords" content="Cars" />
 
-        <title>Rides.With.Jerry</title>
+        <title> <%= title %> || Rides.With.Jerry - New and Used Cars for Sale in US and Nigeria</title>
+        <meta name="description" content="Discover a vast selection of new and used cars for sale in the US and Nigeria at Rides.With.Jerry. Browse our extensive inventory, read expert reviews, and find your ideal vehicle today with ease!">
+        <meta name="keywords" content="new cars, used cars, car dealership, buy cars, cars for sale, SUVs, trucks, affordable cars, luxury cars, cars in US, cars in Nigeria, used cars for sale in Porthacourt, Rivers State, new cars in Lekki, Lagos State, affordable cars in Central Area, Abuja, luxury cars for sale in Los Angeles, Bel Air, cars for sale in Nigeria, new cars in US, used cars in Lagos, affordable cars in Abuja, luxury SUVs for sale in Los Angeles, affordable cars in Yenagoa, Bayelsa State, luxury cars for sale in Awka, Anambra State, cars for sale in Umuahia, Abia State, new cars in Jos, Plateau State. cars for sale in Ibadan, Oyo State">
+        
         <link rel="shortcut icon" href="gallery/favicon.ico" type="image/x-icon" />
 
         <script src="https://kit.fontawesome.com/51aa461e93.js" crossorigin="anonymous"></script>
@@ -20,11 +21,55 @@
         <link rel="stylesheet" href="style.css" />
         <link rel="stylesheet" href="style_message.css" />
 
+        <link rel="canonical" href="https://www.rideswithjerry.com/" />
+
+        <link rel="alternate" hreflang="x-default" href="https://www.rideswithjerry.com/" />
+
+        <script>
+            if ('serviceWorker' in navigator) {
+              navigator.serviceWorker.register('sw.js')
+                .then((registration) => {
+                  console.log('Service worker registered:', registration);
+                })
+                .catch((error) => {
+                  console.error('Service worker registration failed:', error);
+                });
+            }
+        </script>
+
+        <script type="application/ld+json">
+          {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "Rides with Jerry",
+            "description": "Experience the ultimate in transportation services with Rides with Jerry. Our expertly guided tours and personalized transportation solutions are designed to provide unparalleled comfort, convenience, and reliability. Whether you're exploring new destinations or commuting to work, our team is dedicated to delivering exceptional service and ensuring your journey is nothing short of exceptional.",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Igbo Etche Campus, Rumuolumeni",
+              "addressLocality": "Port Harcourt",
+              "addressRegion": "Rivers State",
+              "postalCode": "504102"
+            },
+            "telephone": "+2347081065179",
+            "email": "ridewithjerry@gmail.com",
+              "openingHours": [
+                "Mo 00:00-00:00",
+                "Tu 00:00-00:00",
+                "We 00:00-00:00",
+                "Th 00:00-00:00",
+                "Fr 00:00-00:00",
+                "Sa 00:00-00:00",
+                "Su 06:00-00:00"
+              ] 
+            }
+        </script>
+
+        
+
     </head>
     <body>
 
         <main id="main">
-            <p class="f"></p>
             <%- include('../partials/top_nav') %>
             
 
@@ -39,6 +84,10 @@
                 
             </div>
 
+            <%- include('../partials/login_prompt') %>
+
+            <%- include('../partials/user_side_nav') %>
+
             <%- include('../partials/footer_nav') %>
 
             <%- include('../partials/footer') %>
@@ -52,6 +101,8 @@
         <script src="check.js"></script>
         <script src="search.js"></script>
         <script src="save.js"></script>
+        <script src="animatev2.js"></script>
+        <script src="animatev2II.js"></script>
     </body>
 </html>
 
