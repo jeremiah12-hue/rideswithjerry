@@ -672,6 +672,17 @@ app.get('/api/data', verifyToken(), (req, res) => {
   }
 });
 
+
+// Serve sitemap.xml
+app.get('/sitemap.xml', (req, res) => {
+  res.sendFile(path.join(__dirname, 'sitemap.xml'));
+});
+
+// Serve robots.txt
+app.get('/robots.txt', (req, res) => {
+  res.sendFile(path.join(__dirname, 'robots.txt'));
+});
+
  
 // index page   
 app.get('/home', function(req, res) {
