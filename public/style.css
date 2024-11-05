@@ -3107,7 +3107,7 @@ section.mobile_funding_home .funding_home_main form .choose_withdrawal_method .m
         width: 70vw;
         margin-inline: 15vw;
     }
-    div.wide_brand_rated h1, div.wide_car_rated h1  {
+    div.wide_brand_rated h2, div.wide_car_rated h2  {
         font-family: "Dosis", sans-serif;
         font-weight: 400;
         font-style: normal;
@@ -3218,8 +3218,8 @@ section.mobile_funding_home .funding_home_main form .choose_withdrawal_method .m
         font-size: 1em;
         padding: 20px;
     }
-    div.car_buying h1, div.car_care h1,
-    div.faq h1  {
+    div.car_buying h2, div.car_care h2,
+    div.faq h2  {
         margin-block: 40px;
     }
     div.car_buying ol li.buy_head  {
