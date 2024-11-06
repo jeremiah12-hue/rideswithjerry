@@ -643,7 +643,7 @@ section.mobile_main div.top_rated, section.mobile_main div.car_rated  {
     margin-block: 20px;
     text-align: center;
 }
-section.mobile_main div.top_rated h1, section.mobile_main div.car_rated h1  {
+section.mobile_main div.top_rated h2, section.mobile_main div.car_rated h2  {
     font-family: "Dosis", sans-serif;
     font-weight: 400;
     font-style: normal;
@@ -697,8 +697,8 @@ section.mobile_main div.faq  {
     text-align: center;
     font-size: 1.5em;
 }
-section.mobile_main div.car_buying h1, section.mobile_main div.car_care h1,
-section.mobile_main div.faq h1  {
+section.mobile_main div.car_buying h3, section.mobile_main div.car_care h4,
+section.mobile_main div.faq h5  {
     margin-block: 40px;
 }
 section.mobile_main div.car_buying ol li.buy_head  {
@@ -3218,8 +3218,8 @@ section.mobile_funding_home .funding_home_main form .choose_withdrawal_method .m
         font-size: 1em;
         padding: 20px;
     }
-    div.car_buying h2, div.car_care h2,
-    div.faq h2  {
+    div.car_buying h3, div.car_care h4,
+    div.faq h5  {
         margin-block: 40px;
     }
     div.car_buying ol li.buy_head  {
