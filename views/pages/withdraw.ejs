@@ -1,3 +1,120 @@
+<section class="mobile_funding_home">
+    <div class="funding_top_nav">
+        <div class="funding_top_nav_icon"><i class="fa-brands fa-whatsapp"></i></div>
+        <div class="funding_top_nav_icon"><i class="fa-brands fa-facebook-f"></i></div>
+        <div class="funding_top_nav_icon"><i class="fa-brands fa-instagram"></i></div>
+        <div class="funding_top_nav_icon"><i class="fa-brands fa-x-twitter"></i></div>
+        <div class="funding_top_nav_icon"><i class="fa-brands fa-linkedin-in"></i></div>
+    </div>
+
+    <div class="funding_tag_container">
+        <div class="funding_tag_item">
+            <p>Funds</p>
+            <p>Withdrawal</p>
+        </div>
+    </div>
+
+    <div class="funding_head">
+        <h1>
+            Withdraw your funds now and accelerate towards your dream car!
+        </h1>
+    </div>
+
+    <div class="funding_home_main">
+
+        <form action="" method="post">
+            <div class="currency">
+                <label for="currency">Choose Currency:</label>
+                <select class="currency_select" id="mobile_currency" name="currency" required>
+                  <option value="USD" selected>USD</option>
+                  <option value="NGN">NGN</option>
+                </select>
+            </div>
+
+            <div class="withdrawAmountContainer">
+                <div class="amount_item">
+                    <label for="amount">Amount:</label>
+                    <input type="number" class="withdrawAmount" id="amount" name="amount" placeholder="Enter amount" required min="1">
+                </div>
+                <div class="amount_error_msg"></div>
+            </div>
+
+            <div class="choose_withdrawal_method">
+                <h3>My Account Details:</h3>
+
+                <div class="methods">
+                    <div class="accNumber">
+                        <label for="account-number">Account Number:</label>
+                        <input type="text" name="account-number" class="account_number_val" id="account-number" required pattern="^\d{10,12}$" title="Please enter a valid account number (10 to 12 digits)" placeholder="Enter account number" />
+                    </div>
+                    <div class="bankName">
+                        <label for="bank_name">Bank Name:</label>
+                        <select name="bank_name" class="bank_name_val" id="bank_name" required>
+                            <option value="" disabled selected>Select a bank</option>
+                            <option value="Access Bank">Access Bank</option>
+                            <option value="American Express Bank">American Express Bank</option>
+                            <option value="Bank of America">Bank of America</option>
+                            <option value="Branch International">Branch International</option>
+                            <option value="Capital One">Capital One</option>
+                            <option value="Carbon">Carbon</option>
+                            <option value="Chase Bank">Chase Bank</option>
+                            <option value="Citibank">Citibank</option>
+                            <option value="Fifth Third Bank">Fifth Third Bank</option>
+                            <option value="FairMoney">FairMoney</option>
+                            <option value="Fidelity Bank">Fidelity Bank</option>
+                            <option value="First Bank of Nigeria">First Bank of Nigeria</option>
+                            <option value="First National Bank">First National Bank</option>
+                            <option value="Guaranty Trust Bank">Guaranty Trust Bank</option>
+                            <option value="Heritage Bank">Heritage Bank</option>
+                            <option value="HSBC">HSBC</option>
+                            <option value="Keystone Bank">Keystone Bank</option>
+                            <option value="KeyBank">KeyBank</option>
+                            <option value="Lendigo">Lendigo</option>
+                            <option value="Moniepoint">Moniepoint</option>
+                            <option value="Opay">Opay</option>
+                            <option value="Opay Savings">Opay Savings</option>
+                            <option value="PalmPay">PalmPay</option>
+                            <option value="Paylater">Paylater</option>
+                            <option value="PNC Bank">PNC Bank</option>
+                            <option value="Polaris Bank">Polaris Bank</option>
+                            <option value="QuickCheck">QuickCheck</option>
+                            <option value="Regions Bank">Regions Bank</option>
+                            <option value="Renmoney">Renmoney</option>
+                            <option value="Standard Chartered Bank">Standard Chartered Bank</option>
+                            <option value="Sterling Bank">Sterling Bank</option>
+                            <option value="TD Bank">TD Bank</option>
+                            <option value="United Bank for Africa (UBA)">United Bank for Africa (UBA)</option>
+                            <option value="Union Bank">Union Bank</option>
+                            <option value="Wells Fargo">Wells Fargo</option>
+                            <option value="Wema Bank">Wema Bank</option>
+                            <option value="Zenith Bank">Zenith Bank</option>
+                        </select>
+                    </div>
+                    <p class="account_holder_name"></p>
+                </div>
+            </div>
+
+            <div class="transaction_summary_container">
+                <h4>Transaction Summary:</h4>
+                <p><strong>Currency:</strong> <span id="mobile_selected_currency"></span></p>
+                <p><strong>Amount:</strong> <span id="mobile_funded_amount"></span></p>
+                <p><strong>Transaction Fees:</strong> <span id="mobile_transaction_fees"></span></p>
+                <p><strong>Total Amount Deducted:</strong> <span id="mobile_total_amount"></span></p>
+            </div>
+
+            <p>Your transactions are secure with SSL encryption 🔒</p>
+
+            <div class="button_container">
+                <button type="submit">Withdraw My Funds</button>
+            </div>
+        </form>
+    </div>
+
+        
+</section>
+
+
+
 <div id="brands_toggle">
     
     <ol id="brands">
@@ -156,119 +273,3 @@
     </section>
 
 </div>
-
-
-<section class="mobile_funding_home">
-    <div class="funding_top_nav">
-        <div class="funding_top_nav_icon"><i class="fa-brands fa-whatsapp"></i></div>
-        <div class="funding_top_nav_icon"><i class="fa-brands fa-facebook-f"></i></div>
-        <div class="funding_top_nav_icon"><i class="fa-brands fa-instagram"></i></div>
-        <div class="funding_top_nav_icon"><i class="fa-brands fa-x-twitter"></i></div>
-        <div class="funding_top_nav_icon"><i class="fa-brands fa-linkedin-in"></i></div>
-    </div>
-
-    <div class="funding_tag_container">
-        <div class="funding_tag_item">
-            <p>Funds</p>
-            <p>Withdrawal</p>
-        </div>
-    </div>
-
-    <div class="funding_head">
-        <h1>
-            Withdraw your funds now and accelerate towards your dream car!
-        </h1>
-    </div>
-
-    <div class="funding_home_main">
-
-        <form action="" method="post">
-            <div class="currency">
-                <label for="currency">Choose Currency:</label>
-                <select class="currency_select" id="mobile_currency" name="currency" required>
-                  <option value="USD" selected>USD</option>
-                  <option value="NGN">NGN</option>
-                </select>
-            </div>
-
-            <div class="withdrawAmountContainer">
-                <div class="amount_item">
-                    <label for="amount">Amount:</label>
-                    <input type="number" class="withdrawAmount" id="amount" name="amount" placeholder="Enter amount" required min="1">
-                </div>
-                <div class="amount_error_msg"></div>
-            </div>
-
-            <div class="choose_withdrawal_method">
-                <h3>My Account Details:</h3>
-
-                <div class="methods">
-                    <div class="accNumber">
-                        <label for="account-number">Account Number:</label>
-                        <input type="text" name="account-number" class="account_number_val" id="account-number" required pattern="^\d{10,12}$" title="Please enter a valid account number (10 to 12 digits)" placeholder="Enter account number" />
-                    </div>
-                    <div class="bankName">
-                        <label for="bank_name">Bank Name:</label>
-                        <select name="bank_name" class="bank_name_val" id="bank_name" required>
-                            <option value="" disabled selected>Select a bank</option>
-                            <option value="Access Bank">Access Bank</option>
-                            <option value="American Express Bank">American Express Bank</option>
-                            <option value="Bank of America">Bank of America</option>
-                            <option value="Branch International">Branch International</option>
-                            <option value="Capital One">Capital One</option>
-                            <option value="Carbon">Carbon</option>
-                            <option value="Chase Bank">Chase Bank</option>
-                            <option value="Citibank">Citibank</option>
-                            <option value="Fifth Third Bank">Fifth Third Bank</option>
-                            <option value="FairMoney">FairMoney</option>
-                            <option value="Fidelity Bank">Fidelity Bank</option>
-                            <option value="First Bank of Nigeria">First Bank of Nigeria</option>
-                            <option value="First National Bank">First National Bank</option>
-                            <option value="Guaranty Trust Bank">Guaranty Trust Bank</option>
-                            <option value="Heritage Bank">Heritage Bank</option>
-                            <option value="HSBC">HSBC</option>
-                            <option value="Keystone Bank">Keystone Bank</option>
-                            <option value="KeyBank">KeyBank</option>
-                            <option value="Lendigo">Lendigo</option>
-                            <option value="Moniepoint">Moniepoint</option>
-                            <option value="Opay">Opay</option>
-                            <option value="Opay Savings">Opay Savings</option>
-                            <option value="PalmPay">PalmPay</option>
-                            <option value="Paylater">Paylater</option>
-                            <option value="PNC Bank">PNC Bank</option>
-                            <option value="Polaris Bank">Polaris Bank</option>
-                            <option value="QuickCheck">QuickCheck</option>
-                            <option value="Regions Bank">Regions Bank</option>
-                            <option value="Renmoney">Renmoney</option>
-                            <option value="Standard Chartered Bank">Standard Chartered Bank</option>
-                            <option value="Sterling Bank">Sterling Bank</option>
-                            <option value="TD Bank">TD Bank</option>
-                            <option value="United Bank for Africa (UBA)">United Bank for Africa (UBA)</option>
-                            <option value="Union Bank">Union Bank</option>
-                            <option value="Wells Fargo">Wells Fargo</option>
-                            <option value="Wema Bank">Wema Bank</option>
-                            <option value="Zenith Bank">Zenith Bank</option>
-                        </select>
-                    </div>
-                    <p class="account_holder_name"></p>
-                </div>
-            </div>
-
-            <div class="transaction_summary_container">
-                <h4>Transaction Summary:</h4>
-                <p><strong>Currency:</strong> <span id="mobile_selected_currency"></span></p>
-                <p><strong>Amount:</strong> <span id="mobile_funded_amount"></span></p>
-                <p><strong>Transaction Fees:</strong> <span id="mobile_transaction_fees"></span></p>
-                <p><strong>Total Amount Deducted:</strong> <span id="mobile_total_amount"></span></p>
-            </div>
-
-            <p>Your transactions are secure with SSL encryption 🔒</p>
-
-            <div class="button_container">
-                <button type="submit">Withdraw My Funds</button>
-            </div>
-        </form>
-    </div>
-
-        
-</section>

@@ -1,3 +1,43 @@
+<section class="mobile_news_home">
+    <div class="news_slider">
+        <div class="news_img_wrapper">
+            <img loading="lazy" src="gallery/news_imgs/news_home.avif" alt="News Update!" />
+        </div>
+    </div>
+
+    <div class="news_home_container">
+        <div class="news_header_container">
+            <div class="icon">
+                <button type="submit">
+                    <i class="fa-brands fa-searchengin fa-fade"></i>
+                </button>
+            </div>
+            <div class="search">
+                <input type="search" name="search">
+            </div>
+            <div class="sort">
+                <i class="fa-solid fa-sort"></i>
+            </div>
+        </div>
+
+        <div class="read_container">
+            <div class="read_item">
+                <p>Enjoy!</p>
+            </div>
+        </div>
+
+        <div class="news_intro_container">
+            
+            ({% MOBILE_NEWS_ITEM %})
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
 <div id="brands_toggle">
     
     <ol id="brands">
@@ -42,7 +82,7 @@
     <section class="wide_news_home">
         <div class="news_slider">
             <div class="news_img_wrapper">
-                <img loading="lazy" style="width: 60vw; height: 50vh;" src="gallery/news_imgs/news_home.jpg" alt="News Update!" />
+                <img loading="lazy" style="width: 60vw; height: 50vh;" src="gallery/news_imgs/news_home.avif" alt="News Update!" />
             </div>
         </div>
 
@@ -81,41 +121,3 @@
 
 </div>
 
-
-<section class="mobile_news_home">
-    <div class="news_slider">
-        <div class="news_img_wrapper">
-            <img loading="lazy" src="gallery/news_imgs/news_home.jpg" alt="News Update!" />
-        </div>
-    </div>
-
-    <div class="news_home_container">
-        <div class="news_header_container">
-            <div class="icon">
-                <button type="submit">
-                    <i class="fa-brands fa-searchengin fa-fade"></i>
-                </button>
-            </div>
-            <div class="search">
-                <input type="search" name="search">
-            </div>
-            <div class="sort">
-                <i class="fa-solid fa-sort"></i>
-            </div>
-        </div>
-
-        <div class="read_container">
-            <div class="read_item">
-                <p>Enjoy!</p>
-            </div>
-        </div>
-
-        <div class="news_intro_container">
-            
-            ({% MOBILE_NEWS_ITEM %})
-
-        </div>
-
-    </div>
-
-</section>

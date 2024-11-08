@@ -708,7 +708,7 @@ app.get('/shop-products', (req, res) => {
 
   if (req.query.id === 'toyota') {
 
-    let homeImg = 'gallery/brands_rated/toyota.jpg';
+    let homeImg = 'gallery/brands_rated/toyota.avif';
     let hometxt = 'Toyota\'s Home';
 
     let toyotaShopItemHtml = replacePlaceholders(shopItem, jstoyotaData);
@@ -735,7 +735,7 @@ app.get('/shop-products', (req, res) => {
     res.send(response);
   } else if (req.query.id === 'honda') {
 
-    let homeImg = 'gallery/brands_rated/honda.jpg';
+    let homeImg = 'gallery/brands_rated/honda.avif';
     let hometxt = 'Honda\'s Home';
 
     let hondaShopItemHtml = replacePlaceholders(shopItem, jshondaData);
@@ -762,7 +762,7 @@ app.get('/shop-products', (req, res) => {
     res.send(response);
   } else if (req.query.id === 'hyundai') {
 
-    let homeImg = 'gallery/brands_rated/hyundai.jpg';
+    let homeImg = 'gallery/brands_rated/hyundai.avif';
     let hometxt = 'Hyundai\'s Home';
 
     let hyundaiShopItemHtml = replacePlaceholders(shopItem, jshyundaiData);
@@ -789,7 +789,7 @@ app.get('/shop-products', (req, res) => {
     res.send(response);
   } else if (req.query.id === 'kia') {
 
-    let homeImg = 'gallery/brands_rated/kia.jpg';
+    let homeImg = 'gallery/brands_rated/kia.avif';
     let hometxt = 'Kia\'s Home';
 
     let kiaShopItemHtml = replacePlaceholders(shopItem, jskiaData);
@@ -816,7 +816,7 @@ app.get('/shop-products', (req, res) => {
     res.send(response);
   } else if (req.query.id === 'nissan') {
 
-    let homeImg = 'gallery/brands_rated/nissan.jpg';
+    let homeImg = 'gallery/brands_rated/nissan.avif';
     let hometxt = 'Nissan\'s Home';
 
     let nissanShopItemHtml = replacePlaceholders(shopItem, jsnissanData);
@@ -843,7 +843,7 @@ app.get('/shop-products', (req, res) => {
     res.send(response);
   } else if (req.query.id === 'ford') {
 
-    let homeImg = 'gallery/brands_rated/ford.jpg';
+    let homeImg = 'gallery/brands_rated/ford.avif';
     let hometxt = 'Ford\'s Home';
 
     let fordShopItemHtml = replacePlaceholders(shopItem, jsfordData);
@@ -870,7 +870,7 @@ app.get('/shop-products', (req, res) => {
     res.send(response);
   } else if (req.query.id === 'mercedes') {
 
-    let homeImg = 'gallery/brands_rated/mercedes.jpg';
+    let homeImg = 'gallery/brands_rated/mercedes.avif';
     let hometxt = 'Mercedes Home';
 
     let mercedesShopItemHtml = replacePlaceholders(shopItem, jsmercedesData);
@@ -897,7 +897,7 @@ app.get('/shop-products', (req, res) => {
     res.send(response);
   } else if (req.query.id === 'bmw') {
 
-    let homeImg = 'gallery/brands_rated/bmw.jpg';
+    let homeImg = 'gallery/brands_rated/bmw.avif';
     let hometxt = 'Bmw Home';
 
     let bmwShopItemHtml = replacePlaceholders(shopItem, jsbmwData);
@@ -924,7 +924,7 @@ app.get('/shop-products', (req, res) => {
     res.send(response);
   } else if (req.query.id === 'lexus') {
 
-    let homeImg = 'gallery/brands_rated/lexus.jpg';
+    let homeImg = 'gallery/brands_rated/lexus.avif';
     let hometxt = 'Lexus Home';
 
     let lexusShopItemHtml = replacePlaceholders(shopItem, jslexusData);
@@ -951,7 +951,7 @@ app.get('/shop-products', (req, res) => {
     res.send(response);
   } else if (req.query.id === 'audi') {
 
-    let homeImg = 'gallery/brands_rated/audi.jpg';
+    let homeImg = 'gallery/brands_rated/audi.avif';
     let hometxt = 'Audi\'s Home';
 
     let audiShopItemHtml = replacePlaceholders(shopItem, jsaudiData);
@@ -978,7 +978,7 @@ app.get('/shop-products', (req, res) => {
     res.send(response);
   } else if (req.query.id === 'volkswagen') {
 
-    let homeImg = 'gallery/brands_rated/volkswagen.jpg';
+    let homeImg = 'gallery/brands_rated/volkswagen.avif';
     let hometxt = 'Volkswagen Home';
 
     let volkswagenShopItemHtml = replacePlaceholders(shopItem, jsvolkswagenData);
@@ -1005,7 +1005,7 @@ app.get('/shop-products', (req, res) => {
     res.send(response);
   } else if (req.query.id === 'rolls') {
 
-    let homeImg = 'gallery/brands_rated/rolls_royce.jpg';
+    let homeImg = 'gallery/brands_rated/rolls_royce.avif';
     let hometxt = 'Rolls-Royce Home';
 
     let rollsShopItemHtml = replacePlaceholders(shopItem, jsrollsData);
@@ -1032,7 +1032,7 @@ app.get('/shop-products', (req, res) => {
     res.send(response);
   } else if (req.query.id === 'peugeot') {
 
-    let homeImg = 'gallery/brands_rated/peugeot.jpg';
+    let homeImg = 'gallery/brands_rated/peugeot.avif';
     let hometxt = 'Peugeot\'s Home';
 
     let peugeotShopItemHtml = replacePlaceholders(shopItem, jspeugeotData);
@@ -1059,7 +1059,7 @@ app.get('/shop-products', (req, res) => {
     res.send(response);
   } else if (req.query.id === 'chevrolet') {
 
-    let homeImg = 'gallery/brands_rated/chevrolet.jpg';
+    let homeImg = 'gallery/brands_rated/chevrolet.avif';
     let hometxt = 'Chevrolet\'s Home';
 
     let chevroletShopItemHtml = replacePlaceholders(shopItem, jschevroletData);
@@ -1086,7 +1086,7 @@ app.get('/shop-products', (req, res) => {
     res.send(response);
   } else if (req.query.id === 'mitsubishi') {
 
-    let homeImg = 'gallery/brands_rated/mitsubishi.jpg';
+    let homeImg = 'gallery/brands_rated/mitsubishi.avif';
     let hometxt = 'Mitsubishi\'s Home';
 
     let mitsubishiShopItemHtml = replacePlaceholders(shopItem, jsmitsubishiData);
@@ -1113,7 +1113,7 @@ app.get('/shop-products', (req, res) => {
     res.send(response);
   } else if (req.query.id === 'land') {
 
-    let homeImg = 'gallery/brands_rated/land.jpg';
+    let homeImg = 'gallery/brands_rated/land.avif';
     let hometxt = 'Land Rover\'s Home';
 
     let landShopItemHtml = replacePlaceholders(shopItem, jslandData);
@@ -1140,7 +1140,7 @@ app.get('/shop-products', (req, res) => {
     res.send(response);
   } else if (req.query.id === 'jeep') {
 
-    let homeImg = 'gallery/brands_rated/jeep.jpg';
+    let homeImg = 'gallery/brands_rated/jeep.avif';
     let hometxt = 'Jeep\'s Home';
 
     let jeepShopItemHtml = replacePlaceholders(shopItem, jsjeepData);
@@ -1167,7 +1167,7 @@ app.get('/shop-products', (req, res) => {
     res.send(response);
   } else if (req.query.id === 'porsche') {
 
-    let homeImg = 'gallery/brands_rated/porsche.jpg';
+    let homeImg = 'gallery/brands_rated/porsche.avif';
     let hometxt = 'Porsche Home';
 
     let porscheShopItemHtml = replacePlaceholders(shopItem, jsporscheData);
@@ -1194,7 +1194,7 @@ app.get('/shop-products', (req, res) => {
     res.send(response);
   } else if (req.query.id === 'dodge') {
 
-    let homeImg = 'gallery/brands_rated/dodge.jpg';
+    let homeImg = 'gallery/brands_rated/dodge.avif';
     let hometxt = 'Dodge Home';
 
     let dodgeShopItemHtml = replacePlaceholders(shopItem, jsdodgeData);

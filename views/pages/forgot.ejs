@@ -1,3 +1,60 @@
+<section id="login" class="login">
+    <h1>Welcome Back!</h1>
+    <h2>Get personalized car recommendations, exclusive offers, and more!</h2>
+    <div class="login_wrapper">
+        <h3>Reset Password to Access Your Account</h3>
+        <form action="/resetoption" method="post" enctype="application/x-www-form-urlencoded">
+
+            <label for="email">Email Address:</label>
+            <input class="email" type="email" name="email" placeholder="Enter Your Email Address" required />
+            <i class="fa-regular fa-envelope"></i>
+
+            <% if (message != null)  { %>
+
+                <p style="color:red"><%= message %></p>
+
+            <% } %>
+
+            <button type="submit">Submit</button>
+        </form>
+        <p>Don't have an account? <a href="/signup"><span id="signup">Sign up here.</span></a></p>
+    </div>
+    <div class="signin_benefits">
+        <h2>By signing in, you'll get:</h2>
+        <p><b>Personalized Car Recommendations: </b>Get tailored suggestions based on your preferences and budget.</p>
+        <p><b>Exclusive Offers: </b>Receive limited-time discounts and promotions on your favorite cars.</p>
+        <p><b>Early Access: </b>Be the first to know about new inventory, price drops, and special deals.</p>
+        <p><b>Saved Searches: </b>Save your favorite cars and searches for easy access later.</p>
+        <p><b>Priority Support: </b>Get priority assistance from our dedicated customer support team.</p>
+
+        <h2>Trust Badges:</h2>
+        <p><b>Secure: </b>Our website is protected by 256-bit SSL encryption.</p>
+        <p><b>Privacy: </b>We respect your privacy and never share your information with third parties.</p>
+        <p><b>Verified: We verify the identity and ownership of all cars listed on our platform.</b></p>
+        <p><b>Customer Support: </b>Our dedicated customer support team is available to assist you 24/7.</p>
+        <p>100% Satisfaction Guarantee</p>
+        <p>30-Day Money-Back Guarantee</p>
+        <p>Free Vehicle Inspection Report</p>
+
+        <h2>Social Media Links:</h2>
+        <p>Stay connected with us on social media:</p>
+
+        <p>
+            <a href="https://wa.me/+2347059489788?text=Hi%2C%20I%27m%20interested%20in%20purchasing%20your%20RIDE.%20Can%20you%20please%20provide%20more%20information%20on%20the%20car%27s%20condition%20and%20history%3F"><i class="fa-brands fa-whatsapp fa-bounce"></i></a>
+            <a href="https://www.facebook.com/rideswithjerry/"><i class="fa-brands fa-facebook-f fa-bounce"></i></a>
+            <a href="https://www.instagram.com/rideswithjerry/"><i class="fa-brands fa-instagram fa-bounce"></i></a>
+            <a href="https://x.com/Jere______Miah/"><i class="fa-brands fa-x-twitter fa-bounce"></i></a>
+            <a href="https://www.linkedin.com/in/okwudiri-jeremiah-akumefule-b042a3295/"><i class="fa-brands fa-linkedin-in fa-bounce"></i></a>
+        </p>
+
+        <a href="/policy"><p><b>Terms and Conditions: </b><span class="policy_toggle">By signing up, you agree to our terms and conditions.</span></p></a>
+        <a href="/policy"><p><b>Privacy Policy: </b><span class="policy_toggle">Learn more about how we protect your privacy.</span></p></a>
+
+    </div>
+</section>
+
+
+
 <div id="brands_toggle">
 
     <ol id="brands">
@@ -97,57 +154,3 @@
 </div>
 
 
-<section id="login" class="login">
-    <h1>Welcome Back!</h1>
-    <h2>Get personalized car recommendations, exclusive offers, and more!</h2>
-    <div class="login_wrapper">
-        <h3>Reset Password to Access Your Account</h3>
-        <form action="/resetoption" method="post" enctype="application/x-www-form-urlencoded">
-
-            <label for="email">Email Address:</label>
-            <input class="email" type="email" name="email" placeholder="Enter Your Email Address" required />
-            <i class="fa-regular fa-envelope"></i>
-
-            <% if (message != null)  { %>
-
-                <p style="color:red"><%= message %></p>
-
-            <% } %>
-
-            <button type="submit">Submit</button>
-        </form>
-        <p>Don't have an account? <a href="/signup"><span id="signup">Sign up here.</span></a></p>
-    </div>
-    <div class="signin_benefits">
-        <h2>By signing in, you'll get:</h2>
-        <p><b>Personalized Car Recommendations: </b>Get tailored suggestions based on your preferences and budget.</p>
-        <p><b>Exclusive Offers: </b>Receive limited-time discounts and promotions on your favorite cars.</p>
-        <p><b>Early Access: </b>Be the first to know about new inventory, price drops, and special deals.</p>
-        <p><b>Saved Searches: </b>Save your favorite cars and searches for easy access later.</p>
-        <p><b>Priority Support: </b>Get priority assistance from our dedicated customer support team.</p>
-
-        <h2>Trust Badges:</h2>
-        <p><b>Secure: </b>Our website is protected by 256-bit SSL encryption.</p>
-        <p><b>Privacy: </b>We respect your privacy and never share your information with third parties.</p>
-        <p><b>Verified: We verify the identity and ownership of all cars listed on our platform.</b></p>
-        <p><b>Customer Support: </b>Our dedicated customer support team is available to assist you 24/7.</p>
-        <p>100% Satisfaction Guarantee</p>
-        <p>30-Day Money-Back Guarantee</p>
-        <p>Free Vehicle Inspection Report</p>
-
-        <h2>Social Media Links:</h2>
-        <p>Stay connected with us on social media:</p>
-
-        <p>
-            <a href="https://wa.me/+2347059489788?text=Hi%2C%20I%27m%20interested%20in%20purchasing%20your%20RIDE.%20Can%20you%20please%20provide%20more%20information%20on%20the%20car%27s%20condition%20and%20history%3F"><i class="fa-brands fa-whatsapp fa-bounce"></i></a>
-            <a href="https://www.facebook.com/rideswithjerry/"><i class="fa-brands fa-facebook-f fa-bounce"></i></a>
-            <a href="https://www.instagram.com/rideswithjerry/"><i class="fa-brands fa-instagram fa-bounce"></i></a>
-            <a href="https://x.com/Jere______Miah/"><i class="fa-brands fa-x-twitter fa-bounce"></i></a>
-            <a href="https://www.linkedin.com/in/okwudiri-jeremiah-akumefule-b042a3295/"><i class="fa-brands fa-linkedin-in fa-bounce"></i></a>
-        </p>
-
-        <a href="/policy"><p><b>Terms and Conditions: </b><span class="policy_toggle">By signing up, you agree to our terms and conditions.</span></p></a>
-        <a href="/policy"><p><b>Privacy Policy: </b><span class="policy_toggle">Learn more about how we protect your privacy.</span></p></a>
-
-    </div>
-</section>

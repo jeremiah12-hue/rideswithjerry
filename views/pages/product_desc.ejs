@@ -1,5 +1,98 @@
 <% const d = new Date() %>
 
+<section class="mobile_shop_description">
+    <div class="shop_description_item_wrapper">
+        <div class="shop_description_img_wrapper">
+            <img loading="lazy" src="({% IMG_FRONT2 %})" alt="Ride Front View Image">
+            <img loading="lazy" src="({% IMG_REAR2 %})" alt="Ride Rear View Image">
+            <img loading="lazy" src="({% IMG_SIDE3 %})" alt="Ride Side View Image">
+            <img loading="lazy" src="({% IMG_SIDE4 %})" alt="Ride Side View Image">
+            <img loading="lazy" src="({% IMG_INTERIOR2 %})" alt="Ride Interior View Image">
+            <img loading="lazy" src="({% IMG_DASHBOARD2 %})" alt="Ride Dashboard View Image">
+            <img loading="lazy" src="({% IMG_SEAT3 %})" alt="Ride Seat View Image">
+            <img loading="lazy" src="({% IMG_SEAT4 %})" alt="Ride Seat View Image">
+            <img loading="lazy" src="({% IMG_TRUNK2 %})" alt="Ride Trunk View Image">
+            <img loading="lazy" src="({% IMG_WHEEL2 %})" alt="Ride Wheel View Image">
+        </div>
+        <div class="shop_description_wrapper">
+            <p>
+                <b>({% NAME2 %})</b>
+            </p> <br /> <br /> 
+            <p>
+                ({% DESCRIPTION2 %})
+            </p>
+        </div>
+        <div class="rate">
+            <p>({% RATE2 %})</p>
+        </div>
+        <div class="shop_description_price_wrapper">
+            <p>({% PRICE2 %})</p>
+            <p id="save_now" class="save-btn" data-productId="{% ID2 %}">
+                <i class="fa-solid fa-heart"></i>
+            </p>
+            <a href="/buy"><p>Buy Now</p></a>
+        </div>
+        <div class="pricing_info">
+            <p style="text-align: center;"><b>Ride's Pricing Info:</b></p> <br /> <br />
+            <p>Brand New Ride Starting Price is around <b>({% BRANDPRICE2 %})</b></p> <br />
+            <p>Used Ride Starting Price is around <b>({% PRICE4 %})</b></p> <br />
+
+            <p>Please note that the prices listed on our website are subject to change and may vary depending on the vehicle's condition, trim level, model year, location, and other factors. The prices listed are the starting prices for both used and brand new cars. For used cars, please be aware that they may be either Local used or Foreign used, but rest assured that they are all Grade A cars. To confirm the most accurate and current pricing, please contact our customer service team directly at <a href="tel:+2347081065179">+234-708-106-5179</a> || <a href="tel:+2347059489788">+234-705-948-9788</a> to speak with a representative.</p>
+        </div>
+        <div class="shop_description_other_wrapper">
+
+            ({% MOBILE_OTHER %})
+            
+        </div>
+
+        <div class="review">
+            <h2>Please leave us a review about this product</h2>
+
+            <form action="/review?id=({% ID2 %})" method="post">
+
+                <input id="mobile_review_name" type="text" name="username" placeholder="My name is ...!" required />
+
+                <textarea name="thoughts" id="mobile_review" placeholder="Here is my review ...!" required ></textarea>
+
+                <input type="text" value="<%- d %>" name="date" id="date" readonly /> <br />
+
+                <button type="submit" id="reviewSubmit">Submit</button>
+            </form>
+        </div>
+
+        <div class="review_history">
+            <h3>Reviews</h3>
+            
+            <div class="review_icons">
+                <i class="fa-solid fa-face-sad-tear fa-beat-fade" style="color: #eb0000;"></i>
+                <i class="fa-solid fa-face-tired fa-beat-fade" style="color: #FFD43B;"></i>
+                <i class="fa-solid fa-face-rolling-eyes fa-beat-fade" style="color: #434137;"></i>
+                <i class="fa-solid fa-face-surprise fa-beat-fade" style="color: #005eff;"></i>
+                <i class="fa-solid fa-face-smile-wink fa-beat-fade" style="color: #09f005;"></i>
+            </div>
+
+            <div class="review_history_item">
+
+                <% for(key of jsReviewData) { %>
+
+                    <p>
+
+
+                        <span><b class="name"> My name is <%= key.username %>. </b></span> <br />
+                        <span> <b> My thoughts, </b> <i> <%= key.thoughts %> </i> </span> <br />
+                        <span><b>Date:</b> <i><%= key.date %></i> </span>
+
+                    </p>
+
+                <% } %>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
 <div id="brands_toggle">
 
     <ol id="brands">
@@ -134,95 +227,4 @@
         </div>
     </section>
 </div>
-
-<section class="mobile_shop_description">
-    <div class="shop_description_item_wrapper">
-        <div class="shop_description_img_wrapper">
-            <img loading="lazy" src="({% IMG_FRONT2 %})" alt="Ride Front View Image">
-            <img loading="lazy" src="({% IMG_REAR2 %})" alt="Ride Rear View Image">
-            <img loading="lazy" src="({% IMG_SIDE3 %})" alt="Ride Side View Image">
-            <img loading="lazy" src="({% IMG_SIDE4 %})" alt="Ride Side View Image">
-            <img loading="lazy" src="({% IMG_INTERIOR2 %})" alt="Ride Interior View Image">
-            <img loading="lazy" src="({% IMG_DASHBOARD2 %})" alt="Ride Dashboard View Image">
-            <img loading="lazy" src="({% IMG_SEAT3 %})" alt="Ride Seat View Image">
-            <img loading="lazy" src="({% IMG_SEAT4 %})" alt="Ride Seat View Image">
-            <img loading="lazy" src="({% IMG_TRUNK2 %})" alt="Ride Trunk View Image">
-            <img loading="lazy" src="({% IMG_WHEEL2 %})" alt="Ride Wheel View Image">
-        </div>
-        <div class="shop_description_wrapper">
-            <p>
-                <b>({% NAME2 %})</b>
-            </p> <br /> <br /> 
-            <p>
-                ({% DESCRIPTION2 %})
-            </p>
-        </div>
-        <div class="rate">
-            <p>({% RATE2 %})</p>
-        </div>
-        <div class="shop_description_price_wrapper">
-            <p>({% PRICE2 %})</p>
-            <p id="save_now" class="save-btn" data-productId="{% ID2 %}">
-                <i class="fa-solid fa-heart"></i>
-            </p>
-            <a href="/buy"><p>Buy Now</p></a>
-        </div>
-        <div class="pricing_info">
-            <p style="text-align: center;"><b>Ride's Pricing Info:</b></p> <br /> <br />
-            <p>Brand New Ride Starting Price is around <b>({% BRANDPRICE2 %})</b></p> <br />
-            <p>Used Ride Starting Price is around <b>({% PRICE4 %})</b></p> <br />
-
-            <p>Please note that the prices listed on our website are subject to change and may vary depending on the vehicle's condition, trim level, model year, location, and other factors. The prices listed are the starting prices for both used and brand new cars. For used cars, please be aware that they may be either Local used or Foreign used, but rest assured that they are all Grade A cars. To confirm the most accurate and current pricing, please contact our customer service team directly at <a href="tel:+2347081065179">+234-708-106-5179</a> || <a href="tel:+2347059489788">+234-705-948-9788</a> to speak with a representative.</p>
-        </div>
-        <div class="shop_description_other_wrapper">
-
-            ({% MOBILE_OTHER %})
-            
-        </div>
-
-        <div class="review">
-            <h2>Please leave us a review about this product</h2>
-
-            <form action="/review?id=({% ID2 %})" method="post">
-
-                <input id="mobile_review_name" type="text" name="username" placeholder="My name is ...!" required />
-
-                <textarea name="thoughts" id="mobile_review" placeholder="Here is my review ...!" required ></textarea>
-
-                <input type="text" value="<%- d %>" name="date" id="date" readonly /> <br />
-
-                <button type="submit" id="reviewSubmit">Submit</button>
-            </form>
-        </div>
-
-        <div class="review_history">
-            <h3>Reviews</h3>
-            
-            <div class="review_icons">
-                <i class="fa-solid fa-face-sad-tear fa-beat-fade" style="color: #eb0000;"></i>
-                <i class="fa-solid fa-face-tired fa-beat-fade" style="color: #FFD43B;"></i>
-                <i class="fa-solid fa-face-rolling-eyes fa-beat-fade" style="color: #434137;"></i>
-                <i class="fa-solid fa-face-surprise fa-beat-fade" style="color: #005eff;"></i>
-                <i class="fa-solid fa-face-smile-wink fa-beat-fade" style="color: #09f005;"></i>
-            </div>
-
-            <div class="review_history_item">
-
-                <% for(key of jsReviewData) { %>
-
-                    <p>
-
-
-                        <span><b class="name"> My name is <%= key.username %>. </b></span> <br />
-                        <span> <b> My thoughts, </b> <i> <%= key.thoughts %> </i> </span> <br />
-                        <span><b>Date:</b> <i><%= key.date %></i> </span>
-
-                    </p>
-
-                <% } %>
-
-            </div>
-        </div>
-    </div>
-</section>
 
