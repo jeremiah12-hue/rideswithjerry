@@ -30,8 +30,8 @@ let image_wide = document.getElementById("slider_img_wide");
 let imageText_wide = document.getElementById("slider_txt_wide");
 
 let images = [
-  { src: "gallery/home_img/welcome1.jpg", text: "What are your needs?" },
-  { src: "gallery/home_img/welcome2.jpg", text: "What are your wants and pain points?" }
+  { src: "gallery/home_img/welcome1.avif", text: "What are your needs?" },
+  { src: "gallery/home_img/welcome2.avif", text: "What are your wants and pain points?" }
 ];
 
 let currentIndex = 0;
@@ -58,8 +58,8 @@ setInterval(changeImage_wide, 9000);
 let efficiency_img_wide = document.getElementById("efficiency_img");
 let efficiency_txt_wide = document.getElementById("efficiency_txt");
 let efficiency_images = [
-    { src: "gallery/home_img/efficiency.jpg", text: "Fuel Efficiency in Motion" },
-    { src: "gallery/home_img/quality.jpg", text: "Precision Craftsmanship, Inside and Out" }
+    { src: "gallery/home_img/efficiency.avif", text: "Fuel Efficiency in Motion" },
+    { src: "gallery/home_img/quality.avif", text: "Precision Craftsmanship, Inside and Out" }
 ];
 let EfficiencycurrentIndex = 0;
 function changeEfficiency_wide() {
@@ -73,8 +73,8 @@ setInterval(changeEfficiency_wide, 10000);
 let safety_img_wide = document.getElementById("safety_img");
 let safety_txt_wide = document.getElementById("safety_txt");
 let safety_images = [
-    { src: "gallery/home_img/safety.jpg", text: "Protected on the Road" },
-    { src: "gallery/home_img/design.jpg", text: "Sleek, Sophisticated, and Stunning" }
+    { src: "gallery/home_img/safety.avif", text: "Protected on the Road" },
+    { src: "gallery/home_img/design.avif", text: "Sleek, Sophisticated, and Stunning" }
 ];
 let SafetycurrentIndex = 0;
 function changeSafety_wide() {
@@ -89,8 +89,8 @@ setInterval(changeSafety_wide, 10000);
 let price_img_wide = document.getElementById("price_img");
 let price_txt_wide = document.getElementById("price_txt");
 let price_images = [
-    { src: "gallery/home_img/price.jpg", text: "Save Money, Drive Happy" },
-    { src: "gallery/home_img/comfort.jpg", text: "Relax, Unwind, and Enjoy the Ride" }
+    { src: "gallery/home_img/price.avif", text: "Save Money, Drive Happy" },
+    { src: "gallery/home_img/comfort.avif", text: "Relax, Unwind, and Enjoy the Ride" }
 ];
 let PricecurrentIndex = 0;
 function changePrice_wide() {
@@ -104,14 +104,14 @@ setInterval(changePrice_wide, 10000);
 let top_rated_img = document.getElementById("top_rated_img");
 let top_rated_txt = document.getElementById("top_rated_txt");
 let top_rated_images = [
-    { src: "gallery/brands_rated/RWJ.jpg", text: "Top Rated" },
-    { src: "gallery/brands_rated/porsche.jpg", text: "Luxury Brand" },
-    { src: "gallery/brands_rated/toyota.jpg", text: "Luxury and Non-Luxury Brand" },
-    { src: "gallery/brands_rated/bmw.jpg", text: "Luxury Brand" },
-    { src: "gallery/brands_rated/mercedes.jpg", text: "Luxury Brand" },
-    { src: "gallery/brands_rated/audi.jpg", text: "Luxury Brand" },
-    { src: "gallery/brands_rated/honda.jpg", text: "Non-Luxury Brand" },
-    { src: "gallery/brands_rated/tesla.jpg", text: "Electric and Hybrid Brand" }
+    { src: "gallery/brands_rated/RWJ.avif", text: "Top Rated" },
+    { src: "gallery/brands_rated/porsche.avif", text: "Luxury Brand" },
+    { src: "gallery/brands_rated/toyota.avif", text: "Luxury and Non-Luxury Brand" },
+    { src: "gallery/brands_rated/bmw.avif", text: "Luxury Brand" },
+    { src: "gallery/brands_rated/mercedes.avif", text: "Luxury Brand" },
+    { src: "gallery/brands_rated/audi.avif", text: "Luxury Brand" },
+    { src: "gallery/brands_rated/honda.avif", text: "Non-Luxury Brand" },
+    { src: "gallery/brands_rated/tesla.avif", text: "Electric and Hybrid Brand" }
 ];
 let RatingscurrentIndex = 0;
 function top_rating() {
@@ -125,12 +125,12 @@ setInterval(top_rating, 5000);
 let car_rated_img = document.getElementById("car_rated_img");
 let car_rated_txt = document.getElementById("car_rated_txt");
 let car_rated_images = [
-    { src: "gallery/brands_rated/RWJ.jpg", text: "Top Rated" },
-    { src: "gallery/cars_rated/bmwX5.jpg", text: "Luxury Cars" },
-    { src: "gallery/cars_rated/toyotaRav.jpg", text: "Non-Luxury Cars" },
-    { src: "gallery/cars_rated/HondaAccord.jpg", text: "Non-Luxury Cars" },
-    { src: "gallery/cars_rated/LexusUx.jpg", text: "Electric and Hybrid Cars" },
-    { src: "gallery/cars_rated/camryUx.jpg", text: "Electric and Hybrid Cars" }
+    { src: "gallery/brands_rated/RWJ.avif", text: "Top Rated" },
+    { src: "gallery/cars_rated/bmwX5.avif", text: "Luxury Cars" },
+    { src: "gallery/cars_rated/toyotaRav.avif", text: "Non-Luxury Cars" },
+    { src: "gallery/cars_rated/HondaAccord.avif", text: "Non-Luxury Cars" },
+    { src: "gallery/cars_rated/LexusUx.avif", text: "Electric and Hybrid Cars" },
+    { src: "gallery/cars_rated/camryUx.avif", text: "Electric and Hybrid Cars" }
 ];
 let carcurrentIndex = 0;
 function car_rating() {
@@ -148,7 +148,7 @@ let shop_image_wide = document.getElementById("wide_shop_slider_img");
 let shop_imageText_wide = document.getElementById("wide_shop_slider_txt");
 
 let shop_all_images = [
-  { src: "gallery/brands_rated/RWJ.jpg", text: "Perfect Rides" }
+  { src: "gallery/brands_rated/RWJ.avif", text: "Perfect Rides" }
 ];
 
 let shop_currentIndex = 0;
@@ -178,11 +178,11 @@ let save_shop_image_wide = document.getElementById("save_wide_shop_slider_img");
 let save_shop_imageText_wide = document.getElementById("save_wide_shop_slider_txt");
 
 let save_shop_all_images = [
-  { src: "gallery/brands_rated/RWJ.jpg", text: "Welcome" },
-  { src: "gallery/save_img/save1.jpg", text: "To" },
-  { src: "gallery/save_img/save2.jpg", text: "My" },
-  { src: "gallery/save_img/save3.jpg", text: "Rides" },
-  { src: "gallery/save_img/save4.jpg", text: "Garage" }
+  { src: "gallery/brands_rated/RWJ.avif", text: "Welcome" },
+  { src: "gallery/save_img/save1.avif", text: "To" },
+  { src: "gallery/save_img/save2.avif", text: "My" },
+  { src: "gallery/save_img/save3.avif", text: "Rides" },
+  { src: "gallery/save_img/save4.avif", text: "Garage" }
 ];
 
 let save_shop_currentIndex = 0;
@@ -207,9 +207,9 @@ setInterval(save_shop_changeImage_wide, 6000);
 // deals
 for (const key of deals_img_toggle) {
     let deals_all_images = [
-        { src: "gallery/buy_img/buy1.jpg" },
-        { src: "gallery/buy_img/buy2.jpg" },
-        { src: "gallery/buy_img/buy3.jpg" }
+        { src: "gallery/buy_img/buy1.avif" },
+        { src: "gallery/buy_img/buy2.avif" },
+        { src: "gallery/buy_img/buy3.avif" }
     ];
 
     let deals_current_index = 0;
@@ -226,8 +226,8 @@ for (const key of deals_img_toggle) {
 // sell
 for (const key of sell_img_toggle) {
     let sell_all_images = [
-        { src: "gallery/sell_img/sell1.jpg" },
-        { src: "gallery/sell_img/sell2.jpg" }
+        { src: "gallery/sell_img/sell1.avif" },
+        { src: "gallery/sell_img/sell2.avif" }
     ];
 
     let sell_current_index = 0;
