@@ -34,7 +34,7 @@ option  {
     height: auto;
     cursor: pointer;
 }
-.fundToggle  {color: rgba(216, 184, 0, 0.309);}
+.fundToggle  {color: rgba(216, 184, 0, 0.309);}track_car
 .fundToggleNone, .SwitchNone  {display: none;}
 .json-formatter-container, pre {
     display: none;
@@ -143,6 +143,8 @@ nav.mobile  {
     width: 100vw;
     position: absolute;
     min-height: 150px;
+    max-height: 350px;
+    padding-top: 5vh;
 }
 nav.mobile ul.head_nav  {
     display: flex;
@@ -497,7 +499,6 @@ section.mobile_main {
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-    margin-top: 30vh;
 }
 section.mobile_main div.home_slider, section.mobile_main div.efficiency,
 section.mobile_main div.safety, section.mobile_main div.price,
@@ -556,7 +557,7 @@ section.mobile_main div.track_car p  {
     padding: 10px;
     margin-bottom: 20px;
 }
-section.mobile_main div.track_car h1  {
+section.mobile_main div.track_car p  {
     color: #000000;
     font-size: 24px;
     font-weight: bold;
@@ -737,7 +738,6 @@ section.save_mobile_shop  {
     justify-content: space-evenly;
     height: auto;
     margin-inline: 0vw;
-    margin-top: 30px;
 }
 section.mobile_shop div.shop_items_wrapper,
 section.mobile_shop_description div.shop_description_item_wrapper,
@@ -1039,7 +1039,6 @@ section.sell_car {
     align-items: center;
     justify-content: space-evenly;
     padding: 20px;
-    margin-top: 30px;
 }
 section.buy h1,
 section.sell_car h1  {
@@ -1128,7 +1127,6 @@ section.signup {
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-    margin-top: 30px;
 }
 section.login h1,
 section.signup h1 {
@@ -1319,7 +1317,6 @@ section.my_account  {
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-    margin-top: 30px;
 }
 section.my_account div.my_account_wrapper  {
     width: 80vw;
@@ -1383,7 +1380,6 @@ section.policy {
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-    margin-top: 30px;
 }
 section.policy h1 {
     width: 100vw;
@@ -1441,7 +1437,6 @@ section.message {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    margin-top: 30px;
 }
 section.message h1 {
     width: 100vw;
@@ -1516,7 +1511,6 @@ section.search {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    margin-top: 30px;
 }
 section.search div.keyboard_wrapper  {
     width: 100vw;
@@ -1835,7 +1829,6 @@ section.mobile_news_home  {
     align-items: center;
     justify-content: space-evenly;
     height: auto;
-    margin-top: 30px;
 }
 section.mobile_news_home div.news_slider  {
     width: 95vw;
@@ -2014,7 +2007,6 @@ section.mobile_main_news  {
     justify-content: space-evenly;
     height: auto;
     margin-inline: 0vw;
-    margin-top: 30px;
 }
 section.mobile_main_news .news_top_nav  {
     width: 95vw;
@@ -2255,7 +2247,6 @@ section.mobile_funding_home  {
     justify-content: space-evenly;
     height: auto;
     margin-inline: 0vw;
-    margin-top: 30px;
 }
 section.mobile_funding_home .funding_top_nav  {
     width: 95vw;
