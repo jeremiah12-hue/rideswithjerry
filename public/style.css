@@ -39,6 +39,7 @@ option  {
 .json-formatter-container, pre {
     display: none;
 }
+#check_txt, #wide_check_txt  {display: none;}
 nav#top_nav  {
     width: 100vw;
     top: 0px;
@@ -496,7 +497,7 @@ section.mobile_main {
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-    margin-top: 30px;
+    margin-top: 30vh;
 }
 section.mobile_main div.home_slider, section.mobile_main div.efficiency,
 section.mobile_main div.safety, section.mobile_main div.price,
@@ -548,6 +549,14 @@ section.mobile_main div.track_car  {
     justify-content: center;
 }
 section.mobile_main div.track_car p  {
+    color: #000000;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+section.mobile_main div.track_car h1  {
     color: #000000;
     font-size: 24px;
     font-weight: bold;
@@ -3019,8 +3028,8 @@ section.mobile_funding_home .funding_home_main form .choose_withdrawal_method .m
     div#brands_toggle section.wide_screen_main div.home_slider div.img_wrapper img,
     div#brands_toggle section.wide_screen_shop div.shop_slider div.shop_img_wrapper img,
     div#brands_toggle section.save_wide_screen_shop div.save_shop_slider div.save_shop_img_wrapper img  {
-        width: auto;
-        height: auto;
+        width: 60vw;
+        height: 50vh;
         transition: opacity 0.5s;
         top: 50%;
         left: 50%;
@@ -4171,8 +4180,8 @@ section.mobile_funding_home .funding_home_main form .choose_withdrawal_method .m
         border: none;
     }
     div#brands_toggle section.wide_news_home div.news_slider div.news_img_wrapper img  {
-        width: auto;
-        height: auto;
+        width: 60vw;
+        height: 50vh;
         transition: opacity 0.5s;
         top: 50%;
         left: 50%;
