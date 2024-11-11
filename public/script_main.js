@@ -226,8 +226,8 @@ for (const key of deals_img_toggle) {
 // sell
 for (const key of sell_img_toggle) {
     let sell_all_images = [
-        { src: "gallery/sell_img/sell1.avif" },
-        { src: "gallery/sell_img/sell2.avif" }
+        { src: "gallery/sell_img/sell1.jpg" },
+        { src: "gallery/sell_img/sell2.jpg" }
     ];
 
     let sell_current_index = 0;

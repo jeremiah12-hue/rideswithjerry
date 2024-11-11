@@ -143,7 +143,6 @@ nav.mobile  {
     width: 100vw;
     position: absolute;
     min-height: 150px;
-    max-height: 350px;
     padding-top: 5vh;
 }
 nav.mobile ul.head_nav  {
@@ -493,12 +492,13 @@ footer.footer section.bottom_footer div.bottom_footer_main_txt  {
 
 section.mobile_main {
     width: 100vw;
-    min-height: 70vh;
+    min-height: 60vh;
     text-align: justify;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
+    margin-top: 40vh;
 }
 section.mobile_main div.home_slider, section.mobile_main div.efficiency,
 section.mobile_main div.safety, section.mobile_main div.price,
@@ -738,6 +738,7 @@ section.save_mobile_shop  {
     justify-content: space-evenly;
     height: auto;
     margin-inline: 0vw;
+    margin-top: 40vh;
 }
 section.mobile_shop div.shop_items_wrapper,
 section.mobile_shop_description div.shop_description_item_wrapper,
@@ -1032,13 +1033,14 @@ section.mobile_shop_description div.shop_description_item_wrapper div.review_his
 section.buy,
 section.sell_car {
     width: 100vw;
-    min-height: 70vh;
+    min-height: 60vh;
     display: flex;
     text-align: justify;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
     padding: 20px;
+    margin-top: 40vh;
 }
 section.buy h1,
 section.sell_car h1  {
@@ -1121,12 +1123,13 @@ section.sell_car p.center  {
 section.login,
 section.signup {
     width: 100vw;
-    min-height: 70vh;
+    min-height: 60vh;
     display: flex;
     text-align: justify;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
+    margin-top: 40vh;
 }
 section.login h1,
 section.signup h1 {
@@ -1311,12 +1314,13 @@ section.signup div.signup_benefits p {
 /* my account */
 section.my_account  {
     width: 100vw;
-    min-height: 70vh;
+    min-height: 60vh;
     text-align: justify;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
+    margin-top: 40vh;
 }
 section.my_account div.my_account_wrapper  {
     width: 80vw;
@@ -1374,12 +1378,13 @@ section.my_account div.my_account_wrapper form p  {
 /* policy */
 section.policy {
     width: 100vw;
-    min-height: 70vh;
+    min-height: 60vh;
     text-align: justify;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
+    margin-top: 40vh;
 }
 section.policy h1 {
     width: 100vw;
@@ -1437,6 +1442,7 @@ section.message {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+    margin-top: 40vh;
 }
 section.message h1 {
     width: 100vw;
@@ -1511,6 +1517,7 @@ section.search {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+    margin-top: 40vh;
 }
 section.search div.keyboard_wrapper  {
     width: 100vw;
@@ -1707,8 +1714,8 @@ section.search div.search_body div.search_item div.rate p  {
 #pls_login_bg  {
     backdrop-filter: blur(10px);
     display: flex;
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
+    justify-content: center;
+    align-items: center;
     z-index: 999;
     position: fixed;
     top: -300vh;
@@ -1829,6 +1836,7 @@ section.mobile_news_home  {
     align-items: center;
     justify-content: space-evenly;
     height: auto;
+    margin-top: 40vh;
 }
 section.mobile_news_home div.news_slider  {
     width: 95vw;
@@ -2007,6 +2015,7 @@ section.mobile_main_news  {
     justify-content: space-evenly;
     height: auto;
     margin-inline: 0vw;
+    margin-top: 40vh;
 }
 section.mobile_main_news .news_top_nav  {
     width: 95vw;
@@ -2247,6 +2256,7 @@ section.mobile_funding_home  {
     justify-content: space-evenly;
     height: auto;
     margin-inline: 0vw;
+    margin-top: 40vh;
 }
 section.mobile_funding_home .funding_top_nav  {
     width: 95vw;
