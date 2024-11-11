@@ -178,11 +178,11 @@ let save_shop_image_wide = document.getElementById("save_wide_shop_slider_img");
 let save_shop_imageText_wide = document.getElementById("save_wide_shop_slider_txt");
 
 let save_shop_all_images = [
-  { src: "gallery/brands_rated/RWJ.avif", text: "Welcome" },
-  { src: "gallery/save_img/save1.avif", text: "To" },
-  { src: "gallery/save_img/save2.avif", text: "My" },
-  { src: "gallery/save_img/save3.avif", text: "Rides" },
-  { src: "gallery/save_img/save4.avif", text: "Garage" }
+  { src: "gallery/brands_rated/RWJ.jpg", text: "Welcome" },
+  { src: "gallery/save_img/save1.jpg", text: "To" },
+  { src: "gallery/save_img/save2.jpg", text: "My" },
+  { src: "gallery/save_img/save3.jpg", text: "Rides" },
+  { src: "gallery/save_img/save4.jpg", text: "Garage" }
 ];
 
 let save_shop_currentIndex = 0;
@@ -207,9 +207,9 @@ setInterval(save_shop_changeImage_wide, 6000);
 // deals
 for (const key of deals_img_toggle) {
     let deals_all_images = [
-        { src: "gallery/buy_img/buy1.avif" },
-        { src: "gallery/buy_img/buy2.avif" },
-        { src: "gallery/buy_img/buy3.avif" }
+        { src: "gallery/buy_img/buy1.jpg" },
+        { src: "gallery/buy_img/buy2.jpg" },
+        { src: "gallery/buy_img/buy3.jpg" }
     ];
 
     let deals_current_index = 0;
