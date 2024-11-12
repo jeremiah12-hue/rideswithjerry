@@ -142,10 +142,8 @@ div#brands_toggle section.wide_funding_home  {display: none}
 nav.mobile  {
     display: flex;
     flex-direction: column;
-    max-width: 100vw;
     width: 100vw;
-    position: absolute;
-    height: 40vh;
+    min-height: 35vh;
     padding-top: 5vh;
 }
 nav.mobile ul.head_nav  {
