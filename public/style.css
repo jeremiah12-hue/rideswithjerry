@@ -217,7 +217,6 @@ nav.mobile ul.head_nav ol.second ul.bottom  {
 nav.mobile ul.head_nav ol.second ul.top ol  {
     width: auto;
     height: auto;
-    padding: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
