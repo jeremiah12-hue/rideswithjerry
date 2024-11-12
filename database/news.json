@@ -1,5 +1,25 @@
 [
     {
+        "newsId": "chevrolet-news-3",
+        "newsImg": "gallery\\news_imgs\\chevrolet_imgs\\chevrolet3.avif",
+        "newsIntro": "The End of an Era: Why the Chevrolet Bolt EV's Rise Necessitates the Demise of the Cadillac XT4",
+        "news": "<strong>Chevrolet Bolt EV Replaces Cadillac XT4 SUV</strong><br><br>The Cadillac XT4, a small luxury SUV, has seen more sales recently, but it will stop being made in 2025 to make way for new models.<br><br>General Motors (GM) announced earlier this year that they will cut back production at their Fairfax Assembly plant in Kansas in early 2025. This means the Chevy Malibu gas sedan will stop being made completely this month, with no plans for a new model to take its place.<br><br>Initially, GM planned to pause production of the Cadillac XT4 at the same plant, but now they have decided to stop making it altogether in the U.S. starting in January 2025. After that, only the remaining XT4s in stock will be sold, which means you might still find them available throughout 2025.<br><br>However, the XT4 will still be produced and sold in China for now. It was recently updated for the 2024 model year, making its removal from the U.S. surprising, especially since it has been selling well and is Cadillac's best-selling model in Canada.<br><br>Both the Chevy Malibu and Cadillac XT4 production lines will be replaced by the new Chevrolet Bolt EV. GM plans to start making this new Bolt model, along with another model, in late 2025, likely for the 2026 model year.<br><br>It’s not yet clear if Cadillac will create its own version of the Bolt EV at the same factory to replace the XT4. The new Bolt will need to not only succeed the original Bolt but also make up for the sales lost from the XT4 and Malibu. We'll find out more next year.",
+        "date": "November 11, 2024",
+        "tag": "Economic News",
+        "brand": "General Motors (GM)",
+        "header1": "Transitioning to Electric: The Shift from Cadillac XT4 Production to Chevrolet Bolt EV"
+    },
+    {
+        "newsId": "jeep-news-1",
+        "newsImg": "gallery\\news_imgs\\jeep_imgs\\jeep1.avif",
+        "newsIntro": "Is the Jeep Wagoneer Worth the Hype? A Critical Look at Its Strengths and Flaws",
+        "news": "<strong>Our Jeep Wagoneer: What We Like and Dislike</strong><br><br>Here’s what we love and hate about the Jeep Wagoneer after driving it for almost a year and over 17,000 miles.<br><br><strong>What We Like:</strong><br><br>1. <strong>Powerful Engine:</strong> The Wagoneer has a strong engine that makes it fast and smooth. It can go from 0 to 60 mph in just 5.4 seconds. It runs quietly and has plenty of power.<br><br>2. <strong>Comfortable Ride:</strong> The optional air suspension makes the ride very comfortable, whether you’re driving alone or with a full car. It absorbs bumps well, and everyone feels good inside.<br><br>3. <strong>Quiet Interior:</strong> Inside the Wagoneer, it’s surprisingly quiet. You can have normal conversations without shouting, even with a full car.<br><br>4. <strong>Nice Interior Design:</strong> The inside of the Wagoneer looks great and feels cozy. There’s also a lot of space for storage, but it can get dusty and hard to clean.<br><br>5. <strong>Versatile:</strong> This SUV can carry up to eight people or haul big items like lumber, making it very useful for different needs.<br><br><strong>What We Don’t Like:</strong><br><br>1. <strong>Hard to Access Third Row:</strong> Getting to the back row of seats can be tricky. The button to move the second row is small and hard to find, leading to confusion and frustration.<br><br>2. <strong>Infotainment Issues:</strong> The screens in the Wagoneer are not very user-friendly. The main screen can be slow and sometimes crashes. The extra screens for passengers are not very helpful.<br><br>3. <strong>Lane Assist Problems:</strong> The lane-keeping feature doesn’t work well. It often pulls the steering wheel even when you’re driving straight, which can be annoying.<br><br>4. <strong>Weak Cargo Cover:</strong> The cover for the trunk area is flimsy and doesn’t stay in place well. It feels like a cheap afterthought.<br><br>In summary, while the Jeep Wagoneer has many great features, it also has some annoying problems that make daily driving a bit challenging.",
+        "date": "November 11, 2024",
+        "tag": "Car Review",
+        "brand": "Jeep",
+        "header1": "Exploring the Jeep Wagoneer: A Blend of Strengths and Weaknesses in Daily Driving"
+    },
+    {
         "newsId": "bentley-news-1",
         "newsImg": "gallery\\news_imgs\\bentley_imgs\\bentley1.avif",
         "newsIntro": "Is Bentley's Delay in Going Fully Electric a Smart Move or a Step Backward?",
