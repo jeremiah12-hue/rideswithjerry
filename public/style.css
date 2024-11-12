@@ -20,6 +20,9 @@ main, body  {
     font-optical-sizing: auto;
     font-weight: 400;
     font-style: normal;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
 }
 option  {
     background-color: #000000;
@@ -34,7 +37,7 @@ option  {
     height: auto;
     cursor: pointer;
 }
-.fundToggle  {color: rgba(216, 184, 0, 0.309);}track_car
+.fundToggle  {color: rgba(216, 184, 0, 0.309);}
 .fundToggleNone, .SwitchNone  {display: none;}
 .json-formatter-container, pre {
     display: none;
@@ -853,7 +856,7 @@ section.mobile_shop_description div.shop_description_item_wrapper div.shop_descr
 }
 section.mobile_shop_description div.shop_description_item_wrapper div.shop_description_img_wrapper img  {
     width: 80vw;
-    height: 500px;
+    height: auto;
     object-fit: contain;
     padding: 10px;
 }
@@ -918,8 +921,7 @@ section.mobile_shop_description div.shop_description_item_wrapper div.pricing_in
     margin-top: 20px;
 }
 section.mobile_shop_description div.shop_description_item_wrapper div.pricing_info p  {
-    font-size: 1.5em;
-    font-weight: 400;
+    font-size: 0.8em;
     text-align: justify;
 }
 
@@ -1745,6 +1747,7 @@ section.search div.search_body div.search_item div.rate p  {
     flex-direction: row;
     align-items: center;
     justify-content: right;
+    text-align: right;
 }
 #pls_login_cont .pls_login_close_icon i  {
     width: auto;
@@ -3419,9 +3422,8 @@ section.mobile_funding_home .funding_home_main form .choose_withdrawal_method .m
         justify-content: center;
     }
     div#brands_toggle section.wide_shop_description div.wide_shop_description_item_wrapper div.pricing_info p  {
-        font-size: 1.2em;
+        font-size: 0.8em;
         text-align: justify;
-        font-weight: 400;
     }
     div#brands_toggle section.wide_shop_description div.wide_shop_description_item_wrapper div.wide_shop_description_other_wrapper  {
         width: 65vw;
