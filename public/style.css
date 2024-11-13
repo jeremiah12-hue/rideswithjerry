@@ -146,7 +146,7 @@ nav.mobile  {
     width: 100vw;
     position: absolute;
     height: 40vh;
-    padding-top: 5vh;
+    margin-top: 6vh;
 }
 nav.mobile ul.head_nav  {
     display: flex;
@@ -740,7 +740,6 @@ section.save_mobile_shop  {
     justify-content: space-evenly;
     height: auto;
     margin-inline: 0vw;
-    margin-top: 40vh;
 }
 section.mobile_shop div.shop_items_wrapper,
 section.mobile_shop_description div.shop_description_item_wrapper,
@@ -1837,7 +1836,6 @@ section.mobile_news_home  {
     align-items: center;
     justify-content: space-evenly;
     height: auto;
-    margin-top: 40vh;
 }
 section.mobile_news_home div.news_slider  {
     width: 95vw;
@@ -2016,7 +2014,6 @@ section.mobile_main_news  {
     justify-content: space-evenly;
     height: auto;
     margin-inline: 0vw;
-    margin-top: 40vh;
 }
 section.mobile_main_news .news_top_nav  {
     width: 95vw;
@@ -2257,7 +2254,6 @@ section.mobile_funding_home  {
     justify-content: space-evenly;
     height: auto;
     margin-inline: 0vw;
-    margin-top: 40vh;
 }
 section.mobile_funding_home .funding_top_nav  {
     width: 95vw;
