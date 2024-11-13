@@ -146,8 +146,7 @@ nav.mobile  {
     width: 100vw;
     position: absolute;
     max-height: 40vh;
-    height: auto;
-    margin-top: 6.5vh;
+    margin-top: 7vh;
 }
 nav.mobile ul.head_nav  {
     display: flex;
