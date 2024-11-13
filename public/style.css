@@ -501,6 +501,7 @@ section.mobile_main {
     align-items: center;
     justify-content: space-evenly;
     margin-top: 30px;
+    position: absolute;
 }
 section.mobile_main div.home_slider, section.mobile_main div.efficiency,
 section.mobile_main div.safety, section.mobile_main div.price,
