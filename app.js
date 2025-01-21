@@ -34,6 +34,9 @@ const User = require('./user.model');
 
 const { fetchReviews, Review } = require('./reviews');
 
+const { fetchNewsdatas, Newsdatas } = require('./news');
+const { fetchNewsItemdatas } = require('./news_item');
+
 const app = express(); 
 
 const PORT = 8080;
@@ -97,7 +100,6 @@ const forgotPath = 'views/pages/forgot.ejs';
 const resetpinPath = 'views/pages/resetpin.ejs';
 
 const news_homePath = 'views/pages/news_home.ejs';
-const news_mainPath = 'views/pages/news.ejs';
 const news_itemPath = 'views/pages/news_item.ejs';
 
 const fundingPath = 'views/pages/fund.ejs';
@@ -186,10 +188,6 @@ let jsporscheData = JSON.parse(porscheData);
 const dodgeData = fs.readFileSync('database/dodge.json', 'utf8');
 let jsdodgeData = JSON.parse(dodgeData);
 
-// news database
-const newsData = fs.readFileSync('database/news.json', 'utf8');
-let jsnewsData = JSON.parse(newsData);
-
 
 const home = fs.readFileSync(homePath, 'utf8');
 
@@ -214,7 +212,6 @@ const forgot = fs.readFileSync(forgotPath, 'utf8');
 const resetpin = fs.readFileSync(resetpinPath, 'utf8');
 
 const news_home = fs.readFileSync(news_homePath, 'utf8');
-const news_main = fs.readFileSync(news_mainPath, 'utf8');
 const news_item = fs.readFileSync(news_itemPath, 'utf8');
 
 const funding = fs.readFileSync(fundingPath, 'utf8');
@@ -434,10 +431,6 @@ const news_homeTemplate = ejs.compile(news_home, {
   filename: news_homePath           
 });
 
-const news_mainTemplate = ejs.compile(news_main, { 
-  filename: news_mainPath           
-});
-
 const fundingTemplate = ejs.compile(funding, { 
   filename: fundingPath           
 });
@@ -481,7 +474,7 @@ const messageTemplateMain = messageTemplate();
 
 const news_homeTemplateMain = news_homeTemplate();
 
-const news_mainTemplateMain = news_mainTemplate();
+// const news_mainTemplateMain = news_mainTemplate();
 
 const fundingTemplateMain = fundingTemplate();
 
@@ -577,8 +570,8 @@ app.use(passport.initialize());
 
 passport.use(new LocalStrategy(
   {
-    usernameField: 'email', // Use 'email' as the username field
-    passwordField: 'psw'    // Use 'psw' as the password field
+    usernameField: 'email',
+    passwordField: 'psw'
   },
   async (email, psw, done) => {
     try {
@@ -590,28 +583,25 @@ passport.use(new LocalStrategy(
         return done(null, false, { message: 'Invalid Email Address Or Wrong Password!' });
       }
 
-      // Compare the provided password with the hashed password in the database
       const isMatch = await bcrypt.compare(psw, user.psw);
       if (!isMatch) {
         return done(null, false, { message: 'Invalid Email Address Or Wrong Password!' });
       }
 
-      // If everything is fine, return the user
       return done(null, user);
     } catch (error) {
-      // Handle any errors that occur during the database query
       return done(error);
     }
   }
 ));
 
 passport.serializeUser ((user, done) => {
-  done(null, user.id); // Use the UUID
+  done(null, user.id);
 });
 
 passport.deserializeUser (async (id, done) => {
   try {
-      const user = await User.findOne({ id }); // Find by UUID
+      const user = await User.findOne({ id });
       done(null, user);
   } catch (err) {
       done(err);
@@ -621,7 +611,7 @@ passport.deserializeUser (async (id, done) => {
 // Middleware to verify JWT
 const verifyToken = () => {
   return (req, res, next) => {
-    const token = req.cookies.token; // Get token from cookies
+    const token = req.cookies.token;
     if (!token) {
       return res.status(401).json({ message: 'Unauthorized', username: null, email: null, country: null, city: null, contact: null });
     }
@@ -629,7 +619,7 @@ const verifyToken = () => {
       if (err) {
         return res.status(403).json({ message: 'Forbidden', username: null, email: null, country: null, city: null, contact: null });
       }
-      req.user = user; // Attach user info to request
+      req.user = user;
       next(); 
     });
   };
@@ -637,7 +627,7 @@ const verifyToken = () => {
 
 const verifyTokenII = () => {
   return (req, res, next) => {
-    const token = req.cookies.token; // Get token from cookies
+    const token = req.cookies.token;
     if (!token) {
       return res.redirect('/login');
     }
@@ -645,7 +635,7 @@ const verifyTokenII = () => {
       if (err) {
         return res.redirect('/login');
       }
-      req.user = user; // Attach user info to request
+      req.user = user;
       next();
     });
   };
@@ -657,7 +647,6 @@ app.use((err, req, res, next) => {
 });
 
 app.get('/api/auth/check-login', verifyToken(), (req, res) => {
-  // If the token is valid, the user info will be attached to req.user
   res.json({ isLoggedIn: true, user: req.user });
 });
 
@@ -1680,12 +1669,13 @@ app.get('/message', verifyToken(), (req, res) => {
   res.send(response);
 });
  
-app.get('/rides-updates', verifyTokenII(), (req, res) => {
+app.get('/rides-updates', verifyTokenII(), async (req, res) => {
+
+  const newsItemHtml = await fetchNewsdatas();
+
   const html = template({
     title: 'Rides Updates'
   });
-
-  let newsItemHtml = replacePlaceholders(news_item, jsnewsData);
 
   let newsProductsHtml1 = news_homeTemplateMain.replace("({% WIDE_NEWS_ITEM %})", newsItemHtml);
   let newsProductsHtml2 = newsProductsHtml1.replace("({% MOBILE_NEWS_ITEM %})", newsItemHtml);
@@ -1696,10 +1686,9 @@ app.get('/rides-updates', verifyTokenII(), (req, res) => {
 
 });
 
-app.get('/update', verifyTokenII(), (req, res) => {
-  // Check if the 'id' query parameter is provided
+app.get('/update', verifyTokenII(), async (req, res) => {
   if (!req.query.id) {
-    return res.redirect('/home'); // Use return to exit the function after redirecting
+    return res.redirect('/home'); 
   }
 
   // Create the HTML template with the provided id
@@ -1707,23 +1696,22 @@ app.get('/update', verifyTokenII(), (req, res) => {
     title: `${req.query.id}`
   });
 
-  // Filter the news data to find the matching id
-  const checkNewsId = jsnewsData.filter(obj => obj.newsId === req.query.id);
+  const newsId = req.query.id; // Get the newsId from the query parameters
 
-  // Check if any news item was found
-  if (checkNewsId.length > 0) {
-    // Replace placeholders in the main template with the news item HTML
-    const newsIdHtml = replacePlaceholders(news_mainTemplateMain, checkNewsId);
+  fetchNewsItemdatas(newsId)
+    .then(newsHtml => {
+      if (newsHtml) {
+        const response = html.replace("({% INDEX_MAIN %})", newsHtml);
+        return res.send(response);
 
-    // Replace the placeholder in the HTML with the news item HTML
-    const response = html.replace("({% INDEX_MAIN %})", newsIdHtml);
-
-    // Send the response back to the client
-    return res.send(response); // Use return to exit the function after sending the response
-  } else {
-    // Handle the case where no news item was found
-    return res.status(404).send('News item not found'); // Send a 404 response if no item matches
-  }
+      } else {
+        res.status(404).send('News item not found'); // Handle not found case
+      }
+    })
+    .catch(err => {
+      console.error(`Error fetching news item: ${err}`);
+      res.status(500).send('Internal Server Error'); // Handle server error
+    });
 });
 
 app.get('/account-funding', verifyTokenII(), (req, res) => {  
