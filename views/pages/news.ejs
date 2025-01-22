@@ -1,3 +1,4 @@
+
 <div id="brands_toggle">
     
     <ol id="brands">
@@ -51,30 +52,30 @@
     
         <div class="news_tag_container">
             <div class="news_tag_item">
-                <p>({% NEWS_TAG %})</p>
-                <p>({% NEWS_BRAND %})</p>
+                <p><%= jsNewsdata.tag %></p>
+                <p><%= jsNewsdata.brand %></p>
             </div>
         </div>
     
         <div class="news_head">
-            <h1>({% NEWS_HEADER %})</h1>
+            <h1><%= jsNewsdata.header1 %></h1>
         </div>
     
         <div class="news_main">
 
             <div class="img">
-                <img loading="lazy" src="({% NEWS_IMG %})" alt="Update Image!" />
+                <img loading="lazy" src="<%= jsNewsdata.imagePath %>" alt="Update Image!" />
             </div>
     
             <div class="news_news">
-                <p>
-                    ({% NEWS %})
+                <p> 
+                    <%- jsNewsdata.news %>
                 </p>
             </div>
     
             <div class="date">
-                <p>({% NEWS_DATE %})</p>
-            </div>
+                <p><%= jsNewsdata.date %></p>
+            </div> 
         </div>
     
         <hr>
@@ -127,29 +128,29 @@
 
     <div class="news_tag_container">
         <div class="news_tag_item">
-            <p>({% NEWS_TAG2 %})</p>
-            <p>({% NEWS_BRAND2 %})</p>
+            <p><%= jsNewsdata.tag %></p>
+            <p><%= jsNewsdata.brand %></p>
         </div>
     </div> 
 
     <div class="news_head">
-        <h1>({% NEWS_HEADER2 %})</h1>
+        <h1><%= jsNewsdata.header1 %></h1>
     </div>
 
     <div class="news_main">
 
         <div class="img">
-            <img loading="lazy" src="({% NEWS_IMG2 %})" alt="Update Image!" />
+            <img loading="lazy" src="<%= jsNewsdata.imagePath %>" alt="Update Image!" />
         </div>
 
         <div class="news_news">
             <p>
-                ({% NEWS2 %})
+                <%- jsNewsdata.news %>
             </p>
         </div>
 
         <div class="date">
-            <p>({% NEWS_DATE2 %})</p>
+            <p><%= jsNewsdata.date %></p>
         </div>
     </div>
 
@@ -185,3 +186,4 @@
     </div>
 
 </section>
+

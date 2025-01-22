@@ -1,10 +1,13 @@
+<% for(key of jsNewsdata) { %>
 <div class="news_intro_item">
     <div class="news_intro_img">
-        <img loading="lazy" src="({% NEWS_IMG %})" alt="Latest News Image!" />
+        <img loading="lazy" src="<%= key.imagePath %>" alt="Latest News Image!" />
     </div>
     <div class="news_intro_txt">
-        <a href="/update?id=({% NEWS_ID %})">
-            <p>({% NEWS_INTRO %})</p>
+        <a href="/update?id=<%= key.newsId %>">
+            <p><%= key.newsIntro %></p> 
         </a>
     </div>
-</div>
+</div> 
+
+<% } %> 
