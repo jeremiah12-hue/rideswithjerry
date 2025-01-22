@@ -1670,20 +1670,24 @@ app.get('/message', verifyToken(), (req, res) => {
 });
  
 app.get('/rides-updates', verifyTokenII(), async (req, res) => {
+  try {
+    console.log("Fetching news data...");
+    const newsItemHtml = await fetchNewsdatas();
+    console.log("Fetched news data:", newsItemHtml);
 
-  const newsItemHtml = await fetchNewsdatas();
+    const html = template({
+      title: 'Rides Updates'
+    });
 
-  const html = template({
-    title: 'Rides Updates'
-  });
+    let newsProductsHtml1 = news_homeTemplateMain.replace("({% WIDE_NEWS_ITEM %})", newsItemHtml);
+    let newsProductsHtml2 = newsProductsHtml1.replace("({% MOBILE_NEWS_ITEM %})", newsItemHtml);
 
-  let newsProductsHtml1 = news_homeTemplateMain.replace("({% WIDE_NEWS_ITEM %})", newsItemHtml);
-  let newsProductsHtml2 = newsProductsHtml1.replace("({% MOBILE_NEWS_ITEM %})", newsItemHtml);
-
-  let response = html.replace("({% INDEX_MAIN %})", newsProductsHtml2);
-
-  res.send(response);
-
+    let response = html.replace("({% INDEX_MAIN %})", newsProductsHtml2);
+    res.send(response);
+  } catch (error) {
+    console.error("Error in /rides-updates:", error);
+    res.status(500).send('Internal Server Error');
+  }
 });
 
 app.get('/update', verifyTokenII(), async (req, res) => {
@@ -1691,27 +1695,24 @@ app.get('/update', verifyTokenII(), async (req, res) => {
     return res.redirect('/home'); 
   }
 
-  // Create the HTML template with the provided id
   const html = template({
     title: `${req.query.id}`
   });
 
   const newsId = req.query.id; // Get the newsId from the query parameters
 
-  fetchNewsItemdatas(newsId)
-    .then(newsHtml => {
-      if (newsHtml) {
-        const response = html.replace("({% INDEX_MAIN %})", newsHtml);
-        return res.send(response);
-
-      } else {
-        res.status(404).send('News item not found'); // Handle not found case
-      }
-    })
-    .catch(err => {
-      console.error(`Error fetching news item: ${err}`);
-      res.status(500).send('Internal Server Error'); // Handle server error
-    });
+  try {
+    const newsHtml = await fetchNewsItemdatas(newsId);
+    if (newsHtml) {
+      const response = html.replace("({% INDEX_MAIN %})", newsHtml);
+      return res.send(response);
+    } else {
+      res.status(404).send('News item not found'); // Handle not found case
+    }
+  } catch (err) {
+    console.error(`Error fetching news item: ${err}`);
+    res.status(500).send('Internal Server Error'); // Handle server error
+  }
 });
 
 app.get('/account-funding', verifyTokenII(), (req, res) => {  
